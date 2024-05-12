@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
+import { Auth } from '@/services'
 import { useForm } from "react-hook-form"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -22,28 +22,78 @@ import { Button } from '@/components/ui/button'
 import { toast } from "@/components/ui/use-toast"
 
 import { otpSchema } from '@/schema'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { emailAuthicated } from '@/app/slices/authSlices'
 
 const OTP = () => {
-
-  useEffect(()=>{
-    
-  },[])
-
+  const [isOTPSubmited, setIsOTPSubmited] = useState(false)
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
   const form = useForm({
     resolver: zodResolver(otpSchema),
     defaultValues: {
       pin: "",
     },
   })
-  const onSubmit = (data) => {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <h1 className="text-white text-2xl text-center">{data.pin}</h1>
-        </pre>
-      ),
-    })
+
+  const onSubmit = async (data) => {
+    if (data.pin) {
+      const validationResponse = await Auth.getvalidatedEmailOtp(data.pin)
+      if (validationResponse.data.data.emailVerified) {
+        toast({
+          title: "Your email verified successfully!",
+          description: (
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <h1 className="text-white text-2xl text-center">{"Success"}</h1>
+            </pre>
+          ),
+        })
+        navigate("/")
+      }else if(validationResponse.data.data.isInvalid){
+        toast({
+          title: "Envalid OTP",
+          description: (
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <h1 className="text-white text-2xl text-center">{"Failed !"}</h1>
+            </pre>
+          ),
+        })
+      }else if(validationResponse.data.data.isExpired){
+        toast({
+          title: "OTP Expired",
+          description: (
+            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+              <h1 className="text-white text-2xl text-center">{"Failed !"}</h1>
+            </pre>
+          ),
+        })
+        setIsOTPSubmited(false)
+      }
+    }
+  }
+  const sendOTPHandler = async () => {
+    setIsOTPSubmited(true)
+    const generateOTPResponse = await Auth.generateEmailOtp()
+    if (generateOTPResponse.data.data.emailVerified) {
+      toast({
+        title: "Your email has already verified!",
+        description: (
+          <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
+            <h1 className="text-white text-2xl text-center">{"Success"}</h1>
+          </pre>
+        ),
+      })
+
+      dispatch(emailAuthicated(true))
+      navigate("/")
+
+    }
+    console.log(generateOTPResponse);
+  }
+  const onOTPValidated = () => {
+
   }
   return (
     <>
@@ -51,11 +101,11 @@ const OTP = () => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-2 text-center ">
             <h1 className="text-3xl font-bold text-white">OTP</h1>
-            <p className="text-balance text-muted dark:text-muted-foreground">
+            {/* <p className="text-balance text-muted dark:text-muted-foreground">
               OTP Entry: Retrieve and Enter Code Sent to Your Email
-            </p>
+            </p> */}
           </div>
-          <BouncingBalls color='bg-white dark:bg-black' />
+          <BouncingBalls color='bg-white dark:bg-black my-5' />
           <div className="grid gap-4 text-white border-white">
             <FormField
               control={form.control}
@@ -85,16 +135,25 @@ const OTP = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit" className="w-[7rem] mx-auto" >Submit</Button>
+            {
+              !isOTPSubmited ?
+                <>
+                  <Button className="w-[7rem] mx-auto" onClick={() => sendOTPHandler()} >Send OTP</Button>
+                </>
+                :
+                <>
+                  <Button type="submit" className="w-[7rem] mx-auto">Submit</Button>
+                </>
+            }
           </div>
         </form>
       </Form>
-          <div onClick={()=>{console.log("Hello")}} className="mt-4 text-center text-md text-white">
-            Re-send OTP ?{" "}
-            <Button variant="outline" className="mx-4 bg-black" size="icon">
-              <ChevronRight className="h-4 w-4"/>
-            </Button>
-          </div>
+      <div onClick={() => { console.log("Hello") }} className="mt-4 text-center text-md text-white">
+        Re-send OTP ?{" "}
+        <Button variant="outline" className="mx-4 bg-black" size="icon">
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
     </>
 
   )

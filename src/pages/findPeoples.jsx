@@ -1,9 +1,9 @@
 import React from 'react'
-
+import { FindUsers } from '@/components'
 const findPeoples = () => {
   return (
-    <div>
-      find peoples
+    <div className='mx-auto w-[30rem]'>
+      <FindUsers/>
     </div>
   )
 }

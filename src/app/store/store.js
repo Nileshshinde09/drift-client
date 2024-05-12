@@ -4,9 +4,9 @@ import themeSlice from '../slices/themeSlice';
 import settingSlice from '../slices/settingSlice';
 const store = configureStore({
     reducer: {
-        auth : authSlice,
-        theme:themeSlice,
-        settings:settingSlice
+        auth:authSlice,      
+        theme:themeSlice,    
+        settings:settingSlice 
     }
 });
 

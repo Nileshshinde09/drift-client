@@ -9,7 +9,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel"
 
-const ImageCarousel=()=>{
+const ImageCarousel = ({ nextNpreviousArrows = false }) => {
   return (
     <Carousel className="w-full max-w-xs">
       <CarouselContent>
@@ -25,8 +25,15 @@ const ImageCarousel=()=>{
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious />
-      <CarouselNext />
+      {
+        nextNpreviousArrows && nextNpreviousArrows ?
+          <>
+            <CarouselPrevious />
+            <CarouselNext />
+          </>
+          :
+          null
+      }
     </Carousel>
   )
 }

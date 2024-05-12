@@ -11,6 +11,8 @@ import Login from "./Auth/login.component.jsx"
 import FilterSection from "./filterSection.jsx"
 import PostCard from "./postCard.jsx"
 import Pagination from "./pagination.jsx"
+import FindUsers from "./findUsersCard.jsx"
+import Avatar from "./userCard.jsx"
 export {
     ProtectedAuthLayout,
     TNC,
@@ -24,5 +26,7 @@ export {
     Login,
     FilterSection,
     PostCard,
-    Pagination
+    Pagination,
+    FindUsers,
+    Avatar
 }

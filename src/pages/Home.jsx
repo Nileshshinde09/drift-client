@@ -10,7 +10,7 @@ const dispatch = useDispatch()
 
 return (
   <>
-  <div className='overflow-y-scroll absolute py-12'>
+  <div className='overflow-y-scroll absolute py-12 '>
     <div className='flex flex-wrap justify-center space-x-5 h-screen space-y-5 no-scrollbar pb-40'>
     <div></div>
     <PostCard/>
