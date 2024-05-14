@@ -21,7 +21,6 @@ const App = () => {
   return !loading ? (
     <>
     <div className='h-screen overflow-hidden'>
-
     <TooltipProvider>
       <div className='relative'>
         <main>

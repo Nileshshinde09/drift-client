@@ -31,7 +31,6 @@ return (
 
   </div>
  
-    <Pagination/>
   
   </div>
   </>

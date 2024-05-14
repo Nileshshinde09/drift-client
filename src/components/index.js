@@ -13,7 +13,11 @@ import PostCard from "./postCard.jsx"
 import Pagination from "./pagination.jsx"
 import FindUsers from "./findUsersCard.jsx"
 import Avatar from "./userCard.jsx"
+import CommentSheet from "./commentsSheet.jsx"
+import Comment from "./comment.jsx"
 export {
+    Comment,
+    CommentSheet,
     ProtectedAuthLayout,
     TNC,
     ThemeButton,

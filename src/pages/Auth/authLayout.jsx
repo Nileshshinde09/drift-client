@@ -18,7 +18,7 @@ const AuthLayout = ({ children }) => {
                 <div className="flex items-center justify-center py-12  sm:drop-shadow-2xl">
                     <div className="mx-auto grid w-[350px] gap-6 ">
                         <>
-                            {children}
+                            { children }
                         </>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 import { Auth } from "./Auth/Auth.service";
-
+import { Post } from "./Post/post.service";
 export {
-    Auth
+    Auth,
+    Post
 }

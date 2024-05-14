@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import DriftLogo from "../../assets/Applogo/driftLogo.png"
 import SettingDrawer from "@/components/drawer"
-import { Drawer,DrawerTrigger } from "@/components/ui/drawer"
+import { Drawer, DrawerTrigger } from "@/components/ui/drawer"
 import {
   UserPlus2,
   Home,
@@ -36,8 +36,8 @@ import { BackgroundAnimation } from '@/components'
 const Dashboard = ({ children }) => {
   return (
     <Drawer>
-      <div className="flex min-h-screen w-full flex-col bg-muted/40">
-      <BackgroundAnimation />
+      <div className="relative flex min-h-screen w-full flex-col bg-muted/40">
+        <BackgroundAnimation />
         <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
             <Link
@@ -113,11 +113,11 @@ const Dashboard = ({ children }) => {
           <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
             <Tooltip>
               <TooltipTrigger>
-              <DrawerTrigger className="bg-transparent flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
+                <DrawerTrigger className="bg-transparent flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
                   <Button variant="outline" className="" >
-                      <Settings className="h-5 w-5" />
-                    </Button>
-                  </DrawerTrigger>
+                    <Settings className="h-5 w-5" />
+                  </Button>
+                </DrawerTrigger>
               </TooltipTrigger>
               <TooltipContent side="right">Settings</TooltipContent>
             </Tooltip>
@@ -217,10 +217,10 @@ const Dashboard = ({ children }) => {
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           </main>
         </div>
-            {
-              children
-            }
-          <SettingDrawer />
+        {
+          children
+        }
+        <SettingDrawer />
       </div>
     </Drawer>
   )
