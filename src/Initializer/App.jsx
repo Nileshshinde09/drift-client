@@ -10,7 +10,7 @@ import {TooltipProvider} from "@/components/ui/tooltip"
 const App = () => {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
-
+  console.log("Hello world");
   // This Dispatch fuction used to initialize Theme 🌞 🌃
   dispatch(setTheme())
   //
