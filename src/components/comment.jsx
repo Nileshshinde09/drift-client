@@ -12,19 +12,19 @@ import {
 } from "@/components/ui/hover-card"
 
 
-const Comment = ({ content, commentator }) => {
+const Comment = ({ commentator,content }) => {
     const [comment, setComment] = useState(false)
     const [like, setLike] = useState(false)
     const [disLike, setDisLike] = useState(false)
     const [bookmark, setBookmark] = useState(false)
-
+    
     return (
         <>
             <HoverCard>
                 <HoverCardTrigger>
-                    <div className="relative rounded bg-muted px-[0.3rem] my-5 py-[0.2rem] font-mono text-sm font-semibold">
+                    <div className="relative text-center rounded bg-muted px-[0.3rem] my-5 py-[0.2rem] font-mono text-sm font-semibold">
                         {content || "hello my self nilesh shinde lorem hello my self😎😎😎 nilesh shinde lorem hello my self nilesh shinde 😁😁😁 lorem hello my self nilesh shinde lorem"}
-                        <div className="flex space-x-7">
+                        <div className="flex justify-center items-center space-x-7 my-2">
                             <div></div>
                             <div>
                             <ThumbsUp onClick={() => {
@@ -44,7 +44,6 @@ const Comment = ({ content, commentator }) => {
                             <MessageSquare onClick={() => setComment(!comment)} className={comment ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
                             <p className="text-sm text-center text-muted-foreground">{1}</p>
                             </div>
-                            <Bookmark onClick={() => setBookmark(!bookmark)} className={bookmark ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
 
                         </div>
                     </div>
@@ -52,7 +51,7 @@ const Comment = ({ content, commentator }) => {
                 <HoverCardContent className="w-60">
                     <div className="flex space-x-4">
                         <Avatar>
-                            <AvatarImage src={commentator.Avatar || "https://github.com/vercel.png"} />
+                            <AvatarImage src={commentator.avatar || "https://github.com/vercel.png"} />
                             <AvatarFallback>VC</AvatarFallback>
                         </Avatar>
                         <div className="space-y-1">
