@@ -13,14 +13,14 @@ const userAvatar = (
     }) => {
     return (
         <>
-            <div className={`mx-10 ${className}`}>
+            <div className={`mx-10 flex justify-center ${className}`}>
                 <div className="w-fit flex space-x-4">
-                    <Avatar>
+                    <Avatar className="my-auto">
                         <AvatarImage src={url} alt="@user" />
                     </Avatar>
                     <div>
-                        <div>{username}</div>
-                        <div>{fullName}</div>
+                        <div className="text-lg"><p className="leading-7 [&:not(:first-child)]:mt-6">{username}</p></div>
+                        <div className="text-sm flex"><p className="leading-7 [&:not(:first-child)]:mt-6">{fullName}</p></div>
                     </div>
 
                 </div>

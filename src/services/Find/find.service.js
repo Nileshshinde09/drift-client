@@ -1,11 +1,9 @@
 import axios from "axios";
-class bookmarks {
-    bookmarkUnbookmark = async (postId) => {
-        if(!postId) throw error
-        return await axios.post("/api/v1/bookmark/B/bookmark-unbookmark",
-            {
-                postId
-            },
+class _Find{
+    findUser = async ({username}) => {
+        console.log(username);
+        if(!username) throw error
+        return await axios.get("/api/v1/post/find-user",
             {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -16,7 +14,7 @@ class bookmarks {
             .then(response => (response))
             .catch(error => (error));
     }
-
+    
 }
 
-export const Bookmarks = new bookmarks();
+export const Find = new _Find();

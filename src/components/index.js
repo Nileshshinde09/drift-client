@@ -15,7 +15,13 @@ import FindUsers from "./findUsersCard.jsx"
 import Avatar from "./userCard.jsx"
 import CommentSheet from "./commentsSheet.jsx"
 import Comment from "./comment.jsx"
+import SelectComponent from "./selectComponent.jsx"
+import CreateImagePostComponent from "./createImagePostComponent.jsx"
+import CreateVideoPostComponent from "./createVideoPostComponent.jsx"
 export {
+    CreateImagePostComponent,
+    CreateVideoPostComponent,
+    SelectComponent,
     Comment,
     CommentSheet,
     ProtectedAuthLayout,

@@ -1,5 +1,5 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { Home, AuthLayout,AppLayout,Feed,Dashboard,FindPeoples,CreatePost } from '@/pages'
+import { Home, AuthLayout,AppLayout,Feed,Dashboard,FindPeoples,CreatePost,Profile } from '@/pages'
 import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
 
@@ -85,6 +85,15 @@ const router = createBrowserRouter(
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
                             <CreatePost/>
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/profile'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AppLayout>
+                            <Profile/>
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />

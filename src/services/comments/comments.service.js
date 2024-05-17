@@ -1,5 +1,6 @@
 import axios from "axios";
 class comments {
+    
     getCommentsOnPost = async (postId) => {
         try {
             if(!postId) throw error

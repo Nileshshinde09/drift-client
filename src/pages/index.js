@@ -6,7 +6,9 @@ import Feed from "./feed.jsx";
 import Dashboard from "./dashboard.jsx";
 import CreatePost from "./createPost.jsx";
 import FindPeoples from "./findPeoples.jsx";
+import Profile from "./Profile.jsx";
 export {
+    Profile,
     Home,
     BouncingBalls,
     AuthLayout,

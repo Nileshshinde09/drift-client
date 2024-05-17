@@ -1,8 +1,14 @@
 import { Auth } from "./Auth/Auth.service";
 import { Post } from "./Post/post.service";
 import { Comments } from "./comments/comments.service";
+import { Bookmarks } from "./bookmarks/bookmarks.service";
+import { Likes } from "./likes/likes.service";
+import { Find } from "./Find/find.service";
 export {
     Auth,
     Post,
-    Comments
+    Comments,
+    Bookmarks,
+    Likes,
+    Find
 }
