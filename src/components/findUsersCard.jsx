@@ -19,12 +19,11 @@ import { Form } from "./ui/form";
 import { Label } from "@radix-ui/react-label";
 import { useDebounce } from 'use-debounce';
 const FindUsers = () => {
-    const username = "nick";
-    const fullName = "Nilesh Shinde"
     const [userList, setUserList] = useState([])
     const [userInput, setUserInput] = useState(null)
     const debouncedUserInput = useDebounce(userInput, 100);
     const [findUserErrorMessage, setFindUserErrorMessage] = useState(null);
+
     useEffect(() => {
         const findUserByUsename = async () => {
             if (debouncedUserInput[0]) {
