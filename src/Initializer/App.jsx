@@ -9,6 +9,7 @@ import { useSelector } from 'react-redux'
 import { Auth } from '@/services'
 import { login,emailAuthenticated } from '@/app/slices/authSlices'
 const App = () => {
+  console.log("App initialized..");
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
 
