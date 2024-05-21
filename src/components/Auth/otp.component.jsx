@@ -25,7 +25,7 @@ import { otpSchema } from '@/schema'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { emailAuthicated } from '@/app/slices/authSlices'
+import { emailAuthenticated } from '@/app/slices/authSlices'
 
 const OTP = () => {
   const [isOTPSubmited, setIsOTPSubmited] = useState(false)
@@ -86,7 +86,7 @@ const OTP = () => {
         ),
       })
 
-      dispatch(emailAuthicated(true))
+      dispatch(emailAuthenticated(true))
       navigate("/")
 
     }

@@ -31,6 +31,7 @@ import { Auth } from '@/services'
 import { useToast } from '../ui/use-toast'
 
 const SignUp = () => {
+  
   const [username, setUsername] = useState('');
   const [usernameMessage, setUsernameMessage] = useState('');
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);

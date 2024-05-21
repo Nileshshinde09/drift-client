@@ -19,9 +19,9 @@ import { OpenPostComments } from "@/app/slices/commentSlice"
 import { Bookmarks,Likes } from "@/services"
 import { useToast } from "./ui/use-toast"
 const postCard = ({ post }) => {
-  console.log(post.isliked, post.isbookmarked);
-  const { toast } = useToast()
+
   //----------------🪝🪝hooks🪝🪝-------------------
+  const { toast } = useToast()
   const [comment, setComment] = useState(false)
   const [like, setLike] = useState(post.isliked || false)
   const [bookmark, setBookmark] = useState(post.isbookmarked || false)

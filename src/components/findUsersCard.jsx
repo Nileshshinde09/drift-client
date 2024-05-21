@@ -73,7 +73,7 @@ const FindUsers = () => {
                     </ScrollArea>
                     <>
                         <h1 className={`${userList.length > 0 ? "hidden" : null} scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl`}>
-                            {findUserErrorMessage ? findUserErrorMessage : "Not Found !!"}
+                            {findUserErrorMessage ? findUserErrorMessage :null}
                         </h1>
                     </>
                 </div>

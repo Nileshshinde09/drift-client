@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { PostCard } from '@/components'
 import { Post } from '@/services'
 const Feed = () => {
+
   const [feedPostRespose, setFeedPostRespose] = useState(null)
   useEffect(() => {
     ; (async () => {
@@ -21,6 +22,7 @@ const Feed = () => {
               <div></div>
               {
                 feedPostRespose && feedPostRespose.data.data.followees.map((post) => {
+                  console.log(post)
                   if (!post.video) {
                     return (
                       <>

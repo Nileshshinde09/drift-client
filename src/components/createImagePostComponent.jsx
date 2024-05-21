@@ -24,6 +24,7 @@ const CreateImagePost = () => {
   const [caption, setCaption] = useState("")
   const [isUploading, setIsUploading] = useState(false)
   const [tag, setTag] = useState('')
+
   const handleFileChange = (event) => {
     const selectedFiles = event.target.files
 
@@ -44,6 +45,8 @@ const CreateImagePost = () => {
 
     setFiles(selectedFiles);
   };
+
+  
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     if (files.length <= 0) {
@@ -70,7 +73,6 @@ const CreateImagePost = () => {
         setIsUploading(false)
         return;
       }
-      console.log(createImagePostResponse);
       setIsUploading(false)
       toast(
         {

@@ -18,7 +18,16 @@ import Comment from "./comment.jsx"
 import SelectComponent from "./selectComponent.jsx"
 import CreateImagePostComponent from "./createImagePostComponent.jsx"
 import CreateVideoPostComponent from "./createVideoPostComponent.jsx"
+import UpdateProfileComponent from "./updateProfile.jsx"
+import AvatarDrawer from "./avatarDrawer.jsx"
+import SettingDrawer from "./drawer.jsx"
+import AnoAvatarsCollection from "./anoAvatars.jsx"
+import UploadAvatar from "./uploadAvatar.jsx"
 export {
+    UploadAvatar,
+    AnoAvatarsCollection,
+    SettingDrawer,
+    AvatarDrawer,
     CreateImagePostComponent,
     CreateVideoPostComponent,
     SelectComponent,
@@ -38,5 +47,6 @@ export {
     PostCard,
     Pagination,
     FindUsers,
-    Avatar
+    Avatar,
+    UpdateProfileComponent
 }

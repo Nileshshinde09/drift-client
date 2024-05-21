@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import DriftLogo from "../../assets/Applogo/driftLogo.png"
-import SettingDrawer from "@/components/drawer"
+import { AvatarDrawer,SettingDrawer } from "@/components"
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer"
 import {
   UserPlus2,
@@ -221,6 +221,7 @@ const Dashboard = ({ children }) => {
           children
         }
         <SettingDrawer />
+        {/* <AvatarDrawer/> */}
       </div>
     </Drawer>
   )

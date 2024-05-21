@@ -19,7 +19,8 @@ import { useState } from 'react';
 import { Auth } from '@/services'
 import { useToast } from '../ui/use-toast'
 import { useDispatch } from 'react-redux'
-import { login, emailAuthicated } from '@/app/slices/authSlices'
+import { login, emailAuthenticated } from '@/app/slices/authSlices'
+
 const Login = () => {
   const dispatch = useDispatch()
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,13 +31,15 @@ const Login = () => {
         const response = await Auth.getUser()
         if (response) dispatch(login(response?.data?.data))
         //TODO: change this code when you going to production 👇👇
-        if (response?.data?.data?.emailVerified) dispatch(emailAuthicated(response?.data?.data?.emailVerified))
+        if (response?.data?.data?.emailVerified) dispatch(emailAuthenticated(response?.data?.data?.emailVerified))
       } catch (error) {
         console.log(`User not found :: ${error}`);
       }
     }
     ;(async ()=> await getExistingUser())()
+
   }, [])
+
   const form = useForm({
     resolver: zodResolver(logInSchema),
     defaultValues: {
