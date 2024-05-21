@@ -11,11 +11,9 @@ import { login,emailAuthenticated } from '@/app/slices/authSlices'
 const App = () => {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
-
   // This Dispatch fuction used to initialize Theme 🌞 🌃
   dispatch(setTheme())
   //
-
   useEffect(() => {
     
       const getExistingUser = async () => {
