@@ -5,6 +5,7 @@ import { Avatar } from '.'
 import { Check } from 'lucide-react'
 import { useDispatch } from 'react-redux';
 import { setAvatar } from '@/app/slices/updateProfile';
+import { LoadMediaContent } from '@/services'
 const avatarProps = {
     fullName: null,
     username: null,
@@ -25,14 +26,9 @@ const anoAvatarsCollection = () => {
     useEffect(() => {
         ; (async () => {
             try {
-                const response = await axios.get("/api/v1/fileloader/load-ano-assets",
-                    {
-                        headers: {
-                            'Access-Control-Allow-Origin': '*',
-                            'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-                        }
-                    }
-                )
+                
+                const response =await LoadMediaContent.loadAnoAssets()
+
                 if (response.data) {
                     setAnoAvatars(response.data.data);
                 }

@@ -4,11 +4,13 @@ import { Comments } from "./comments/comments.service";
 import { Bookmarks } from "./bookmarks/bookmarks.service";
 import { Likes } from "./likes/likes.service";
 import { Find } from "./Find/find.service";
+import { LoadMediaContent } from "./LoadMediaContent";
 export {
     Auth,
     Post,
     Comments,
     Bookmarks,
     Likes,
-    Find
+    Find,
+    LoadMediaContent
 }

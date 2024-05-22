@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  theme: localStorage.getItem("vite-ui-theme") || "system",   // if theme is not present in the local storage it will set system theme as default
+  theme: localStorage.getItem("vite-ui-theme") || "dark",   // if theme is not present in the local storage it will set system theme as default
   storageKey: "vite-ui-theme"
 }
 
