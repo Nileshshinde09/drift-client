@@ -57,7 +57,7 @@ const Login = () => {
 
       });
       if (response) dispatch(login(response?.data?.data?.user))
-      if (response?.data?.data?.user?.emailVerified) dispatch(emailAuthicated())
+      if (response?.data?.data?.user?.emailVerified) dispatch(emailAuthenticated())
       setIsSubmitting(false);
     } catch (error) {
       console.error('Error during login:', error);

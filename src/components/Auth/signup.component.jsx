@@ -60,7 +60,7 @@ const SignUp = () => {
     const checkUsernameUnique = async () => {
       if (debouncedUsername[0] != '') {
         setIsCheckingUsername(true);
-        setUsernameMessage(''); // Reset message
+        setUsernameMessage('');
         try {
           const response = await axios.get(
             `/api/v1/users/check-unique-username/?username=${debouncedUsername[0]}`
