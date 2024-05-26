@@ -27,11 +27,10 @@ const FormSchema = z.object({
   tag: z.string(),
 });
 
-const SelectComponent = ({ setTag }) => {
+const SelectComponent = ({ setTag,selectedTag }) => {
   const form = useForm({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      email: "",
       tag: "",
     },
   });
@@ -55,7 +54,6 @@ const SelectComponent = ({ setTag }) => {
           name="tag"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Select a Tag</FormLabel>
               <FormControl>
                 <Controller
                   control={form.control}
@@ -63,7 +61,7 @@ const SelectComponent = ({ setTag }) => {
                   render={({ field }) => (
                     <Select onValueChange={field.onChange} value={field.value}>
                       <SelectTrigger className="w-[180px]">
-                        <SelectValue placeholder="Select a Tag" />
+                        <SelectValue placeholder={ selectedTag ||`Select a Tag`} />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>

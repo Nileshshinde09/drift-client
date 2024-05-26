@@ -8,9 +8,11 @@ import {TooltipProvider} from "@/components/ui/tooltip"
 import { useSelector } from 'react-redux'
 import { Auth } from '@/services'
 import { login,emailAuthenticated } from '@/app/slices/authSlices'
+import { useAvatarImage } from '@/hooks'
 const App = () => {
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch()
+  const [avatarError,setId] = useAvatarImage()
   // This Dispatch fuction used to initialize Theme 🌞 🌃
   dispatch(setTheme())
   //
@@ -22,13 +24,16 @@ const App = () => {
           if (response) dispatch(login(response?.data?.data))
           //TODO: change this code when you going to production 👇👇
           if (response?.data?.data?.emailVerified) dispatch(emailAuthenticated(response?.data?.data?.emailVerified))
-        } catch (error) {
+          if (response?.data?.data?.avatar) setId(response?.data?.data?.avatar)
+          } catch (error) {
           console.log(`User not found :: ${error}`);
         }
       }
-      ;(async ()=> await getExistingUser())()
+      ;(async ()=> {
+        await getExistingUser()
+      })()
     setLoading(false)
-  }, [])
+  }, [dispatch])
   return !loading ? (
     <>
     <div className='h-screen overflow-hidden'>

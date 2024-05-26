@@ -1,19 +1,20 @@
 import axios from 'axios'
 import React, { useEffect, useState, useRef } from 'react'
 import { useToast } from './ui/use-toast'
-import { Avatar } from '.'
+import { AnoAvatarsCollectionCard, Avatar } from '.'
 import { Check } from 'lucide-react'
 import { useDispatch } from 'react-redux';
 import { setAvatar } from '@/app/slices/updateProfile';
+
 const avatarProps = {
     fullName: null,
     username: null,
 }
 const AvatarComponent = ({ avatar, isSelected, onSelect }) => {
     return (
-        <div onClick={() => onSelect(avatar._id)} className="my-5 relative cursor-pointer">
+        <div onClick={() => onSelect(avatar._id,avatar.URL)} className="my-5 relative cursor-pointer">
             {isSelected && <Check className='absolute bg-sky-500 rounded-full' />}
-            <Avatar {...avatarProps} url={avatar.URL} />
+            <AnoAvatarsCollectionCard {...avatarProps} url={avatar.URL} />
         </div>
     );
 };
@@ -46,7 +47,7 @@ const anoAvatarsCollection = () => {
         })()
     }, [selectedImage])
 
-    const imageSelecter = (id) => {
+    const imageSelecter = (id,url) => {
         if (id) {
             setSelectedImage(id)
             dispatch(
@@ -54,6 +55,7 @@ const anoAvatarsCollection = () => {
                 isImageUploaded: false,
                 imageId: id,
                 fileData: null,
+                anoImageUrl:url
                 })
             )
             toast({

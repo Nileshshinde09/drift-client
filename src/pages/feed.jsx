@@ -14,7 +14,6 @@ const Feed = () => {
 
   return (
     <>
-
       {
         feedPostRespose ?
           <div className='overflow-y-scroll absolute py-12 no-scrollbar'>

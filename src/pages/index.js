@@ -8,7 +8,9 @@ import CreatePost from "./createPost.jsx";
 import FindPeoples from "./findPeoples.jsx";
 import Profile from "./Profile.jsx";
 import UpdateProfile from "./updateProfile.jsx";
+import EditPost from "./editPost.jsx";
 export {
+    EditPost,
     UpdateProfile,
     Profile,
     Home,

@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { PROFILE_DUMMY_IMAGE_URL } from "@/constants";
 const initialState = {
     status: false,
     userData: null,
-    isEmailAuthenticated: false
+    isEmailAuthenticated: false,
+    profileImageUrl: PROFILE_DUMMY_IMAGE_URL
 }
 const authSlice = createSlice({
     name: "auth",
@@ -20,10 +21,16 @@ const authSlice = createSlice({
         },
         emailAuthenticated: (state, action) => {
             state.isEmailAuthenticated = action.payload
-        }
+        },
+        setProfileData: (state, action) => {
+            state.userData = action.payload;
+        },
+        setProfileImage: (state, action) => {
+            state.profileImageUrl = action.payload.profileImageUrl;
+        },
     }
 })
 
-export const { login, logout, emailAuthenticated } = authSlice.actions;
+export const { login, logout, emailAuthenticated, setProfileData, setProfileImage } = authSlice.actions;
 
 export default authSlice.reducer;

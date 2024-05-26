@@ -1,8 +1,8 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { Home, AuthLayout,AppLayout,Feed,Dashboard,FindPeoples,CreatePost,Profile , UpdateProfile } from '@/pages'
+import { Home, AuthLayout,AppLayout,Feed,Dashboard,FindPeoples,CreatePost,Profile,EditPost , UpdateProfile } from '@/pages'
 import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
-
+import { PageNotFound } from '@/components'
 // This code is not working 
 // const router = createBrowserRouter([
 //     {
@@ -107,7 +107,15 @@ const router = createBrowserRouter(
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
-
+            <Route
+                path='/edit-post/:postId'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AppLayout>
+                            <EditPost/>
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
             <Route
                 path='/login'
                 element={
@@ -137,6 +145,8 @@ const router = createBrowserRouter(
                         </AuthLayout>
                     </ProtectedAuthLayout>
                 } />
+            <Route path='*' element={<PageNotFound/>}/>
+            
         </Route>
 
     )

@@ -8,14 +8,21 @@ import { useForm } from "react-hook-form";
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Calendar } from "@/components/ui/calendar"
-import { CalendarIcon,Loader2 } from "lucide-react"
+import { CalendarIcon, Loader2 } from "lucide-react"
 import { useDebounce } from 'use-debounce';
 import axios from 'axios';
+import { Profile } from '@/services';
+import { detectChanges, convertToISOString } from '@/utils';
+import { useDispatch } from 'react-redux';
+import { setProfileData } from '@/app/slices/authSlices';
+import { useUploadImage } from '@/hooks';
+import { CloudMedia } from '@/services';
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
+
 import {
   Form,
   FormControl,
@@ -25,6 +32,7 @@ import {
   FormMessage,
   FormLabel
 } from "@/components/ui/form";
+
 import {
   Select,
   SelectContent,
@@ -32,9 +40,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+
 import { Input } from "@/components/ui/input";
 import { updateProfileSchema } from '@/schema';
 import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/components/ui/use-toast';
 
 const avatarProps = {
   fullName: null,
@@ -43,48 +53,57 @@ const avatarProps = {
 
 const UpdateProfile = () => {
   const [user, setUser] = useState(null);
-  const userData = useSelector(state => state.auth.userData);
+  const { userData, profileImageUrl } = useSelector(state => state.auth);
   const [username, setUsername] = useState('');
   const [usernameMessage, setUsernameMessage] = useState('');
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
+  const [updatedResponse, setUpdatedResponse] = useState("")
   const debouncedUsername = useDebounce(username, 200);
+  const [file, setImageFile] = useState(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState(null);
+  const [uploadedImageId, setUploadedImageId] = useState(null);
+  const [isImageUploading, setIsImageUploading] = useState(false);
+  const { toast } = useToast()
+  const dispatch = useDispatch()
+
+  const { isImageUploaded, imageId, anoImageUrl, fileData, status } = useSelector(state => state.updateProfile)
+
   useEffect(() => {
     if (userData) {
       setUser(userData);
       form.reset({
-        username: userData.username || '',
-        fullName: userData.fullName || '',
-        gender: userData.gender || '',
-        dob: userData.dob || '',
-        bio: userData.bio || '',
+        username: userData?.username || '',
+        fullName: userData?.fullName || '',
+        gender: userData?.gender || '',
+        dob: new Date(userData?.dob) || '',
+        bio: userData?.bio || '',
       });
     }
-  }, [userData]);
+  }, [userData, updatedResponse]);
 
   useEffect(() => {
     const checkUsernameUnique = async () => {
-      if(debouncedUsername[0] == userData.username){
+      if (debouncedUsername[0] == userData?.username) {
         setUsernameMessage("")
       }
-      if (debouncedUsername[0] != '' && debouncedUsername[0] != userData.username) {
+      if (debouncedUsername[0] != '' && debouncedUsername[0] != userData?.username) {
         setIsCheckingUsername(true);
         setUsernameMessage('');
         try {
           const response = await axios.get(
             `/api/v1/users/check-unique-username/?username=${debouncedUsername[0]}`
           );
-          setUsernameMessage(response.data.message);
+          setUsernameMessage(response?.data?.message);
         } catch (error) {
           const axiosError = error;
-          console.log(axiosError);
           setUsernameMessage(
-            axiosError.response?.data.message ?? 'Error checking username'
+            axiosError?.response?.data?.message ?? 'Error checking username'
           );
         } finally {
           setIsCheckingUsername(false);
         }
       }
-      
+
     };
     ; (async () => await checkUsernameUnique())()
   }, [debouncedUsername[0]]);
@@ -99,17 +118,81 @@ const UpdateProfile = () => {
       bio: '',
     },
   });
-  console.log(debouncedUsername[0]);
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
+
     if (values.dob) {
-      const convertToMongooseDate = dateString => new Date(typeof dateString === 'string' ? dateString.replace(' GM', ' GMT') : dateString);
-      const dob = convertToMongooseDate(values.dob)
-      values.dob = dob
+      values.dob = convertToISOString(String(values.dob))
     }
-    console.log(values);
-  };
+
+    if (status && !isImageUploaded && imageId) {
+      values.avatar = imageId
+    }
+
+    if (status && isImageUploaded && fileData) {
+      try {
+        setIsImageUploading(true)
+        const response = await CloudMedia.uploadImage(fileData)
+        if (response?.data?.data?.uploadedImage) {
+          values.avatar = response?.data?.data?.uploadedImage?._id
+          setUploadedImageId(response?.data?.data?.uploadedImage?._id);
+          setUploadedImageUrl(response.data?.data?.uploadedImage?.URL);
+        }
+        setIsImageUploading(false)
+      } catch (error) {
+        setIsImageUploading(false)
+        toast({
+          title: "Failed to Upload Image !!",
+          discription: error.message || "Something went wrong while uploading image!!",
+          variant: "destructive"
+        })
+      }
+
+      try {
+
+        if (uploadedImageId) {
+          values.avatar = uploadedImageId;
+        }
+      } catch (error) {
+        toast({
+          title: "Image Upload Failed !!",
+          description: error.message || "Something went wrong while uploading image!!",
+          variant: "destructive"
+        });
+        return;
+      }
+    }
+
+    console.log("Old :: ", userData.avatar);
+    console.log("New :: ", values.avatar);
+
+    const updatedData = detectChanges(userData, values);
+    console.log(updatedData)
+    if (Object.keys(updatedData).length === 0) {
+      toast({
+        title: "Nothing to Update!!"
+      })
+    } else {
+      try {
+        const response = await Profile.updateProfile(updatedData)
+        dispatch(setProfileData(response.data.data))
+        setUpdatedResponse(response.data.data)
+        toast({
+          title: "Update Successfully !!",
+        })
+
+      } catch (error) {
+
+        toast({
+          title: "Updation Failed !!",
+          description: error.message || "something went wrong while update the profile.",
+          variant: "distructive"
+
+        })
+      }
+    }
 
 
+  }
 
   return (
     <>
@@ -120,7 +203,8 @@ const UpdateProfile = () => {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mx-auto">
                 <div className="flex justify-center">
                   <DrawerTrigger>
-                    <Avatar {...avatarProps} />
+                    <Avatar {...avatarProps} url={profileImageUrl} />
+                    {/* <Avatar {...avatarProps} url={userData?.avatar} /> */}
                   </DrawerTrigger>
                 </div>
 
@@ -210,13 +294,12 @@ const UpdateProfile = () => {
                     />
                   </div>
                   <div>
-
                     <FormField
                       control={form.control}
                       name="dob"
                       render={({ field }) => (
                         <FormItem className="flex flex-col">
-                          <FormLabel>Date of birth</FormLabel>
+                          <FormLabel> Date of birth </FormLabel>
                           <Popover>
                             <PopoverTrigger asChild>
                               <FormControl>
@@ -237,8 +320,11 @@ const UpdateProfile = () => {
                               </FormControl>
                             </PopoverTrigger>
                             <PopoverContent className="w-auto p-0" align="start">
+
                               <Calendar
+
                                 mode="single"
+                                defaultValue={field.value}
                                 selected={field.value}
                                 onSelect={field.onChange}
                                 disabled={(date) =>
@@ -257,9 +343,7 @@ const UpdateProfile = () => {
                     />
                   </div>
                 </div>
-
-                {/* Add other fields similarly */}
-                <Button type={"submit"} className="w-full">
+                <Button type={"submit"} disabled={isCheckingUsername || isImageUploading || usernameMessage == "User Already exist"} className="w-full">
                   Update Profile
                 </Button>
               </form>

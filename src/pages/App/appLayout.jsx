@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import DriftLogo from "../../assets/Applogo/driftLogo.png"
-import { AvatarDrawer,SettingDrawer } from "@/components"
+import { AvatarDrawer, SettingDrawer } from "@/components"
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer"
 import {
   UserPlus2,
@@ -180,13 +180,10 @@ const Dashboard = ({ children }) => {
                 </nav>
               </SheetContent>
             </Sheet>
-            <div className="relative ml-auto flex-1 md:grow-0">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
-              />
+              <h2 className="mx-auto text-center scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+                {"Feed"}
+              </h2>
+            <div className="text-center relative ml-auto flex-1 md:grow-0">
             </div>
             <DropdownMenu>
               <DropdownMenuTrigger>

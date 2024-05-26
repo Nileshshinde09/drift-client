@@ -23,7 +23,14 @@ import AvatarDrawer from "./avatarDrawer.jsx"
 import SettingDrawer from "./drawer.jsx"
 import AnoAvatarsCollection from "./anoAvatars.jsx"
 import UploadAvatar from "./uploadAvatar.jsx"
+import AnoAvatarsCollectionCard from "./anoCard.jsx"
+import DashboardPostRowComponents from "./dashboardPostRowComponents.jsx"
+import EditImagePost from "./editImagepostComponent.jsx"
+import PageNotFound from "./pageNotFound.jsx"
+
 export {
+    PageNotFound,
+    EditImagePost,
     UploadAvatar,
     AnoAvatarsCollection,
     SettingDrawer,
@@ -48,5 +55,7 @@ export {
     Pagination,
     FindUsers,
     Avatar,
-    UpdateProfileComponent
+    UpdateProfileComponent,
+    AnoAvatarsCollectionCard,
+    DashboardPostRowComponents
 }
