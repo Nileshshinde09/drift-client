@@ -29,9 +29,8 @@ const FindUsers = () => {
             if (debouncedUserInput[0]) {
                 try {
                     console.log(debouncedUserInput[0])
-                    const response = await axios.get(
-                        `/api/v1/find/find-user/?username=${debouncedUserInput[0]}`
-                    );
+                    const response = await Usrname.findusrname()
+                    
                     if (response.data)
                         setUserList(response.data.data.users)
 

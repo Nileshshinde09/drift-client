@@ -5,6 +5,7 @@ import { Bookmarks } from "./bookmarks/bookmarks.service";
 import { Likes } from "./likes/likes.service";
 import { Find } from "./Find/find.service";
 import { LoadMediaContent } from "./LoadMediaContent";
+import { Usrname } from "./Find/findusrname";
 export {
     Auth,
     Post,
@@ -12,5 +13,6 @@ export {
     Bookmarks,
     Likes,
     Find,
-    LoadMediaContent
+    LoadMediaContent,
+    Usrname
 }
