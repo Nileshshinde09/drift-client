@@ -1,8 +1,8 @@
 import axios from "axios";
-class usrname{
-    findusrname=async() => {
+class usrname {
+    findusrname = async () => {
         try {
-            
+
             const response = await axios.get(
                 `/api/v1/find/find-user/?username=${debouncedUserInput[0]}`,
                 {
@@ -12,16 +12,16 @@ class usrname{
                     }
                 }
             )
-            if(response)
+            if (response)
                 console.log(response);
-                } catch (error) {
-                    console.log(error.message || "Something went wrong while finding username from the database. ");
-                    return null
-                }
-            }
-        
+        } catch (error) {
+            console.log(error.message || "Something went wrong while finding username from the database. ");
+            return null
         }
-        const Usrname = new usrname()
-        export {
-            Usrname
-        }
+    }
+
+}
+const Usrname = new usrname()
+export {
+    Usrname
+}
