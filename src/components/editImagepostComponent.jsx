@@ -139,7 +139,7 @@ const editImagePost = () => {
                             <div className="grid gap-2">
                                 <div className="grid w-full gap-1.5">
                                     <Label htmlFor="caption">Your Caption</Label>
-                                    <Textarea value={captionValue} onChange={(e) => setCaption(e.target.value)} placeholder="Type your caption here." id="caption" />
+                                    <Textarea value={captionValue } onChange={(e) => setCaption(e.target.value)} placeholder="Type your caption here." id="caption" />
                                 </div>
                             </div>
                             <div className="grid gap-2">
