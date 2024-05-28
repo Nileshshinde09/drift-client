@@ -8,7 +8,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer"
 import React from 'react'
-
+import {Logout} from "@/components"
 const SettingDrawer = () => {
   return (
     <>
@@ -19,6 +19,9 @@ const SettingDrawer = () => {
          </DrawerHeader>
          <div className=" flex ">
          <ThemeButton/>
+         </div>
+         <div className="flex">
+         <Logout/>
          </div>
          <DrawerFooter>
            <DrawerClose >

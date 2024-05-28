@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import DriftLogo from "../../assets/Applogo/driftLogo.png"
-import { SettingDrawer } from "@/components"
+import { SettingDrawer,UserProfileDropdown } from "@/components"
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer"
 import {
   UserPlus2,
@@ -15,14 +15,7 @@ import {
   LayoutDashboard
 } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
@@ -179,36 +172,12 @@ const Dashboard = ({ children }) => {
                 </nav>
               </SheetContent>
             </Sheet>
-              <h2 className="mx-auto text-center scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-                {"Feed"}
-              </h2>
+            <h2 className="mx-auto text-center scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
+              {"Feed"}
+            </h2>
             <div className="text-center relative ml-auto flex-1 md:grow-0">
             </div>
-            <DropdownMenu>
-              <DropdownMenuTrigger>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="overflow-hidden rounded-full"
-                >
-                  <img
-                    src="https://res.cloudinary.com/db3pdtxym/image/upload/v1714934153/AnoAvatar/zxeagtki3rlepyahsx3m.png"
-                    width={36}
-                    height={36}
-                    alt="Avatar"
-                    className="overflow-hidden rounded-full"
-                  />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem>Logout</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            <UserProfileDropdown/>
           </header>
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           </main>
@@ -217,7 +186,6 @@ const Dashboard = ({ children }) => {
           children
         }
         <SettingDrawer />
-        {/* <AvatarDrawer/> */}
       </div>
     </Drawer>
   )

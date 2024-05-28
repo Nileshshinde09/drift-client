@@ -27,8 +27,16 @@ import AnoAvatarsCollectionCard from "./anoCard.jsx"
 import DashboardPostRowComponents from "./dashboardPostRowComponents.jsx"
 import EditImagePost from "./editImagepostComponent.jsx"
 import PageNotFound from "./pageNotFound.jsx"
+import SendForgotPasswordMail from "./Auth/sendForgotPasswordMail.jsx"
+import VerifyForgotPassword from "./Auth/verifyForgotPassword.jsx"
+import Logout from "./Auth/logout.component.jsx"
+import UserProfileDropdown from "./userProfileDropdown.jsx"
 
 export {
+    UserProfileDropdown,
+    Logout,
+    VerifyForgotPassword,
+    SendForgotPasswordMail,
     PageNotFound,
     EditImagePost,
     UploadAvatar,

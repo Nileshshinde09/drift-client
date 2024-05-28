@@ -92,9 +92,7 @@ const OTP = () => {
     }
     console.log(generateOTPResponse);
   }
-  const onOTPValidated = () => {
 
-  }
   return (
     <>
       <Form {...form}>

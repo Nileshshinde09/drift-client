@@ -3,6 +3,9 @@ const IMAGE_POST_MAX_FILES = 3;
 const IMAGE_ALLOWED_TYPES = ['image/jpeg', 'image/png'];
 const VIDEO_POST_MAX_FILES = 1;
 const VIDEO_ALLOWED_TYPES = ['audio/mpeg'];
+
+const VITE_HOST_URL= String(import.meta.env.VITE_HOST_URL)
+
 import ANIMATED_3D_404_NOT_FOUND_PAGE_ERROR_V1 from "../assets/StatusCodeGifs/animated-3D-404-not-found-page-error.gif"
 import ANIMATED_CHARACTER_AT_THE_DESK_FOR_UNDER_MAINTENANCE_ERROR_PAGE_v1 from "../assets/StatusCodeGifs/animated-character-at-the-desk-for-under-maintenance-error-page.gif"
 import ANIMATED_TURTLE_IN_TROUBL_ERROR_PAGE_V1 from "../assets/StatusCodeGifs/animated-turtle-in-trouble-error-page.gif"
@@ -83,6 +86,7 @@ const TAGLIST = [
   "celebration"
 ];
 export {
+  VITE_HOST_URL,
   ANIMATED_3D_404_NOT_FOUND_PAGE_ERROR_V1,
   ANIMATED_CHARACTER_AT_THE_DESK_FOR_UNDER_MAINTENANCE_ERROR_PAGE_v1,
   ANIMATED_TURTLE_IN_TROUBL_ERROR_PAGE_V1,

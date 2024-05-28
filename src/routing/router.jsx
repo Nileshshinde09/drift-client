@@ -1,8 +1,8 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { Home, AuthLayout,AppLayout,Feed,Dashboard,FindPeoples,CreatePost,Profile,EditPost , UpdateProfile } from '@/pages'
+import { Home, AuthLayout, AppLayout, Feed, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile } from '@/pages'
 import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
-import { PageNotFound } from '@/components'
+import { PageNotFound,SendForgotPasswordMail,VerifyForgotPassword } from '@/components'
 // This code is not working 
 // const router = createBrowserRouter([
 //     {
@@ -44,47 +44,47 @@ const router = createBrowserRouter(
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <Home/>
+                            <Home />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
 
-                <Route
+            <Route
                 path='/feed'
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <Feed/>
+                            <Feed />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
 
-                <Route
+            <Route
                 path='/dashboard'
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <Dashboard/>
+                            <Dashboard />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
 
-                <Route
+            <Route
                 path='/find-peoples'
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <FindPeoples/>
+                            <FindPeoples />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
 
-                <Route
+            <Route
                 path='/create-post'
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <CreatePost/>
+                            <CreatePost />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -93,7 +93,7 @@ const router = createBrowserRouter(
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <Profile/>
+                            <Profile />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -103,7 +103,7 @@ const router = createBrowserRouter(
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <UpdateProfile/>
+                            <UpdateProfile />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -112,7 +112,7 @@ const router = createBrowserRouter(
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <EditPost/>
+                            <EditPost />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -121,7 +121,7 @@ const router = createBrowserRouter(
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AuthLayout>
-                            <Login/>
+                            <Login />
                         </AuthLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -145,8 +145,30 @@ const router = createBrowserRouter(
                         </AuthLayout>
                     </ProtectedAuthLayout>
                 } />
-            <Route path='*' element={<PageNotFound/>}/>
-            
+
+            <Route path='/forgot-password'>
+                <Route
+                    path='/forgot-password'
+                    element={
+                        <ProtectedAuthLayout authentication={false}>
+                            <AuthLayout>
+                            <SendForgotPasswordMail/>
+                            </AuthLayout>
+                        </ProtectedAuthLayout>
+                    } />
+                <Route
+                    path='/forgot-password/verify/:token'
+                    element={
+                        <ProtectedAuthLayout authentication={false}>
+                            <AuthLayout>
+                                <VerifyForgotPassword/>
+                            </AuthLayout>
+                        </ProtectedAuthLayout>
+                    } />
+            </Route>
+
+            <Route path='*' element={<PageNotFound />} />
+
         </Route>
 
     )

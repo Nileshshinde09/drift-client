@@ -46,6 +46,22 @@ class AuthService {
         }
     }
 
+    logout = async () => {
+        try {
+            return await axios.post('/api/v1/users/logout',
+                {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                }
+            })
+
+        } catch (error) {
+            console.log(`${error.message || "Error while logging out."}`)
+            throw error
+        }
+    }   
+
 
     getUser = async () => {
         try {
@@ -101,9 +117,60 @@ class AuthService {
             throw error
         }
     }
+
+    sendForgotPasswordEmail = async ({passwordResetUrl,email}) => {
+        try {
+            if (!passwordResetUrl || !email) throw error
+            return await axios.post('/api/v1/users/send-reset-forgot-password-email',
+                {
+                    passwordResetUrl,
+                    email
+                },
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                })
+        } catch (error) {
+            console.log(`${error.message || " Error while sending email "}`)
+            throw error
+        }
+    }
+
+    resetForgotPasswordEmail = async (newPassword) => {
+        try {
+            if (!newPassword) throw error
+            return await axios.post('/api/v1/users/reset-forgot-password',
+            {
+                newPassword
+            },
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                })
+        } catch (error) {
+            console.log(`${error.message || " Error while resetting password "}`)
+        }
+    }
+    verifyForgotPasswordPageVerification = async () => {
+        try {
+            return await axios.post('/api/v1/users/reset-forgot-password-page-verification',
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                })
+        } catch (error) {
+            console.log(`${error.message || " Error while sending email "}`)
+            throw error
+        }
+    }
+
 }
-const Auth = new AuthService()
-export {
-    Auth
-}
+export const Auth = new AuthService()
+
 
