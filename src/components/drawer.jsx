@@ -8,7 +8,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer"
 import React from 'react'
-import {Logout} from "@/components"
+import {Logout,ChangePassword} from "@/components"
 const SettingDrawer = () => {
   return (
     <>
@@ -22,6 +22,9 @@ const SettingDrawer = () => {
          </div>
          <div className="flex">
          <Logout/>
+         </div>
+         <div className="flex">
+         <ChangePassword/>
          </div>
          <DrawerFooter>
            <DrawerClose >

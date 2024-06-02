@@ -22,7 +22,7 @@ const uploadAvatar = () => {
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                 Upload Profile Image
             </h3>
-            <label class="block">
+            <label className="block">
                 <input type="file" onChange={handleFileChange} accept=".jpg, .jpeg, .png" className="block w-full text-sm text-gray-500
                 file:me-4 file:py-2 file:px-4
                 file:rounded-lg file:border-0

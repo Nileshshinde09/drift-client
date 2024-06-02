@@ -33,7 +33,7 @@ const userAvatar = (
         <>
             <div className={`mx-10 flex justify-center ${className}`}>
                 <div className="w-fit flex space-x-4 flex-wrap">
-                    <Avatar className="my-auto w-40 h-fit">
+                    <Avatar className="my-auto w-14 h-fit">
                         <AvatarImage src={imageUrl || PROFILE_DUMMY_IMAGE_URL} alt="@user" />
                     </Avatar>
                     <div>

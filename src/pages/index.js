@@ -9,7 +9,17 @@ import FindPeoples from "./findPeoples.jsx";
 import Profile from "./Profile.jsx";
 import UpdateProfile from "./updateProfile.jsx";
 import EditPost from "./editPost.jsx";
+import Post from "./post.jsx";
+import About from "./About.jsx";
+import ContactUs from "./ContactUs.jsx";
+import TermsNConditions from "./TermsNConditions.jsx";
+import Copyright from "./Copyright.jsx";
 export {
+    Copyright,
+    About,
+    ContactUs,
+    TermsNConditions,
+    Post,
     EditPost,
     UpdateProfile,
     Profile,

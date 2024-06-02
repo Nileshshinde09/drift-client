@@ -11,8 +11,7 @@ class _Find{
                 }
             }
         )
-            .then(response => (response))
-            .catch(error => (error));
+
     }
     
 }

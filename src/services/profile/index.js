@@ -39,6 +39,23 @@ class profile {
             return null
         }
     }
+    
+    getProfileByUsername = async ({username}) => {
+        try {
+            if (!username) throw error
+            return await axios.get(`/api/v1/profile/S/get-profile/${username}`,
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                }
+            )
+        } catch (error) {
+            console.log(error.message || " something went wrong while fetching image by its id ");
+            return null
+        }
+    }
 }
 
 export const Profile = new profile(); 

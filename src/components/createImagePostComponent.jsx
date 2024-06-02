@@ -104,7 +104,7 @@ const CreateImagePost = () => {
         </CardHeader>
         <CardContent>
           <div className="grid gap-4 space-y-7">
-            <label class="block">
+            <label className="block">
               <input type="file" onChange={handleFileChange} multiple="multiple" accept=".jpg, .jpeg, .png, .mp3" className="block w-full text-sm text-gray-500
                 file:me-4 file:py-2 file:px-4
                 file:rounded-lg file:border-0

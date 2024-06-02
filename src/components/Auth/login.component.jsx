@@ -63,7 +63,6 @@ const Login = () => {
       console.error('Error during login:', error);
       const axiosError = error
       let errorMessage = axiosError.response?.data.message;
-      ('There was a problem with your login. Please try again.');
       toast({
         title: 'Login Failed',
         description: errorMessage,

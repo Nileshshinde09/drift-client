@@ -15,7 +15,7 @@ export const signUpSchema = z.object({
   gender: z.string(),
   createPassword: z.string().min(6, { message: 'Password must be at least 6 characters' }),
   confirmPassword: z.string().min(6, { message: 'Password must be at least 6 characters' }),
-
+  termsNConditions:z.boolean().default(false).optional()
 }).superRefine(({ confirmPassword, createPassword }, ctx) => {
   if (confirmPassword !== createPassword) {
     ctx.addIssue({

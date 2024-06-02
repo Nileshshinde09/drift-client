@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom"
 import DriftLogo from "../../assets/Applogo/driftLogo.png"
-import { SettingDrawer,UserProfileDropdown } from "@/components"
+import { SettingDrawer, UserProfileDropdown } from "@/components"
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer"
+
 import {
   UserPlus2,
   Home,
@@ -173,18 +174,18 @@ const Dashboard = ({ children }) => {
               </SheetContent>
             </Sheet>
             <h2 className="mx-auto text-center scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-              {"Feed"}
+              {/* {"Feed"} */}
             </h2>
             <div className="text-center relative ml-auto flex-1 md:grow-0">
             </div>
-            <UserProfileDropdown/>
+            <UserProfileDropdown />
           </header>
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           </main>
         </div>
-        {
-          children
-        }
+          {
+            children
+          }
         <SettingDrawer />
       </div>
     </Drawer>

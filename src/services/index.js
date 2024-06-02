@@ -6,6 +6,7 @@ import { Likes } from "./likes/likes.service";
 import { Find } from "./Find/find.service";
 import { Profile } from "./profile";
 import { CloudMedia } from "./CloudMedia/cloudMedia.service";
+import { Follows } from "./follows/follow.service";
 export {
     Auth,
     Post,
@@ -14,5 +15,6 @@ export {
     Likes,
     Find,
     Profile,
-    CloudMedia
+    CloudMedia,
+    Follows
 }

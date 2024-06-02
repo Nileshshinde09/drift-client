@@ -6,7 +6,9 @@ import { PostSchema } from "./Post/imagePost";
 import { updateProfileSchema } from "./Update/updateProfile";
 import { emailSchema } from "./Auth/forgotPassword.schema";
 import { resetPasswordSchema } from "./Auth/resetPassword.schema";
+import { changePasswordSchema } from "./Auth/changePassword";
 export {
+    changePasswordSchema,
     resetPasswordSchema,
     emailSchema,
     updateProfileSchema,

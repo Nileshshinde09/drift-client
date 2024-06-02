@@ -31,8 +31,35 @@ import SendForgotPasswordMail from "./Auth/sendForgotPasswordMail.jsx"
 import VerifyForgotPassword from "./Auth/verifyForgotPassword.jsx"
 import Logout from "./Auth/logout.component.jsx"
 import UserProfileDropdown from "./userProfileDropdown.jsx"
-
+import ChangePassword from "./changePassword.jsx"
+import ChangePasswordForm from "./changePasswordForm.jsx"
+import { loading as Loading } from "./loading.jsx"
+import CardLayout from "./cards/CardLayout.jsx"
+import ProfileCardText from "./cards/profileCardText.jsx"
+import FollowerFollowingSheetLayout from "./followerFollowingSheet.jsx"
+import FollowerFollowingCard from "./followerFollowingCard.jsx"
+import CustomError from "./error.jsx"
+import BookMarkedDrawer from "./bookmarkDrawer.jsx"
+import BookmarkCard from "./bookmarkCard.jsx"
+import HoverCard from "./hoverCard.jsx"
+import ImageCarousel from "./carousel.jsx"
+import Accord from "./accord.jsx"
+import Copyright from "./copyright.jsx"
 export {
+    Copyright,
+    Accord,
+    ImageCarousel,
+    HoverCard,
+    BookmarkCard,
+    BookMarkedDrawer,
+    CustomError,
+    FollowerFollowingCard,
+    FollowerFollowingSheetLayout,
+    CardLayout,
+    ProfileCardText,
+    Loading,
+    ChangePasswordForm,
+    ChangePassword,
     UserProfileDropdown,
     Logout,
     VerifyForgotPassword,

@@ -51,9 +51,9 @@ const CreateVideoPost = () => {
       </CardHeader>
       <CardContent>
         <div className="grid gap-4 space-y-7">
-          <label class="block">
-            <span class="sr-only">Choose profile photo</span>
-            <input type="file" onChange={handleFileChange} multiple="multiple" accept=".jpg, .jpeg, .png, .mp3" class="block w-full text-sm text-gray-500
+          <label className="block">
+            <span className="sr-only">Choose profile photo</span>
+            <input type="file" onChange={handleFileChange} multiple="multiple" accept=".jpg, .jpeg, .png, .mp3" className="block w-full text-sm text-gray-500
                 file:me-4 file:py-2 file:px-4
                 file:rounded-lg file:border-0
                 file:text-sm file:font-semibold

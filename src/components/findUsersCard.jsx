@@ -1,16 +1,7 @@
 import { Avatar } from ".";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import {
-    Command,
-    CommandEmpty,
-    CommandGroup,
-    CommandInput,
-    CommandItem,
-    CommandList,
-    CommandSeparator,
-    CommandShortcut,
-} from "@/components/ui/command"
+
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Separator } from "@/components/ui/separator"
 import { Find } from "@/services";

@@ -1,5 +1,6 @@
 import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
+import { Skeleton} from "./ui/skeleton"
 import {
   Carousel,
   CarouselContent,
@@ -9,8 +10,9 @@ import {
 } from "@/components/ui/carousel"
 
 const ImageCarousel = ({ nextNpreviousArrows = false, images=[] }) => {
+  if(!images) return <Skeleton className={"w-full max-w-xs"}/>
   return (
-    <Carousel className="w-full max-w-xs">
+      <Carousel className="w-full max-w-xs">
       <CarouselContent>
         {Array.from(images).map((url, index) => (
           <CarouselItem key={index}>

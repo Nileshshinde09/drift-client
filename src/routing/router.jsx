@@ -1,5 +1,5 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { Home, AuthLayout, AppLayout, Feed, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile } from '@/pages'
+import {About,Copyright, ContactUs, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile } from '@/pages'
 import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
 import { PageNotFound,SendForgotPasswordMail,VerifyForgotPassword } from '@/components'
@@ -89,7 +89,16 @@ const router = createBrowserRouter(
                     </ProtectedAuthLayout>
                 } />
             <Route
-                path='/profile'
+                path='/post/:post_id'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AppLayout>
+                            <Post/>
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/profile/:username'
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
@@ -165,6 +174,31 @@ const router = createBrowserRouter(
                             </AuthLayout>
                         </ProtectedAuthLayout>
                     } />
+
+            </Route>
+
+            <Route path='/@DriftSocial'>
+                <Route
+                    path='/@DriftSocial/about'
+                    element={
+                        <About/>
+                    } />
+                <Route
+                    path='/@DriftSocial/contact-us'
+                    element={
+                        <ContactUs/>
+                    } />
+                <Route
+                    path='/@DriftSocial/terms-n-conditions'
+                    element={
+                        <TermsNConditions/>
+                    } />
+                <Route
+                    path='/@DriftSocial/copyright'
+                    element={
+                        <Copyright/>
+                    } />
+
             </Route>
 
             <Route path='*' element={<PageNotFound />} />

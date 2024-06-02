@@ -3,11 +3,11 @@ import { Label } from '@radix-ui/react-label'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Link } from 'react-router-dom'
-import {  TNC } from '@/components'
 import { signUpSchema } from '@/schema'
+import { Checkbox } from '../ui/checkbox'
 import axios from 'axios'
 import { Loader2 } from 'lucide-react'
-import { useNavigate } from 'react-router-dom' 
+import { useNavigate } from 'react-router-dom'
 import {
   Form,
   FormControl,
@@ -15,6 +15,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+  FormDescription
 } from "@/components/ui/form"
 import {
   Select,
@@ -31,14 +32,14 @@ import { Auth } from '@/services'
 import { useToast } from '../ui/use-toast'
 
 const SignUp = () => {
-  
+
   const [username, setUsername] = useState('');
   const [usernameMessage, setUsernameMessage] = useState('');
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const debouncedUsername = useDebounce(username, 300);
-  const [createpassword,setCreatepassword] = useState("")
-  const [confirmpassword,setConfirmpassword] = useState("")
+  const [createpassword, setCreatepassword] = useState("")
+  const [confirmpassword, setConfirmpassword] = useState("")
 
   const { toast } = useToast();
   const navigate = useNavigate();
@@ -51,7 +52,8 @@ const SignUp = () => {
       email: '',
       gender: '',
       createPassword: '',
-      confirmPassword: ''
+      confirmPassword: '',
+      termsNConditions: false
     },
   });
 
@@ -80,6 +82,14 @@ const SignUp = () => {
   }, [debouncedUsername[0]]);
 
   const onSubmit = async (data) => {
+    if(!data.termsNConditions){
+      toast(
+        {
+          title:"You need to agree with our terms and conditions.",
+          variant: "destructive"
+        }
+      )
+    }
     setIsSubmitting(true);
     try {
       console.log(data);
@@ -262,19 +272,41 @@ const SignUp = () => {
                       }}
                     />
                     <FormMessage />
-                    {confirmpassword !="" && createpassword !="" && confirmpassword != createpassword? (
+                    {confirmpassword != "" && createpassword != "" && confirmpassword != createpassword ? (
                       <p
                         className={'text-sm text-red-500'}
                       >
-                      The passwords did not match
+                        The passwords did not match
                       </p>
-                    ):null}
+                    ) : null}
                   </FormItem>
                 )}
               />
             </div>
 
-            {/* <TNC required/> */}
+            <FormField
+              control={form.control}
+              name="termsNConditions"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                    Accept terms and conditions
+                    </FormLabel>
+                    <FormDescription>
+                      <Link to={"/@DriftSocial/terms-n-conditions"} > You agree to our Terms of Service and Privacy Policy.{" "}read terms and conditions</Link>
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            {/* <TNC /> */}
 
             <Button type="submit" className='w-full' disabled={isSubmitting}>
               {isSubmitting ? (

@@ -1,48 +1,119 @@
-import React from 'react'
-
+import React, { useEffect, useState } from 'react'
+import { useSelector,useDispatch } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import { DrawerTrigger } from "@/components/ui/drawer"
+import { User2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff } from 'lucide-react'
+import {
+    Avatar,
+    AvatarFallback,
+} from "@/components/ui/avatar"
+import { AvatarImage } from '@/components/ui/avatar'
+import {
+    Card,
+    CardContent,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import { setBookMark,removeBookMark } from '@/app/slices/bookmarkedSlice'
+import { useFollowUnfollow, useProfile, useProfileImage } from '@/hooks'
+import { FollowerFollowingSheetLayout, CardLayout, ProfileCardText, BookMarkedDrawer } from '@/components'
+import { Loading, CustomError } from '@/components'
 const Profile = () => {
+    const { username } = useParams();
+    const dispatch = useDispatch();
+    const existingUser = useSelector(state => state.auth.userData)
+    const [isExistingUserProfile, setisExistingUserProfile] = useState(false)
+    const [profileImageUrl, setImageId, isLoadingProfileImage, profileImageError] = useProfileImage()
+    const [profileData, profileError, isLoadingOfProfile, setUsernameForProfile] = useProfile()
+    const [isVisible, setIsVisible] = useState(false)
+    const [followstate, followUnfollowError, isloading, followUnfollow] = useFollowUnfollow(username?.replace("@", ''))
+
+    const changeVisibility = () => {
+        setIsVisible(!isVisible)
+    }
+    const handleFollowButtonClick = () => {
+        if (username) {
+            followUnfollow()
+        }
+    }
+    useEffect(() => {
+        ; (() => {
+            if (!username || !existingUser?.username) return;
+            setUsernameForProfile(username?.replace("@", ''))
+            setisExistingUserProfile(username?.replace("@", '') === existingUser?.username)
+        })()
+    }, [username, existingUser])
+    useEffect(() => {
+        if (!profileData) return;
+        setImageId(profileData?.avatar)
+        if(profileData?.BookmarkedPosts) dispatch(setBookMark({bookmarkData:profileData?.BookmarkedPosts})); 
+    
+    }, [profileData, username])
+
+    if (isLoadingOfProfile) return <Loading />
+    if (profileError) return <CustomError ErrorStatusCode={"500"} />
     return (
-        <div className='mx-auto'>
-<div
-    class="max-w-2xl mx-4 sm:max-w-sm md:max-w-sm lg:max-w-sm xl:max-w-sm sm:mx-auto md:mx-auto lg:mx-auto xl:mx-auto mt-16 bg-white shadow-xl rounded-lg text-gray-900">
-    <div class="rounded-t-lg h-32 overflow-hidden">
-        <img class="object-cover object-top w-full" src='https://images.unsplash.com/photo-1549880338-65ddcdfd017b?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ' alt='Mountain'/>
-    </div>
-    <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
-        <img class="object-cover object-center h-32" src='https://res.cloudinary.com/db3pdtxym/image/upload/v1714934153/AnoAvatar/zxeagtki3rlepyahsx3m.png' alt='Woman looking front'/>
-    </div>
-    <div class="text-center mt-2">
-        <h2 class="font-semibold">Sarah Smith</h2>
-        <p class="text-gray-500">Freelance Web Designer</p>
-    </div>
-    <ul class="py-4 mt-2 text-gray-700 flex items-center justify-around">
-        <li class="flex flex-col items-center justify-around">
-            <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path
-                    d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-            </svg>
-            <div>2k</div>
-        </li>
-        <li class="flex flex-col items-center justify-between">
-            <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path
-                    d="M7 8a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm0 1c2.15 0 4.2.4 6.1 1.09L12 16h-1.25L10 20H4l-.75-4H2L.9 10.09A17.93 17.93 0 0 1 7 9zm8.31.17c1.32.18 2.59.48 3.8.92L18 16h-1.25L16 20h-3.96l.37-2h1.25l1.65-8.83zM13 0a4 4 0 1 1-1.33 7.76 5.96 5.96 0 0 0 0-7.52C12.1.1 12.53 0 13 0z" />
-            </svg>
-            <div>10k</div>
-        </li>
-        <li class="flex flex-col items-center justify-around">
-            <svg class="w-4 fill-current text-blue-900" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path
-                    d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z" />
-            </svg>
-            <div>15</div>
-        </li>
-    </ul>
-    <div class="p-4 border-t mx-8 mt-2">
-        <button class="w-1/2 block mx-auto rounded-full bg-gray-900 hover:shadow-lg font-semibold text-white px-6 py-2">Follow</button>
-    </div>
-</div>
-        </div>
+        <Card className={`w-[700px] mx-auto relative ${isVisible ? "bg-transparent" : ""}`}>
+            <CardHeader className="text-center">
+                {isVisible ? <Eye className='cursor-pointer' onClick={changeVisibility} /> : <EyeOff className='cursor-pointer' onClick={changeVisibility} />}
+                <CardTitle className="hover:scale-110 transition-transform">{`${username || "@Drift"}`}</CardTitle>
+            </CardHeader>
+            <CardContent className="flex flex-wrap space-y-3">
+                <CardLayout>
+                    <div className="flex-1 space-y-1">
+                        <Avatar className="w-32 h-fit">
+                            <AvatarImage src={profileImageUrl || "https://github.com/shadcn.png"} alt="@shadcn" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                    </div>
+                </CardLayout>
+                <CardLayout>
+                    <ProfileCardText value={username} altValue='Username'><User2 /></ProfileCardText>
+                    <ProfileCardText value={profileData?.fullName || ""} altValue='FullName' ><User2 /></ProfileCardText>
+                    <ProfileCardText value={profileData?.gender || ""} altValue='Gender' ><PersonStanding /></ProfileCardText>
+                </CardLayout>
+                <CardLayout>
+                    <ProfileCardText value={profileData?.dob?.split('T')[0] || ""} altValue='DOB' ><Cake /></ProfileCardText>
+                    <ProfileCardText value={profileData?.status || "Active"} altValue='Status' ><Smartphone /></ProfileCardText>
+                    <ProfileCardText value={String(profileData?.bookmarkCount) || '0'} altValue='Book Marked' ><BookMarked /></ProfileCardText>
+                </CardLayout>
+                {profileData && profileData?.bio ?
+                    <CardLayout>
+                        <ProfileCardText value={profileData?.bio || ""} altValue='Bio' ></ProfileCardText>
+                    </CardLayout> : <></>
+                }
+                {!isExistingUserProfile ?
+                    <CardLayout >
+                        <ProfileCardText onButtonClick={handleFollowButtonClick} cardType="button" value={`${followstate ? "Unfollow" : "Follow"}`}>{followstate ? <UserCheck2 /> : <UserPlus2 />}</ProfileCardText>
+                    </CardLayout> : <></>}
+                <CardLayout >
+                    <FollowerFollowingSheetLayout username={username.replace('@', '')} side={"left"} type={"followers"}>
+                        <ProfileCardText cardType="button" value={String(profileData?.followersCount) || '0'} altValue='' className={"bg-red-200"}>Followers</ProfileCardText>
+                    </FollowerFollowingSheetLayout>
+                </CardLayout>
+                <CardLayout >
+                    <FollowerFollowingSheetLayout username={username.replace('@', '')} side={"right"} type={"following"}>
+                        <ProfileCardText cardType="button" value={String(profileData?.followeesCount) || '0'} altValue='' className={"bg-green-200"}>Following</ProfileCardText>
+                    </FollowerFollowingSheetLayout>
+                </CardLayout>
+                <CardLayout >
+                    <BookMarkedDrawer>
+                        <ProfileCardText cardType="button" value={"Book Marked"} altValue='bookmarked' className={"bg-slate-200"}><BookMarked /></ProfileCardText>
+                    </BookMarkedDrawer>
+                </CardLayout>
+                <CardLayout >
+                    <DrawerTrigger>
+                        <ProfileCardText cardType="button" value={"Settings"} altValue='settings' className={"bg-slate-200"}><Settings2 /></ProfileCardText>
+                    </DrawerTrigger>
+                </CardLayout>
+                <CardLayout >
+                    <ProfileCardText route={'/create-post'} cardType="link" value={"Create Post"} altValue='create post' className={"bg-slate-200"}><SquarePlus /></ProfileCardText>
+                </CardLayout>
+            </CardContent>
+            <CardFooter>
+            </CardFooter>
+        </Card>
     )
 }
 

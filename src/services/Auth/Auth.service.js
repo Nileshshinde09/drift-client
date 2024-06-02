@@ -50,17 +50,17 @@ class AuthService {
         try {
             return await axios.post('/api/v1/users/logout',
                 {
-                headers: {
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-                }
-            })
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                })
 
         } catch (error) {
             console.log(`${error.message || "Error while logging out."}`)
             throw error
         }
-    }   
+    }
 
 
     getUser = async () => {
@@ -72,8 +72,6 @@ class AuthService {
                         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
                     }
                 })
-                .then(response => (response))
-                .catch(error => (error));
 
         } catch (error) {
             console.log(`${error.message || "Error while getting user data"}`)
@@ -118,7 +116,7 @@ class AuthService {
         }
     }
 
-    sendForgotPasswordEmail = async ({passwordResetUrl,email}) => {
+    sendForgotPasswordEmail = async ({ passwordResetUrl, email }) => {
         try {
             if (!passwordResetUrl || !email) throw error
             return await axios.post('/api/v1/users/send-reset-forgot-password-email',
@@ -137,14 +135,13 @@ class AuthService {
             throw error
         }
     }
-
     resetForgotPasswordEmail = async (newPassword) => {
         try {
             if (!newPassword) throw error
             return await axios.post('/api/v1/users/reset-forgot-password',
-            {
-                newPassword
-            },
+                {
+                    newPassword
+                },
                 {
                     headers: {
                         'Access-Control-Allow-Origin': '*',
@@ -155,6 +152,27 @@ class AuthService {
             console.log(`${error.message || " Error while resetting password "}`)
         }
     }
+
+    changeCurrentPassword = async ({oldPassword,newPassword}) => {
+        try {
+            console.log(oldPassword,newPassword);
+            if (!newPassword || !oldPassword) throw error
+            return await axios.post('/api/v1/users/change-password',
+                {
+
+                    oldPassword, newPassword
+                },
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                })
+        } catch (error) {
+            console.log(`${error.message || " Error while changing current password. "}`)
+        }
+    }
+
     verifyForgotPasswordPageVerification = async () => {
         try {
             return await axios.post('/api/v1/users/reset-forgot-password-page-verification',
@@ -170,6 +188,7 @@ class AuthService {
         }
     }
 
+    
 }
 export const Auth = new AuthService()
 

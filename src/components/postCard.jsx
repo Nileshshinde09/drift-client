@@ -16,8 +16,11 @@ import ImageCarousel from "./carousel"
 import { CommentSheet } from "."
 import { useDispatch, useSelector } from "react-redux"
 import { OpenPostComments } from "@/app/slices/commentSlice"
-import { Bookmarks,Likes } from "@/services"
+import { Bookmarks, Likes } from "@/services"
 import { useToast } from "./ui/use-toast"
+import { Badge } from "@/components/ui/badge"
+import { useBookmarkUnbookmark } from "@/hooks"
+import { useLikeUnlike } from "@/hooks"
 const postCard = ({ post }) => {
 
   //----------------🪝🪝hooks🪝🪝-------------------
@@ -27,9 +30,11 @@ const postCard = ({ post }) => {
   const [bookmark, setBookmark] = useState(post.isbookmarked || false)
   const dispatch = useDispatch()
   const commentsState = useSelector((state) => state.comments.toggleComment)
+  const [bookmarkState, bookmarkError, isLoadingBookmark, BookmarkUnbookmark] = useBookmarkUnbookmark({ PostId: post._id })
+  const [likeState, likeError, isLoadingLike, LikeUnLike] = useLikeUnlike({ PostId: post._id })
   //----------------😎😎 Dispatch data 😎😎-------------------
-
   // Dispatch action if comment and Id are set
+
   useEffect(() => {
     if (comment && post._id) {
       dispatch(OpenPostComments({
@@ -39,7 +44,6 @@ const postCard = ({ post }) => {
     }
   }, [comment, post._id, dispatch]);
 
-  // Update local state based on commentsState
   useEffect(() => {
     if (!commentsState) {
       setComment(false);
@@ -47,36 +51,11 @@ const postCard = ({ post }) => {
   }, [commentsState]);
 
   const handleBookmarkUnbookmark = async () => {
-    const bookmarkUnbookmarkRespose = await Bookmarks.bookmarkUnbookmark(post._id)
-
-    try {
-      if (bookmarkUnbookmarkRespose.data) {
-        toast({
-          title: "Success!",
-          description: bookmarkUnbookmarkRespose.data.message
-        });
-        return
-      }
-    } catch (error) {
-      setBookmark(!bookmark)
-      console.log(error);
-    }
+    BookmarkUnbookmark()
   }
 
   const handlePostLikeUnLike = async () => {
-    const postLikeUnLikeRespose = await Likes.likeUnlikePost(post._id)
-    try {
-      if (postLikeUnLikeRespose.data) {
-        toast({
-          title: "Success!",
-          description: postLikeUnLikeRespose.data.message
-        });
-        return
-      }
-    } catch (error) {
-      setLike(!like)
-      console.log(error);
-    }
+    LikeUnLike()
   }
 
   return (
@@ -90,6 +69,18 @@ const postCard = ({ post }) => {
             <ImageCarousel nextNpreviousArrows={false} images={post.images} />
           </div>
         </form>
+        <div>
+          {
+            post.tags && post.tags?.map((tag) => {
+              if (tag === "") return
+              return (
+                <div className="mx-3 my-1" key={tag}>
+                  <Badge><h4 className="scroll-m-20 text-xl font-semibold tracking-tight">{tag}</h4></Badge>
+                </div>
+              )
+            })
+          }
+        </div>
       </CardContent>
       <CardTitle>
         <div className="flex space-x-7">
