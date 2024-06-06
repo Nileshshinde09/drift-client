@@ -14,31 +14,19 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { useForm } from "react-hook-form"
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useState } from 'react'
 import { Auth } from '@/services'
 import { useToast } from '../ui/use-toast'
 import { useDispatch } from 'react-redux'
 import { login, emailAuthenticated } from '@/app/slices/authSlices'
-
+import { useExistingUser } from '@/hooks'
 const Login = () => {
   const dispatch = useDispatch()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  useEffect(() => {
-    const getExistingUser = async () => {
-      try {
-        const response = await Auth.getUser()
-        if (response) dispatch(login(response?.data?.data))
-        //TODO: change this code when you going to production 👇👇
-        if (response?.data?.data?.emailVerified) dispatch(emailAuthenticated(response?.data?.data?.emailVerified))
-      } catch (error) {
-        console.log(`User not found :: ${error}`);
-      }
-    }
-    ;(async ()=> await getExistingUser())()
 
-  }, [])
+  const [loading,data] = useExistingUser()
 
   const form = useForm({
     resolver: zodResolver(logInSchema),
@@ -47,6 +35,7 @@ const Login = () => {
       password: ''
     },
   });
+
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
