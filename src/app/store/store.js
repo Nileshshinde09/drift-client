@@ -6,6 +6,7 @@ import updateProfileSlice from '../slices/updateProfile.js';
 import managePostsSlice from '../slices/managePostsSlice.js';
 import bookmarkSlice from '../slices/bookmarkedSlice.js';
 import postSlice from '../slices/postSlices.js';
+import socketSlice from '../slices/socketSlice.js';
 const store = configureStore({
     reducer: {
         auth:authSlice,      
@@ -14,7 +15,8 @@ const store = configureStore({
         updateProfile:updateProfileSlice,
         managePost:managePostsSlice ,
         bookmark:bookmarkSlice,
-        post:postSlice
+        post:postSlice,
+        socket:socketSlice,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

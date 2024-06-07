@@ -14,7 +14,9 @@ import useBookmarkUnbookmark from "./bookmarks/useBookmarkUnbookmark";
 import useLikeUnlike from "./likes/useLikeUnlike";
 import usePostImage from "./Post/usePostImage";
 import useExistingUser from "./user/useExistinguser";
+import useNotifications from "./Notifications/useNotifications";
 export {
+    useNotifications,
     useExistingUser,
     usePostImage,
     useLikeUnlike,
