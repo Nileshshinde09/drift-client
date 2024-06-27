@@ -3,11 +3,12 @@ import { Calls } from "../Call/calls.service";
 class PeerService {
   constructor(receiverId) {
     this.peer = null;
-    this.createPeer(receiverId);
-    
+    this.receiverId = receiverId;
+    this.onRemoteStream = null;
+    this.createPeer();
   }
 
-  createPeer(receiverId) {
+  createPeer() {
     this.peer = new RTCPeerConnection({
       iceServers: [
         { urls: 'stun:stun1.l.google.com:19302' },
@@ -17,9 +18,18 @@ class PeerService {
     });
 
     this.peer.onicecandidate = async (event) => {
-      if (event.candidate && receiverId) {
-        await Calls.initializeCall(event.candidate, receiverId);
+      if (event.candidate) {
+        console.log('ICE Candidate:', event.candidate);
+        if (this.receiverId) {
+          await Calls.initializeCall(event.candidate, this.receiverId);
+        }
+      } else {
+        console.log('All ICE candidates have been sent');
       }
+    };
+
+    this.peer.onicecandidateerror = (event) => {
+      console.error('ICE Candidate Error:', event);
     };
 
     this.peer.ontrack = event => {
@@ -27,6 +37,14 @@ class PeerService {
       if (this.onRemoteStream) {
         this.onRemoteStream(event.streams[0]);
       }
+    };
+
+    this.peer.oniceconnectionstatechange = () => {
+      console.log('ICE Connection State Change:', this.peer.iceConnectionState);
+    };
+
+    this.peer.onconnectionstatechange = () => {
+      console.log('Connection State Change:', this.peer.connectionState);
     };
   }
 
@@ -57,6 +75,7 @@ class PeerService {
     if (this.peer) {
       try {
         await this.peer.addIceCandidate(candidate);
+        console.log('ICE Candidate added:', candidate);
       } catch (error) {
         console.error('Error adding received ice candidate', error);
       }
@@ -67,13 +86,17 @@ class PeerService {
     if (this.peer) {
       const offer = await this.peer.createOffer();
       await this.peer.setLocalDescription(offer);
+      console.log('Offer created:', offer);
       return offer;
     }
   }
 
   addLocalStream(stream) {
     if (this.peer) {
-      stream.getTracks().forEach(track => this.peer.addTrack(track, stream));
+      stream.getTracks().forEach(track => {
+        this.peer.addTrack(track, stream);
+        console.log('Local track added:', track);
+      });
     }
   }
 
@@ -82,6 +105,4 @@ class PeerService {
   }
 }
 
-export {
-  PeerService
-}
+export { PeerService };
