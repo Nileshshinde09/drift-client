@@ -7,6 +7,7 @@ import managePostsSlice from '../slices/managePostsSlice.js';
 import bookmarkSlice from '../slices/bookmarkedSlice.js';
 import postSlice from '../slices/postSlices.js';
 import socketSlice from '../slices/socketSlice.js';
+import callSlice from '../slices/callSlice.js';
 const store = configureStore({
     reducer: {
         auth:authSlice,      
@@ -17,6 +18,7 @@ const store = configureStore({
         bookmark:bookmarkSlice,
         post:postSlice,
         socket:socketSlice,
+        call:callSlice
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

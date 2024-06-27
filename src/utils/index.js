@@ -5,5 +5,4 @@ export {
     detectChanges,
     convertToISOString,
     humanReadableDate,
-    
 }

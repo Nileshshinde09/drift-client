@@ -14,7 +14,11 @@ import About from "./About.jsx";
 import ContactUs from "./ContactUs.jsx";
 import TermsNConditions from "./TermsNConditions.jsx";
 import Copyright from "./Copyright.jsx";
+import Call from "./Call.jsx";
+import Ringtones from "./ringtones.jsx";
 export {
+    Ringtones,
+    Call,
     Copyright,
     About,
     ContactUs,

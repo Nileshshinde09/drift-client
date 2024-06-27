@@ -45,7 +45,13 @@ import HoverCard from "./hoverCard.jsx"
 import ImageCarousel from "./carousel.jsx"
 import Accord from "./accord.jsx"
 import Copyright from "./copyright.jsx"
+import Share from "./share.jsx"
+import CallWindow from "./callWindow.jsx"
+import CallDialog from "./callDialog.jsx"
 export {
+    CallDialog,
+    CallWindow,
+    Share,
     Copyright,
     Accord,
     ImageCarousel,

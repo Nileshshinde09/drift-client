@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector,useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import { useParams } from 'react-router-dom'
 import { DrawerTrigger } from "@/components/ui/drawer"
-import { User2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff } from 'lucide-react'
+import { CallDialog, Share } from '@/components'
+import { VITE_HOST_URL } from '@/constants'
+import { User2, Video, PhoneCall, Share2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff } from 'lucide-react'
 import {
     Avatar,
     AvatarFallback,
@@ -15,11 +18,14 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { setBookMark,removeBookMark } from '@/app/slices/bookmarkedSlice'
+import { setBookMark, removeBookMark } from '@/app/slices/bookmarkedSlice'
 import { useFollowUnfollow, useProfile, useProfileImage } from '@/hooks'
 import { FollowerFollowingSheetLayout, CardLayout, ProfileCardText, BookMarkedDrawer } from '@/components'
 import { Loading, CustomError } from '@/components'
+import { Button } from '@/components/ui/button'
+import { setIds } from '@/app/slices/callSlice'
 const Profile = () => {
+    const path = useLocation()
     const { username } = useParams();
     const dispatch = useDispatch();
     const existingUser = useSelector(state => state.auth.userData)
@@ -42,13 +48,22 @@ const Profile = () => {
             if (!username || !existingUser?.username) return;
             setUsernameForProfile(username?.replace("@", ''))
             setisExistingUserProfile(username?.replace("@", '') === existingUser?.username)
+
+            dispatch(setIds(
+                {
+                    callerId: existingUser?._id,
+                    receiverId: profileData?._id
+                }
+            ))
+
         })()
     }, [username, existingUser])
+
     useEffect(() => {
         if (!profileData) return;
         setImageId(profileData?.avatar)
-        if(profileData?.BookmarkedPosts) dispatch(setBookMark({bookmarkData:profileData?.BookmarkedPosts})); 
-    
+        if (profileData?.BookmarkedPosts) dispatch(setBookMark({ bookmarkData: profileData?.BookmarkedPosts }));
+
     }, [profileData, username])
 
     if (isLoadingOfProfile) return <Loading />
@@ -57,6 +72,11 @@ const Profile = () => {
         <Card className={`w-[700px] mx-auto relative ${isVisible ? "bg-transparent" : ""}`}>
             <CardHeader className="text-center">
                 {isVisible ? <Eye className='cursor-pointer' onClick={changeVisibility} /> : <EyeOff className='cursor-pointer' onClick={changeVisibility} />}
+                <div className='absolute right-6 cursor-pointer'>
+                    <Share url={VITE_HOST_URL + path.pathname} username={username}>
+                        <Share2 />
+                    </Share>
+                </div>
                 <CardTitle className="hover:scale-110 transition-transform">{`${username || "@Drift"}`}</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-wrap space-y-3">
@@ -109,6 +129,12 @@ const Profile = () => {
                 </CardLayout>
                 <CardLayout >
                     <ProfileCardText route={'/create-post'} cardType="link" value={"Create Post"} altValue='create post' className={"bg-slate-200"}><SquarePlus /></ProfileCardText>
+                </CardLayout>
+                <CardLayout >
+                    <ProfileCardText cardType="video-call-button" value={"Video Call"} altValue='video call' className={"bg-slate-200"}><Video /></ProfileCardText>
+                </CardLayout>
+                <CardLayout >
+                    <ProfileCardText cardType="voice-call-button" value={"Voice Call"} altValue='voice call' className={"bg-slate-200"}><PhoneCall /></ProfileCardText>
                 </CardLayout>
             </CardContent>
             <CardFooter>

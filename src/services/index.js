@@ -7,7 +7,11 @@ import { Find } from "./Find/find.service";
 import { Profile } from "./profile";
 import { CloudMedia } from "./CloudMedia/cloudMedia.service";
 import { Follows } from "./follows/follow.service";
+import { Calls } from "./Call/calls.service";
+import { PeerService } from "./webrtc/webrtc.service";
 export {
+    PeerService,
+    Calls,
     Auth,
     Post,
     Comments,

@@ -23,7 +23,7 @@ const authSlice = createSlice({
             state.isEmailAuthenticated = action.payload
         },
         setProfileData: (state, action) => {
-            state.userData = action.payload;
+            state.userData = action.payload;        
         },
         setProfileImage: (state, action) => {
             state.profileImageUrl = action.payload.profileImageUrl;

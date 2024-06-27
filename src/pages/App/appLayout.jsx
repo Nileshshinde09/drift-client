@@ -2,7 +2,6 @@ import { Link } from "react-router-dom"
 import DriftLogo from "../../assets/Applogo/driftLogo.png"
 import { SettingDrawer, UserProfileDropdown } from "@/components"
 import { Drawer, DrawerTrigger } from "@/components/ui/drawer"
-
 import {
   UserPlus2,
   Home,

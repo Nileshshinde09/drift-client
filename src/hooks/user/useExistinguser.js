@@ -15,6 +15,7 @@ const useExistingUser = () => {
             setLoading(true)
           try {
             const response = await Auth.getUser()
+            
             if (response){
                  dispatch(login(response?.data?.data))
                     setData(response?.data?.data)

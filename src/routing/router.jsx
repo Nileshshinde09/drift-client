@@ -1,8 +1,9 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import {About,Copyright, ContactUs, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile } from '@/pages'
+import { About, Copyright, ContactUs, Call, Ringtones, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile } from '@/pages'
 import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
-import { PageNotFound,SendForgotPasswordMail,VerifyForgotPassword } from '@/components'
+import { PageNotFound, SendForgotPasswordMail, VerifyForgotPassword } from '@/components'
+
 // This code is not working 
 // const router = createBrowserRouter([
 //     {
@@ -93,7 +94,7 @@ const router = createBrowserRouter(
                 element={
                     <ProtectedAuthLayout authentication={false}>
                         <AppLayout>
-                            <Post/>
+                            <Post />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -116,6 +117,17 @@ const router = createBrowserRouter(
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
+            <Route path='/ringtone-musics'>
+                <Route
+                    path='/ringtone-musics/:genre'
+                    element={
+                        <ProtectedAuthLayout authentication={false}>
+                            <AppLayout>
+                                <Ringtones />
+                            </AppLayout>
+                        </ProtectedAuthLayout>
+                    } />
+            </Route>
             <Route
                 path='/edit-post/:postId'
                 element={
@@ -154,14 +166,24 @@ const router = createBrowserRouter(
                         </AuthLayout>
                     </ProtectedAuthLayout>
                 } />
-
+            <Route path='/call'>
+                <Route
+                    path='/call/:type/:userId'
+                    element={
+                        <ProtectedAuthLayout authentication={false}>
+                            <AppLayout>
+                                <Call />
+                            </AppLayout>
+                        </ProtectedAuthLayout>
+                    } />
+            </Route>
             <Route path='/forgot-password'>
                 <Route
                     path='/forgot-password'
                     element={
                         <ProtectedAuthLayout authentication={false}>
                             <AuthLayout>
-                            <SendForgotPasswordMail/>
+                                <SendForgotPasswordMail />
                             </AuthLayout>
                         </ProtectedAuthLayout>
                     } />
@@ -170,7 +192,7 @@ const router = createBrowserRouter(
                     element={
                         <ProtectedAuthLayout authentication={false}>
                             <AuthLayout>
-                                <VerifyForgotPassword/>
+                                <VerifyForgotPassword />
                             </AuthLayout>
                         </ProtectedAuthLayout>
                     } />
@@ -181,22 +203,22 @@ const router = createBrowserRouter(
                 <Route
                     path='/@DriftSocial/about'
                     element={
-                        <About/>
+                        <About />
                     } />
                 <Route
                     path='/@DriftSocial/contact-us'
                     element={
-                        <ContactUs/>
+                        <ContactUs />
                     } />
                 <Route
                     path='/@DriftSocial/terms-n-conditions'
                     element={
-                        <TermsNConditions/>
+                        <TermsNConditions />
                     } />
                 <Route
                     path='/@DriftSocial/copyright'
                     element={
-                        <Copyright/>
+                        <Copyright />
                     } />
 
             </Route>

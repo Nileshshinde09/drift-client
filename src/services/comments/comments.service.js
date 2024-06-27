@@ -15,8 +15,7 @@ class comments {
                     }
                 }
             )
-            .then(response => (response))
-            .catch(error => (error))
+
         }
         catch (error) {
             console.log("Error occured while making api call to get all comments for post 😭😭😭::",error)
@@ -38,8 +37,7 @@ class comments {
                     }
                 }
             )
-            .then(response => (response))
-            .catch(error => (error))
+
         }
         catch (error) {
             console.log("Error occured while creating comments on post 😭😭😭 ::",error)

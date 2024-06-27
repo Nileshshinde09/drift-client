@@ -1,18 +1,21 @@
-import React, { useEffect } from 'react'
-import { toast } from "sonner"
-import { Button } from "@/components/ui/button"
-import { useNavigate } from 'react-router-dom'
-const NotificationSonnar = ({ payload = "", url = null }) => {
-    const navigate = useNavigate()
-    useEffect(()=>{
-        toast(payload ? payload : "No Message", {
-            description: payload ? payload : "No Message",
+import React, { useEffect } from 'react';
+import { toast } from 'sonner';
+import { useNavigate } from 'react-router-dom';
+
+const NotificationSonnar = ({ message, type, url, userId }) => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        toast(message || "No Message", {
+            description: message || "No Message",
             action: {
                 label: "Open",
-                onClick: () => navigate(url?url:'/'),
+                onClick: () => navigate(url || '/'),
             },
-        })
-    },[])
-}
+        });
+    }, [message, url, navigate]);
 
-export default NotificationSonnar
+    return null;
+};
+
+export default NotificationSonnar;
