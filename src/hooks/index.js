@@ -4,7 +4,7 @@ import useUploadImage from "./MediaContent/useUploadImage";
 import { useDashboardPosts } from "./Post/useDashboardPosts";
 import { useMediaIdToUrl } from "./MediaContent/useMediaIdToUrl";
 import { useFetchPostById } from "./Post/useFetchPostById";
-import { usePagination } from "./Pagination/usePagination";
+import { usePagination } from "./Pagination/usePagination.js";
 import { useFollowers } from "./Follows/useFollowers";
 import { useFollowUnfollow } from "./Follows/useFollowUnfollow";
 import { useFollowing } from "./Follows/useFollowing";
