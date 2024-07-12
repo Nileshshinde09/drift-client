@@ -9,7 +9,13 @@ import { CloudMedia } from "./CloudMedia/cloudMedia.service";
 import { Follows } from "./follows/follow.service";
 import { Calls } from "./Call/calls.service";
 import { PeerService } from "./webrtc/webrtc.service";
+import { GroupChat } from "./Chat/group.service";
+import { OneOnonChat } from "./Chat/oneOnOne.service";
+import { Messages } from "./Messages/messages.service";
+import { ChatEvent } from "./Chat/event.service";
 export {
+    ChatEvent,
+    Messages,
     PeerService,
     Calls,
     Auth,
@@ -20,5 +26,7 @@ export {
     Find,
     Profile,
     CloudMedia,
-    Follows
+    Follows,
+    GroupChat,
+    OneOnonChat
 }

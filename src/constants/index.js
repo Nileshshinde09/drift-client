@@ -1,6 +1,6 @@
 
-const VITE_HOST_URL= String(import.meta.env.VITE_HOST_URL)
-const VITE_SERVER_SOCKET_HOST_URL= String(import.meta.env.VITE_SERVER_SOCKET_HOST_URL)
+const VITE_HOST_URL = String(import.meta.env.VITE_HOST_URL)
+const VITE_SERVER_SOCKET_HOST_URL = String(import.meta.env.VITE_SERVER_SOCKET_HOST_URL)
 
 const STRICKTMODE = true
 const IMAGE_POST_MAX_FILES = 3;
@@ -10,7 +10,7 @@ const VIDEO_ALLOWED_TYPES = ['audio/mpeg'];
 
 const musicDirPath = '../assets/notifications/music'
 try {
-  const PRESENT_GENER_NAME =await fetch(musicDirPath);
+  const PRESENT_GENER_NAME = await fetch(musicDirPath);
   console.log(PRESENT_GENER_NAME);
 } catch (err) {
   console.error('Error reading directory:', err);
@@ -24,7 +24,36 @@ import ELECTROCUTED_CAVEMAN_ANIMATION_404_ERROR_PAGE_V2 from "../assets/StatusCo
 import MARIO_GAME_ANIMATION_404_ERROR_PAGE_V3 from "../assets/StatusCodeGifs/mario-game-animation-404--error-page.gif"
 import SERVER_ON_FIRE_ERROR_PAGE_ANIMATION_V1 from "../assets/StatusCodeGifs/server-on-fire-error-page-animation.gif"
 import SHORT_CIRCUIT_ANIMATED_500_ERROR_PAGE_V1 from "../assets/StatusCodeGifs/short-circuit-animated-500-error-page.gif"
-
+import { object } from "zod";
+export const ChatEventEnum = Object.freeze({
+  // ? once user is ready to go
+  CONNECTED_EVENT: "connected",
+  // ? when user gets disconnected
+  DISCONNECT_EVENT: "disconnect",
+  // ? when user joins a socket room
+  JOIN_CHAT_EVENT: "joinChat",
+  // ? when participant gets removed from group, chat gets deleted or leaves a group
+  LEAVE_CHAT_EVENT: "leaveChat",
+  // ? when admin updates a group name
+  UPDATE_GROUP_NAME_EVENT: "updateGroupName",
+  // ? when new message is received
+  MESSAGE_RECEIVED_EVENT: "messageReceived",
+  // ? when there is new one on one chat, new group chat or user gets added in the group
+  NEW_CHAT_EVENT: "newChat",
+  // ? when there is an error in socket
+  SOCKET_ERROR_EVENT: "socketError",
+  // ? when participant stops typing
+  STOP_TYPING_EVENT: "stopTyping",
+  // ? when participant starts typing
+  TYPING_EVENT: "typing",
+  // ? when message is deleted
+  MESSAGE_DELETE_EVENT: "messageDeleted",
+});
+export const AvailableChatEvents = Object.values(ChatEventEnum);
+const MESSANGER_THEME_ENUM = Object.freeze({
+  DEFAULT: "shadow-gray-500",
+})
+const MESSANGER_THEME = Object.values("shadow-gray-500")
 const PROFILE_DUMMY_IMAGE_URL = "https://res.cloudinary.com/db3pdtxym/image/upload/v1716473340/in3fbtrbipkz9glmtui0.webp"
 const TAGLIST = [
   // General
@@ -98,6 +127,8 @@ const TAGLIST = [
 ];
 export {
   TEAM,
+  MESSANGER_THEME_ENUM,
+  MESSANGER_THEME,
   VITE_HOST_URL,
   VITE_SERVER_SOCKET_HOST_URL,
   ANIMATED_3D_404_NOT_FOUND_PAGE_ERROR_V1,

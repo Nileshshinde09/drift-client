@@ -16,7 +16,9 @@ import TermsNConditions from "./TermsNConditions.jsx";
 import Copyright from "./Copyright.jsx";
 import Call from "./Call.jsx";
 import Ringtones from "./ringtones.jsx";
+import Chat from "./Messanger/oneOnOne.jsx";
 export {
+    Chat,
     Ringtones,
     Call,
     Copyright,

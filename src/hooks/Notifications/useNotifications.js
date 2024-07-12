@@ -6,9 +6,12 @@ import { useNavigate } from 'react-router-dom';
 const useNotifications = () => {
   const navigate = useNavigate();
   const socket = useSelector(state => state.socket.socket)
+  
   useEffect(() => {
+    
     if (socket) {
       socket.on('notification', (data) => {
+        console.log("Hello");
         console.log(data);
         toast(data?.message || "No Message", {  
           description: data?.message || "No Message",

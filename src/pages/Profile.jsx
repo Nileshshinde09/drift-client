@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom'
 import { DrawerTrigger } from "@/components/ui/drawer"
 import { CallDialog, Share } from '@/components'
 import { VITE_HOST_URL } from '@/constants'
-import { User2, Video, PhoneCall, Share2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff } from 'lucide-react'
+import { User2, Video,GroupIcon, PhoneCall, Share2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff } from 'lucide-react'
 import {
     Avatar,
     AvatarFallback,
@@ -69,7 +69,7 @@ const Profile = () => {
     if (isLoadingOfProfile) return <Loading />
     if (profileError) return <CustomError ErrorStatusCode={"500"} />
     return (
-        <Card className={`w-[700px] mx-auto relative ${isVisible ? "bg-transparent" : ""}`}>
+        <Card className={ `-mt-16 w-[700px] mx-auto relative ${isVisible ? "bg-transparent" : ""}`}>
             <CardHeader className="text-center">
                 {isVisible ? <Eye className='cursor-pointer' onClick={changeVisibility} /> : <EyeOff className='cursor-pointer' onClick={changeVisibility} />}
                 <div className='absolute right-6 cursor-pointer'>
@@ -135,6 +135,15 @@ const Profile = () => {
                 </CardLayout>
                 <CardLayout >
                     <ProfileCardText cardType="voice-call-button" value={"Voice Call"} altValue='voice call' className={"bg-slate-200"}><PhoneCall /></ProfileCardText>
+                </CardLayout>
+                <CardLayout >
+                    <ProfileCardText cardType="button" value={"Create Groups"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
+                </CardLayout>
+                <CardLayout >
+                    <ProfileCardText cardType="button" value={"Create Ano Groups"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
+                </CardLayout>
+                <CardLayout >
+                    <ProfileCardText cardType="chat-with-friend" value={"Chat With Friends"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
                 </CardLayout>
             </CardContent>
             <CardFooter>

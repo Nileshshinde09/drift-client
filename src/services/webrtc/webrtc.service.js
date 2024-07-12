@@ -8,6 +8,7 @@ class PeerService {
     this.createPeer();
   }
 
+
   createPeer() {
     this.peer = new RTCPeerConnection({
       iceServers: [

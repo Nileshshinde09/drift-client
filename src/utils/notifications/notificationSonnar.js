@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 const NotificationSonnar = ({ message, type, url, userId }) => {
     const navigate = useNavigate();
-
+    console.log("notifications...");
     useEffect(() => {
         toast(message || "No Message", {
             description: message || "No Message",

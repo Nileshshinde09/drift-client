@@ -48,7 +48,17 @@ import Copyright from "./copyright.jsx"
 import Share from "./share.jsx"
 import CallWindow from "./callWindow.jsx"
 import CallDialog from "./callDialog.jsx"
+import ChatDialog from "./chatDialog.jsx"
+import SendChat from "./sendChat.jsx"
+import ShowMessages from "./showMessages.jsx"
+import Message from "./message.jsx"
+import MessangerContextMenue from "./contextMenue.jsx"
 export {
+    MessangerContextMenue,
+    Message,
+    ShowMessages,
+    SendChat,
+    ChatDialog,
     CallDialog,
     CallWindow,
     Share,

@@ -1,8 +1,11 @@
+import { MESSANGER_THEME, MESSANGER_THEME_ENUM } from "@/constants";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   theme: localStorage.getItem("vite-ui-theme") || "system",   // if theme is not present in the local storage it will set system theme as default
-  storageKey: "vite-ui-theme"
+  storageKey: "vite-ui-theme",
+  messangerThemeStorageKey:"messanger-ui-theme",
+  messangerTheme:localStorage.getItem("messanger-ui-theme") || MESSANGER_THEME_ENUM.DEFAULT
 }
 
 const themeSlice = createSlice({
@@ -28,9 +31,16 @@ const themeSlice = createSlice({
       root.classList.add(state.theme)
       localStorage.setItem(state.storageKey, state.theme)
     }
-  }
-})
+  },
+  setMessangerTheme: (state, action) => {    //action theme will be dark,light and system
+    if (action.payload) state.messangerTheme = action.payload
+    else state.messangerTheme = localStorage.getItem(state.messangerThemeStorageKey) || state.messangerTheme
 
-export const { setTheme } = themeSlice.actions;
+    localStorage.setItem(state.messangerThemeStorageKey, state.messangerTheme)
+  }
+}
+)
+
+export const { setTheme,setMessangerTheme } = themeSlice.actions;
 
 export default themeSlice.reducer;

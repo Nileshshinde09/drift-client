@@ -1,5 +1,5 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { About, Copyright, ContactUs, Call, Ringtones, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile } from '@/pages'
+import { About, Copyright, ContactUs, Call,Chat, Ringtones, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile } from '@/pages'
 import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
 import { PageNotFound, SendForgotPasswordMail, VerifyForgotPassword } from '@/components'
@@ -173,6 +173,17 @@ const router = createBrowserRouter(
                         <ProtectedAuthLayout authentication={false}>
                             <AppLayout>
                                 <Call />
+                            </AppLayout>
+                        </ProtectedAuthLayout>
+                    } />
+            </Route>
+            <Route path='/messanger'>
+                <Route
+                    path='/messanger/:type/:recieverId'
+                    element={
+                        <ProtectedAuthLayout authentication={false}>
+                            <AppLayout>
+                                <Chat />
                             </AppLayout>
                         </ProtectedAuthLayout>
                     } />

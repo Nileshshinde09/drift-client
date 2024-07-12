@@ -1,4 +1,4 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 import authSlice from '../slices/authSlices.js';
 import themeSlice from '../slices/themeSlice.js';
 import commentSlice from '../slices/commentSlice.js';
@@ -8,22 +8,24 @@ import bookmarkSlice from '../slices/bookmarkedSlice.js';
 import postSlice from '../slices/postSlices.js';
 import socketSlice from '../slices/socketSlice.js';
 import callSlice from '../slices/callSlice.js';
+import messangerSlice from '../slices/messangerSlice.js';
 const store = configureStore({
-    reducer: {
-        auth:authSlice,      
-        theme:themeSlice,    
-        comments:commentSlice,
-        updateProfile:updateProfileSlice,
-        managePost:managePostsSlice ,
-        bookmark:bookmarkSlice,
-        post:postSlice,
-        socket:socketSlice,
-        call:callSlice
-    },
-    middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware({
-          serializableCheck: false,
-        })
+  reducer: {
+    auth: authSlice,
+    messanger: messangerSlice,
+    theme: themeSlice,
+    comments: commentSlice,
+    updateProfile: updateProfileSlice,
+    managePost: managePostsSlice,
+    bookmark: bookmarkSlice,
+    post: postSlice,
+    socket: socketSlice,
+    call: callSlice
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    })
 });
 
 

@@ -9,14 +9,14 @@ const useWebRTC = ({ video = true, audio = true }) => {
   const [remoteStream, setRemoteStream] = useState(null);
   const [PS, setPS] = useState(null);
 
-  useEffect(() => {
-    if (callInfo) {
-      const peerService = new PeerService(callInfo.receiverId);
-      peerService.setOnRemoteStream(setRemoteStream);
-      setPS(peerService);
-      console.log('PeerService instantiated');
-    }
-  }, [callInfo]);
+  // useEffect(() => {
+  //   if (callInfo) {
+  //     const peerService = new PeerService(callInfo.receiverId);
+  //     peerService.setOnRemoteStream(setRemoteStream);
+  //     setPS(peerService);
+  //     console.log('PeerService instantiated');
+  //   }
+  // }, [callInfo]);
 
   useEffect(() => {
     if (!callInfo.receiverId) return;
