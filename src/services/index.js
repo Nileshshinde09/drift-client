@@ -13,8 +13,12 @@ import { GroupChat } from "./Chat/group.service";
 import { OneOnonChat } from "./Chat/oneOnOne.service";
 import { Messages } from "./Messages/messages.service";
 import { ChatEvent } from "./Chat/event.service";
+import { Friends } from "./Friends/friends.service";
+import { Space } from "./JJ/Space.service";
 export {
+    Space,
     ChatEvent,
+    Friends,
     Messages,
     PeerService,
     Calls,

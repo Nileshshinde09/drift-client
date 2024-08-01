@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { PostCard } from '@/components'
 import { Post } from '@/services'
+import { useSelector } from 'react-redux'
+import { useDocumentTitle } from 'usehooks-ts'
 const Feed = () => {
-
+  const user=useSelector(state=>state.auth.userData)
+  useDocumentTitle(`${user?.username} Feed 💎Drift`)
   const [feedPostRespose, setFeedPostRespose] = useState(null)
   useEffect(() => {
     ; (async () => {

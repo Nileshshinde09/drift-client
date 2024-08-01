@@ -19,8 +19,9 @@ import { Input } from '../ui/input'
 import { VITE_HOST_URL } from '@/constants'
 import { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
-
+import { useDocumentTitle } from 'usehooks-ts'
 const VerifyForgotPassword = () => {
+    useDocumentTitle("Verify Forgot Password💎Drift...")
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [createpassword, setCreatepassword] = useState("")
     const [confirmpassword, setConfirmpassword] = useState("")

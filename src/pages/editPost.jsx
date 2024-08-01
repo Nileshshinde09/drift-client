@@ -4,8 +4,10 @@ import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { updatePost } from '@/app/slices/managePostsSlice'
 import { useSelector } from 'react-redux'
-import { useFetchPostById } from '@/hooks'
+import { useDocumentTitle, useFetchPostById } from '@/hooks'
 const editPost = () => {
+  const user=useSelector(state=>state.auth.userData)
+  useDocumentTitle(`${user?.username} Edit Post💎Drift`)
   const dispatch = useDispatch();
   const [data,fetchingError,isFetching,setId]=useFetchPostById()
   const post = useSelector(state => state.managePost.updatePostData) 

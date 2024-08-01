@@ -6,12 +6,17 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
-  } from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu"
 import { Button } from './ui/button'
 import { useSelector } from 'react-redux'
-import { Logout } from '.'
+import { FriendRequestSheet, Logout } from '.'
+import { useNavigate } from 'react-router-dom'
+import { DrawerTrigger } from './ui/drawer'
+
 const userProfileDropdown = () => {
-    const image = useSelector(state=>state.auth.profileImageUrl)
+    const image = useSelector(state => state.auth.profileImageUrl)
+    const user = useSelector(state => state.auth.userData)
+    const navigate = useNavigate()
     return (
         <DropdownMenu>
             <DropdownMenuTrigger>
@@ -32,10 +37,14 @@ const userProfileDropdown = () => {
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Settings</DropdownMenuItem>
-                <DropdownMenuItem>Support</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate(`/profile/@${user?.username}`)}>Profile</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate(`/messanger`)}>Messanger</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate(`/music-library`)}>Music Library</DropdownMenuItem>
+                <DrawerTrigger><DropdownMenuItem>Settings</DropdownMenuItem></DrawerTrigger>
+                <DropdownMenuItem onClick={() => navigate(`/@DriftSocial/support`)}>Support</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem><Logout/></DropdownMenuItem>
+                <DropdownMenuItem><FriendRequestSheet>Friend Requests</FriendRequestSheet></DropdownMenuItem>
+                <DropdownMenuItem><Logout variant={"ghost"} /></DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
     )

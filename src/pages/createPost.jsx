@@ -6,8 +6,9 @@ import {
 } from "@/components/ui/tabs"
 import React from 'react'
 import { CreateVideoPostComponent,CreateImagePostComponent } from '@/components'
-
+import { useDocumentTitle } from "usehooks-ts"
 const createPost = () => {
+  useDocumentTitle("Create Post💎Drift")
   return (
     <div className="mx-auto">
       <Tabs defaultValue="ImagePost" className="sm:w-[800px]">

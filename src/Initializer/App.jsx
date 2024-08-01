@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import { setTheme } from '@/app/slices/themeSlice'
+import { setIsMuteNotifications, setMessangerNotificationSoundTheme, setTheme } from '@/app/slices/themeSlice'
 import { Toaster } from "@/components/ui/toaster"
 import { TooltipProvider } from "@/components/ui/tooltip"
 import { useExistingUser, useNotifications } from '@/hooks'
@@ -8,10 +8,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { connectSocket, disconnectSocket } from '@/app/slices/socketSlice'
 import { Toaster as SonnarToaster } from "@/components/ui/sonner"
 import { MainMenubar } from '@/components'
+
 const App = () => {
   const dispatch = useDispatch()
   useEffect(() => {
     dispatch(setTheme())
+    dispatch(setIsMuteNotifications())
+    dispatch(setIsMuteNotifications())
+    dispatch(setMessangerNotificationSoundTheme())
     dispatch(connectSocket());
     return () => {
       dispatch(disconnectSocket());

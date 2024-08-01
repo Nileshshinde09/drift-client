@@ -1,6 +1,8 @@
 import React from 'react'
 import { Copyright } from '@/components'
+import { useDocumentTitle } from 'usehooks-ts'
 const copyright = () => {
+  useDocumentTitle("Copyright💎Drift")
   return (
     <div className='no-scrollbar w-full space-y-3 mx-auto px-5 sm:px-10 md:px-20 py-5 h-screen overflow-y-scroll'>
       <h1 className="text-center scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">

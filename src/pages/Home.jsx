@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { Loading, PostCard } from '@/components'
 import { Post } from '@/services'
-import { usePagination } from '@/hooks';
+import { useDocumentTitle, usePagination } from '@/hooks';
 import { v4 as uuidv4 } from 'uuid';
 const Feed = () => {
+  useDocumentTitle(`Home 💎Drift`)
   const fetchData = async (page) => {
     const response = await Post.getFeedPost(page);
     if (response && response.data && response.data.data) {

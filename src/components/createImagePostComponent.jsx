@@ -82,7 +82,7 @@ const CreateImagePost = () => {
       )
 
     } catch (error) {
-      setIsUploading(false)
+      setIsUploading(false) 
       toast(
         {
           title: "Warning!!",

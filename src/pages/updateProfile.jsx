@@ -15,7 +15,7 @@ import { Profile } from '@/services';
 import { detectChanges, convertToISOString } from '@/utils';
 import { useDispatch } from 'react-redux';
 import { setProfileData } from '@/app/slices/authSlices';
-import { useUploadImage } from '@/hooks';
+import { useDocumentTitle, useUploadImage } from '@/hooks';
 import { CloudMedia } from '@/services';
 import {
   Popover,
@@ -32,7 +32,6 @@ import {
   FormMessage,
   FormLabel
 } from "@/components/ui/form";
-
 import {
   Select,
   SelectContent,
@@ -40,20 +39,20 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
-
 import { Input } from "@/components/ui/input";
 import { updateProfileSchema } from '@/schema';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/components/ui/use-toast';
-
 const avatarProps = {
   fullName: null,
   username: null
 };
 
 const UpdateProfile = () => {
+  const userForTitle=useSelector(state=>state.auth.userData)
   const [user, setUser] = useState(null);
   const { userData, profileImageUrl } = useSelector(state => state.auth);
+  // useDocumentTitle(`@${userData?.username} 💎Drift`)
   const [username, setUsername] = useState('');
   const [usernameMessage, setUsernameMessage] = useState('');
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);
@@ -83,9 +82,7 @@ const UpdateProfile = () => {
 
   useEffect(() => {
     const checkUsernameUnique = async () => {
-      if (debouncedUsername[0] == userData?.username) {
-        setUsernameMessage("")
-      }
+      if (debouncedUsername[0] == userData?.username) {setUsernameMessage("")}
       if (debouncedUsername[0] != '' && debouncedUsername[0] != userData?.username) {
         setIsCheckingUsername(true);
         setUsernameMessage('');
@@ -103,7 +100,6 @@ const UpdateProfile = () => {
           setIsCheckingUsername(false);
         }
       }
-
     };
     ; (async () => await checkUsernameUnique())()
   }, [debouncedUsername[0]]);
@@ -118,6 +114,7 @@ const UpdateProfile = () => {
       bio: '',
     },
   });
+
   const onSubmit = async (values) => {
 
     if (values.dob) {
@@ -157,7 +154,7 @@ const UpdateProfile = () => {
           title: "Image Upload Failed !!",
           description: error.message || "Something went wrong while uploading image!!",
           variant: "destructive"
-        });
+        })
         return;
       }
     }

@@ -21,6 +21,7 @@ import { useToast } from "./ui/use-toast"
 import { Badge } from "@/components/ui/badge"
 import { useBookmarkUnbookmark } from "@/hooks"
 import { useLikeUnlike } from "@/hooks"
+
 const postCard = ({ post }) => {
 
   //----------------🪝🪝hooks🪝🪝-------------------
@@ -92,7 +93,7 @@ const postCard = ({ post }) => {
             }} className={like ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
             <p className="text-sm text-center text-muted-foreground">{post.likes}</p>
           </div>
-          <CommentSheet>
+          <CommentSheet>  
             <div>
               <MessageSquare onClick={() => setComment(!comment)} className={comment ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
               <p className="text-sm text-center text-muted-foreground">{post.comments}</p>

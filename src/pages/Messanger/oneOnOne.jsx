@@ -5,10 +5,12 @@ import { useParams } from 'react-router-dom';
 
 const Chat = () => {
     const { type, recieverId } = useParams()
+    if(type==="group-chat")return<></> ;
     const [setRecieverId,Error]=useCreateChat();
     useEffect(()=>{
         setRecieverId(recieverId)
     },[recieverId])
+
     if(Error){
         return  toast({
             variant: "destructive",
@@ -17,6 +19,7 @@ const Chat = () => {
             action: <ToastAction altText="Try again">Try again</ToastAction>,
           })
     }
+
     return (
         <div className='flex flex-col h-screen'>
             <div className='flex-1 overflow-auto'>

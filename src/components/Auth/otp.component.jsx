@@ -26,8 +26,9 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { emailAuthenticated } from '@/app/slices/authSlices'
-
+import { useDocumentTitle } from 'usehooks-ts'
 const OTP = () => {
+  useDocumentTitle("OTP Verification💎Drift...")
   const [isOTPSubmited, setIsOTPSubmited] = useState(false)
   const navigate = useNavigate()
   const dispatch = useDispatch()

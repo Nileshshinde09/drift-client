@@ -17,7 +17,19 @@ import Copyright from "./Copyright.jsx";
 import Call from "./Call.jsx";
 import Ringtones from "./ringtones.jsx";
 import Chat from "./Messanger/oneOnOne.jsx";
+import GroupChat from "./Messanger/GroupChat.jsx";
+import Support from "./support.jsx";
+import Messanger from "./Messanger/messanger.jsx";
+import JourneyJournals from "./journeyJournals.jsx";
+import CreateJJ from "./createJJ.jsx";
+import Space from "./Messanger/Space/Space.jsx";
 export {
+    Space,
+    CreateJJ,
+    JourneyJournals,
+    Messanger,
+    Support,
+    GroupChat,
     Chat,
     Ringtones,
     Call,
