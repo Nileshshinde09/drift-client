@@ -7,7 +7,11 @@ import { updateProfileSchema } from "./Update/updateProfile";
 import { emailSchema } from "./Auth/forgotPassword.schema";
 import { resetPasswordSchema } from "./Auth/resetPassword.schema";
 import { changePasswordSchema } from "./Auth/changePassword";
+import { supportFormSchema } from "./Support";
+import { createGroupFormSchema } from "./Messanger/groups";
 export {
+    createGroupFormSchema,
+    supportFormSchema,
     changePasswordSchema,
     resetPasswordSchema,
     emailSchema,

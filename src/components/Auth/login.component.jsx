@@ -20,8 +20,9 @@ import { Auth } from '@/services'
 import { useToast } from '../ui/use-toast'
 import { useDispatch } from 'react-redux'
 import { login, emailAuthenticated } from '@/app/slices/authSlices'
-import { useExistingUser } from '@/hooks'
+import { useDocumentTitle, useExistingUser } from '@/hooks'
 const Login = () => {
+  useDocumentTitle("Login💎Drift...")
   const dispatch = useDispatch()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();

@@ -1,9 +1,8 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { About, Copyright, ContactUs, Call,Chat, Ringtones, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile } from '@/pages'
+import { About, Copyright, Messanger, ContactUs, Call, Chat, Ringtones, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile, Support, GroupChat, JourneyJournals, CreateJJ, Space } from '@/pages'
 import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
 import { PageNotFound, SendForgotPasswordMail, VerifyForgotPassword } from '@/components'
-
 // This code is not working 
 // const router = createBrowserRouter([
 //     {
@@ -50,6 +49,33 @@ const router = createBrowserRouter(
                     </ProtectedAuthLayout>
                 } />
 
+            <Route
+                path='/journeyjournals'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AppLayout>
+                            <JourneyJournals />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/journeyjournals/:username'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AppLayout>
+                            <JourneyJournals />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/journeyjournals/create'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AppLayout>
+                            <CreateJJ />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
             <Route
                 path='/feed'
                 element={
@@ -117,9 +143,9 @@ const router = createBrowserRouter(
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
-            <Route path='/ringtone-musics'>
+            <Route path='/music-library'>
                 <Route
-                    path='/ringtone-musics/:genre'
+                    path='/music-library'
                     element={
                         <ProtectedAuthLayout authentication={false}>
                             <AppLayout>
@@ -179,11 +205,38 @@ const router = createBrowserRouter(
             </Route>
             <Route path='/messanger'>
                 <Route
+                    path='/messanger'
+                    element={
+                        <ProtectedAuthLayout authentication={false}>
+                            <AppLayout>
+                                <Messanger />
+                            </AppLayout>
+                        </ProtectedAuthLayout>
+                    } />
+                <Route
                     path='/messanger/:type/:recieverId'
                     element={
                         <ProtectedAuthLayout authentication={false}>
                             <AppLayout>
                                 <Chat />
+                            </AppLayout>
+                        </ProtectedAuthLayout>
+                    } />
+                <Route
+                    path='/messanger/:type/:recieverId/:createGroup'
+                    element={
+                        <ProtectedAuthLayout authentication={false}>
+                            <AppLayout>
+                                <GroupChat />
+                            </AppLayout>
+                        </ProtectedAuthLayout>
+                    } />
+                <Route
+                    path='/messanger/space/:recieverId'
+                    element={
+                        <ProtectedAuthLayout authentication={false}>
+                            <AppLayout>
+                                <Space />
                             </AppLayout>
                         </ProtectedAuthLayout>
                     } />
@@ -230,6 +283,11 @@ const router = createBrowserRouter(
                     path='/@DriftSocial/copyright'
                     element={
                         <Copyright />
+                    } />
+                <Route
+                    path='/@DriftSocial/support'
+                    element={
+                        <Support />
                     } />
 
             </Route>

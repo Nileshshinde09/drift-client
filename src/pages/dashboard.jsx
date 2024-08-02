@@ -19,8 +19,11 @@ import {
   Tabs
 } from "@/components/ui/tabs"
 import { DashboardPostRowComponents } from '@/components'
-
+import { useSelector } from 'react-redux'
+import { useDocumentTitle } from 'usehooks-ts'
 const dashboard = () => {
+  const user=useSelector(state=>state.auth.userData)
+  useDocumentTitle(`${user?.username} Dashboard💎Drift`)
   return (
     <div className='mx-20 overflow-y-scroll h-screen pb-[10rem] no-scrollbar'>
       <Tabs defaultValue="all">

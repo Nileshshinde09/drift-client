@@ -106,7 +106,7 @@ const Dashboard = ({ children }) => {
             <Tooltip>
               <TooltipTrigger>
                 <DrawerTrigger className="bg-transparent flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
-                  <Button variant="outline" className="" >
+                  <Button variant="ghost" className="rounded-full" >
                     <Settings className="h-5 w-5" />
                   </Button>
                 </DrawerTrigger>
@@ -140,7 +140,7 @@ const Dashboard = ({ children }) => {
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
                     <Home className="h-5 w-5" />
-                    Dashboard
+                    Home
                   </Link>
                   <Link
                     to={"#"}
@@ -164,7 +164,7 @@ const Dashboard = ({ children }) => {
                     Customers
                   </Link>
                   <DrawerTrigger>
-                    <Button variant="outline" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
+                    <Button variant="ghost" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
                       <UserPlus2 className="h-5 w-5" />
                       Settings
                     </Button>
@@ -182,9 +182,9 @@ const Dashboard = ({ children }) => {
           <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
           </main>
         </div>
-          {
-            children
-          }
+        {
+          children
+        }
         <SettingDrawer />
       </div>
     </Drawer>

@@ -4,7 +4,9 @@ import { Form } from '../ui/form'
 import { Auth } from '@/services'
 import { useToast } from '../ui/use-toast'
 import { useNavigate } from 'react-router-dom'
-const Logout = ({className}) => {
+import { cn } from '@/lib/utils'
+
+const Logout = ({className,props}) => {
   const  navigate = useNavigate()
   const { toast } = useToast();
   const onSubmit = (event) => {
@@ -32,7 +34,7 @@ const Logout = ({className}) => {
   return (
     <Form>
       <form onSubmit={onSubmit}>
-        <Button className={className} type="submit">Logout</Button>
+        <Button className={cn("text-center",className)} {...props} variant="ghost" type="submit">Logout</Button>
       </form>
     </Form>
   )

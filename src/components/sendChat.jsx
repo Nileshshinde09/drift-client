@@ -16,9 +16,10 @@ import { Label } from './ui/label';
 import { Tooltip, TooltipContent } from './ui/tooltip';
 import { TooltipTrigger } from '@radix-ui/react-tooltip';
 import { useOneOnOneChatting, useTypingDetection } from '@/hooks';
-
-
-const SendChat = () => {
+import { Palette } from 'lucide-react';
+import { MessangerThemeDrawer } from '.';
+import { cn } from '@/lib/utils';
+const SendChat = ({type}) => {
   useTypingDetection()
   const dispatch = useDispatch()
   const [message, setMessage] = useState("");
@@ -44,8 +45,8 @@ const SendChat = () => {
   return (
     <>
       <div className='w-screen'>
-        <div className="relative flex w-full max-w-lg  items-center mx-auto  h-full min-h-[50vh] flex-col rounded-xl p-4 lg:col-span-2">
-          <div className="absolute bottom-0 w-full overflow-hidden rounded-lg border bg-background focus-within:ring-1 focus-within:ring-ring" x-chunk="dashboard-03-chunk-1">
+        <div className={"relative flex w-full max-w-lg  items-center mx-auto  h-full min-h-[50vh] flex-col rounded-xl p-4 lg:col-span-2"}>
+          <div className={cn(" absolute bottom-0 w-full overflow-hidden rounded-lg border border-white bg-background focus-within:ring-1 focus-within:ring-ring",type==="space"&&"bg-black")} x-chunk="dashboard-03-chunk-1">
             <Label htmlFor="message" className="sr-only">
               Message
             </Label>
@@ -54,9 +55,9 @@ const SendChat = () => {
               value={message}
               onChange={(e) => textHandler(e.target.value)}
               placeholder="Type your message here..."
-              className="min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0"
+              className={cn(" min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0",type==="space"&&"bg-black")}
             />
-            <div className="flex items-center p-3 pt-0">
+            <div className="flex items-center p-3 pt-0 ">
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" size="icon">
@@ -85,6 +86,17 @@ const SendChat = () => {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="top">Use Microphone</TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <MessangerThemeDrawer>
+                    <Button variant="ghost" size="icon">
+                      <Palette className="size-4" />
+                      <span className="sr-only">Set Theme</span>
+                    </Button>
+                  </MessangerThemeDrawer>
+                </TooltipTrigger>
+                <TooltipContent side="top">Set Theme</TooltipContent>
               </Tooltip>
               <Button size="sm" onClick={handleSubmit} className="ml-auto gap-1.5 mt-2">
                 Send Message

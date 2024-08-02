@@ -8,7 +8,7 @@ const CardLayout = ({ children, className, props }) => {
      items-center text-center space-x-4 
      rounded-md border
       ${className} p-4`}>
-        <div/>
+      <div />
       {children}
     </div>
   )

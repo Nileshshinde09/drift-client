@@ -16,8 +16,10 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { Input } from '../ui/input'
 import { VITE_HOST_URL } from '@/constants'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const sendForgotPasswordMail = () => {
+    useDocumentTitle("Forgot Password💎Drift...")
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { toast } = useToast();

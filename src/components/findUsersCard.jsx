@@ -54,7 +54,7 @@ const FindUsers = () => {
                                 return (
                                     <>
                                         <div>
-                                            <Avatar url={user.Avatar} username={user.username} fullName={user.fullName} />
+                                            <Avatar url={user.Avatar} username={user?.username} fullName={user.fullName} />
                                             <Separator className="my-2" />
                                         </div>
                                     </>

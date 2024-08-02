@@ -30,9 +30,10 @@ import { useEffect, useState } from 'react';
 import { useDebounce } from 'use-debounce';
 import { Auth } from '@/services'
 import { useToast } from '../ui/use-toast'
+import { useDocumentTitle } from 'usehooks-ts'
 
 const SignUp = () => {
-
+  useDocumentTitle("Sign Up💎Drift...")
   const [username, setUsername] = useState('');
   const [usernameMessage, setUsernameMessage] = useState('');
   const [isCheckingUsername, setIsCheckingUsername] = useState(false);

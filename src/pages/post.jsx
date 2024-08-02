@@ -6,7 +6,7 @@ import { CardLayout } from '@/components';
 import { HoverCard } from '@/components';
 import { ImageCarousel } from '@/components';
 import { useSelector } from 'react-redux';
-import { useFetchPostById,useMediaIdToUrl,useBookmarkUnbookmark,useLikeUnlike } from '@/hooks';
+import { useFetchPostById,useMediaIdToUrl,useBookmarkUnbookmark,useLikeUnlike, useDocumentTitle } from '@/hooks';
 import { Badge } from "@/components/ui/badge"
 import { Loading } from '@/components';
 import { CommentSheet } from '@/components';
@@ -14,8 +14,9 @@ import { Bookmark,ThumbsUp,MessageSquare } from 'lucide-react';
 import { OpenPostComments } from "@/app/slices/commentSlice"
 import { useDispatch } from 'react-redux';
 const Post = () => {
+  const user=useSelector(state=>state.auth.userData)
+  useDocumentTitle(`${user?.username} Post 💎Drift`)
   const dispatch = useDispatch()
-
   const post = useSelector((state) => state.post.postData)
   const [data, fetchingError, isFetching, setIdForPost] = useFetchPostById()
   const { post_id } = useParams();

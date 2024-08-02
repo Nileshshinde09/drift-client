@@ -40,6 +40,35 @@ class post {
             return null
         }
     }
+
+    createVideoPost = async ({ caption, tag, files }) => {
+        try {
+            console.log(caption,tag,files);
+            const formdata = new FormData();
+            const filesArray = Array.isArray(files) ? files : Array.from(files);
+
+            filesArray.forEach(file => {
+                formdata.append("files", file);
+            });
+
+            formdata.append("caption", caption)
+            formdata.append("tags", tag)
+
+            const response =  await axios.post("/api/v1/post/create-post-with-video", formdata,
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                }
+            )
+            return response
+        } catch (error) {
+            console.log(error.message || "Something went wrong while creating image post.");
+            return null
+        }
+    }
+
     getAllPosts = async () => {
         try {
             return await axios.get("/api/v1/post/get-all-posts",
