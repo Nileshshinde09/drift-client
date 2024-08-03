@@ -31,16 +31,14 @@ const BookMarkedDrawer = ({ children }) => {
                             </DrawerTitle>
                         </DrawerHeader>
                         {bookmarkPosts ?
-                            <Card className={`w-[500px] mx-auto relative`}>
-                                <CardContent className="space-y-3">
+                            <div className={`w-[500px] mx-auto relative`}>
+                                <div className="space-y-3">
                                     <div />
-                                    <CardLayout>
                                         {bookmarkPosts && bookmarkPosts?.map((post) => {
                                             return <BookmarkCard key={post._id} post={post[0]} />
                                         })}
-                                    </CardLayout>
-                                </CardContent>
-                            </Card>
+                                </div>
+                            </div>
                             :
                             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
                                 No BookMarks

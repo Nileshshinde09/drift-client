@@ -99,6 +99,23 @@ class post {
             return null
         }
     }
+    getAllRemoteUserPost= async ({username}) => {
+        try {
+            if(!username) return;
+            return await axios.get(`/api/v1/post/get-all-Remote-User-Post/${username}`,
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                }
+            )
+        } catch (error) {
+            console.log(error.message || "Something went wrong while fetching user owned post.");
+            return null
+        }
+    }
+
     deletePost = async (postId) => {
         try {
             if (!postId) throw error
