@@ -20,6 +20,7 @@ const authSlice = createSlice({
             state.userData = null;
         },
         emailAuthenticated: (state, action) => {
+            console.log("Email Authenticated :: ",action.payload);
             state.isEmailAuthenticated = action.payload
         },
         setProfileData: (state, action) => {

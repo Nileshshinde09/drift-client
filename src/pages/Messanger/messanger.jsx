@@ -75,7 +75,7 @@ const Messenger = () => {
             <TabsList className="grid w-full grid-cols-3 space-x-2">
                 <TabsTrigger value="personal"><SquareUserIcon className='mx-1' />Personal</TabsTrigger>
                 <TabsTrigger value="publicGroup"><Users2 className='mx-1' />PublicGroups</TabsTrigger>
-                <TabsTrigger value="anoGroup"><VenetianMask className='mx-1' />AnoGroups</TabsTrigger>
+                {/* <TabsTrigger value="anoGroup"><VenetianMask className='mx-1' />AnoGroups</TabsTrigger> */}
             </TabsList>
             <TabsContent value="personal">
                 <div className='h-screen w-full px-2'>

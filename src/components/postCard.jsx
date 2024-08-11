@@ -172,7 +172,7 @@ const PostCard = ({ post }) => {
               }}
               className={like ? "fill-white stroke-black cursor-pointer" : "cursor-pointer"}
             />
-            <p className="text-sm text-center text-muted-foreground">{post.likes}</p>
+            {/* <p className="text-sm text-center text-muted-foreground">{post.likes}</p> */}
           </div>
           <CommentSheet>
             <div>
@@ -180,7 +180,7 @@ const PostCard = ({ post }) => {
                 onClick={() => setComment(!comment)}
                 className={comment ? "fill-white stroke-black cursor-pointer" : "cursor-pointer"}
               />
-              <p className="text-sm text-center text-muted-foreground">{post.comments}</p>
+              {/* <p className="text-sm text-center text-muted-foreground">{post.comments}</p> */}
             </div>
           </CommentSheet>
           <Bookmark

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { setIsMuteNotifications, setMessangerNotificationSoundTheme, setTheme } from '@/app/slices/themeSlice'
 import { Toaster } from "@/components/ui/toaster"
@@ -10,7 +10,9 @@ import { Toaster as SonnarToaster } from "@/components/ui/sonner"
 import { MainMenubar } from '@/components'
 
 const App = () => {
+  const [loading, data] = useExistingUser()
   const dispatch = useDispatch()
+  const isAuthenticated = useSelector((state)=>state.auth.status)
   useEffect(() => {
     dispatch(setTheme())
     dispatch(setIsMuteNotifications())
@@ -23,9 +25,7 @@ const App = () => {
   }, [dispatch]);
 
   useNotifications()
-
-  const [loading, data] = useExistingUser()
-
+  
   return !loading ? (
     <>
       <div className='h-screen overflow-hidden'>

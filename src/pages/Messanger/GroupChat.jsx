@@ -12,17 +12,18 @@ const GroupChat = () => {
     if (!recieverId) return;
     setRecieverId(recieverId)
   }, [recieverId])
+  
   return (
     <div className='flex flex-col h-screen'>
       <div className='flex-1 overflow-auto'>  
-        {!createGroup === false ?
+        {Boolean(createGroup) === false ?
           <ShowGroupMessages/> : <CreateGroupForm/>
         }
       </div>
       <div className='fixed bottom-4 flex justify-center items-center'>
         <div className='w-full max-w-lg px-4'>
-          {!createGroup ?
-            <SendChat/> : <SendChat/>
+          {!Boolean(createGroup) ?
+            <SendChat/> : <></>
           }
         </div>
       </div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { AvatarImage } from './ui/avatar'
 import { Badge } from "@/components/ui/badge"
 import { humanReadableDate } from '@/utils'
@@ -10,12 +10,20 @@ import { X } from 'lucide-react'
 import { setPost } from '@/app/slices/postSlices'
 import { useDispatch } from 'react-redux'
 import { useBookmarkUnbookmark } from '@/hooks'
-const bookmarkCard = ({ post }) => {
+
+const BookmarkCard = ({ post }) => {
     const [url, setId, profileImageIsLoading, profileError] = useProfileImage()
     const [bookmarkState, bookmarkError, bookmarkIsLoading, BookmarkUnbookmark] = useBookmarkUnbookmark({ PostId: post?._id })
+    const [isRemoved, setIsRemoved] = useState(false)
     const dispatch = useDispatch()
-    const bookUnbookMarkHandler = () => {
-        BookmarkUnbookmark()
+
+    const bookUnbookMarkHandler = async () => {
+        try {
+            await BookmarkUnbookmark()
+            setIsRemoved(true)
+        } catch (error) {
+            console.error('Failed to unbookmark', error)
+        }
     }
 
     const setPostTOStore = () => {
@@ -27,8 +35,13 @@ const bookmarkCard = ({ post }) => {
             setId(post?.owner?.avatar)
         }
     }, [post])
+
+    if (isRemoved) {
+        return null // Don't render anything if the bookmark is removed
+    }
+
     return (
-        <div className='text-center relative bg-white border-gray-400 hover:scale-105 shadow-md shadow-white transition-transform rounded-xl border-spacing-2 border-2  text-black'>
+        <div className='text-center relative bg-white border-gray-400 hover:scale-105 shadow-md shadow-white transition-transform rounded-xl border-spacing-2 border-2 text-black'>
             <X className='absolute cursor-pointer' onClick={bookUnbookMarkHandler} />
             <Link onClick={setPostTOStore} to={`/post/${post?._id}`}>
                 {post?.tags && <Badge variant="outline" className={"text-black"}>{post?.tags}</Badge>}
@@ -52,4 +65,4 @@ const bookmarkCard = ({ post }) => {
     )
 }
 
-export default bookmarkCard
+export default BookmarkCard

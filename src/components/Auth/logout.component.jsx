@@ -5,8 +5,11 @@ import { Auth } from '@/services'
 import { useToast } from '../ui/use-toast'
 import { useNavigate } from 'react-router-dom'
 import { cn } from '@/lib/utils'
+import { useDispatch } from 'react-redux'
+import { logout } from '@/app/slices/authSlices'
 
 const Logout = ({className,props}) => {
+  const dispatch = useDispatch()
   const  navigate = useNavigate()
   const { toast } = useToast();
   const onSubmit = (event) => {
@@ -19,7 +22,7 @@ const Logout = ({className,props}) => {
               toast({
                 title: logoutResponse.data.message || "Logout user Sucessfully !"
               })
-              navigate("/login")
+              dispatch(logout())
             }
           } catch (error) {
             toast({

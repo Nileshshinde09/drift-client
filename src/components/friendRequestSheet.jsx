@@ -102,7 +102,7 @@ const FriendRequestSheet = ({ children }) => {
                                     </Avatar>
 
                                     <Accordion type="single" collapsible className="w-full">
-                                        <AccordionItem value="item-1">
+                                     <AccordionItem value="item-1">
                                             <AccordionTrigger className="text-center">
                                                 <p className="text-center leading-7 [&:not(:first-child)]:mt-6 ">
                                                     {

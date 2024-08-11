@@ -10,14 +10,16 @@ import React from 'react'
 import FollowerFollowingCard from "./followerFollowingCard"
 import { useState, useEffect } from "react"
 import { useFollowers, useFollowing } from "@/hooks"
+import { useSelector } from "react-redux"
 
 const followerFollowingSheetLayout = ({ side, type, children, username }) => {
+    
     const [followersData, followersLoading,followersError,setUsernameForFollowers] = useFollowers()
     const [followeeData, followeeLoading,followingError, setUsernameForFollowees] = useFollowing()
     useEffect(() => {
         if (username) {
             setUsernameForFollowers(username)
-            setUsernameForFollowees(username)
+            setUsernameForFollowees(username) 
         }
     }, [username])
     return (

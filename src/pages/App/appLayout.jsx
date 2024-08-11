@@ -12,10 +12,12 @@ import {
   Users2,
   SquarePlus,
   LayoutList,
-  LayoutDashboard
+  LayoutDashboard,
+  CircleUserRoundIcon,
+  MessageSquareMoreIcon
 } from "lucide-react"
-import { Button } from "@/components/ui/button"
 
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import {
@@ -24,8 +26,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { BackgroundAnimation } from '@/components'
-
+import { useSelector } from "react-redux"
 const Dashboard = ({ children }) => {
+  const userData = useSelector(state=>state.auth.userData)
   return (
     <Drawer>
       <div className="relative flex min-h-screen w-full flex-col bg-muted/40">
@@ -65,18 +68,32 @@ const Dashboard = ({ children }) => {
               </TooltipTrigger>
               <TooltipContent side="right">Dashboard</TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  to={"/feed"}
+                  to={"/messanger"}
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <  LayoutList className="h-5 w-5" />
-                  <span className="sr-only">Feed</span>
+                  <  MessageSquareMoreIcon className="h-5 w-5" />
+                  <span className="sr-only">Messanger</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">Feed</TooltipContent>
+              <TooltipContent side="right">Messanger</TooltipContent>
             </Tooltip>
+            <Tooltip>
+              <TooltipTrigger>
+                <Link
+                  to={`/profile/@${userData.username}`}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <  CircleUserRoundIcon className="h-5 w-5" />
+                  <span className="sr-only">Profile</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">Profile</TooltipContent>
+            </Tooltip>
+
             <Tooltip>
               <TooltipTrigger>
                 <Link

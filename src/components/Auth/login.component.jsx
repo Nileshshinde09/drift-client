@@ -7,7 +7,6 @@ import { logInSchema } from '@/schema'
 import { Loader2 } from 'lucide-react'
 import {
   Form,
-  FormControl,
   FormField,
   FormItem,
   FormLabel,
@@ -26,9 +25,6 @@ const Login = () => {
   const dispatch = useDispatch()
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-
-  const [loading,data] = useExistingUser()
-
   const form = useForm({
     resolver: zodResolver(logInSchema),
     defaultValues: {
@@ -47,7 +43,7 @@ const Login = () => {
 
       });
       if (response) dispatch(login(response?.data?.data?.user))
-      if (response?.data?.data?.user?.emailVerified) dispatch(emailAuthenticated())
+      if (response?.data?.data?.user?.emailVerified) dispatch(emailAuthenticated(response.data.data.user.emailVerified))
       setIsSubmitting(false);
     } catch (error) {
       console.error('Error during login:', error);

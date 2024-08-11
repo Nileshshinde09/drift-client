@@ -4,46 +4,13 @@ import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
 import { PageNotFound, SendForgotPasswordMail, VerifyForgotPassword } from '@/components'
 
-// This code is not working 
-// const router = createBrowserRouter([
-//     {
-//         path: "/",
-//         element: <App/>,
-//         childern: 
-//         [
-//             {
-//                 path: "/",
-//                 element: <Home/>
-//             },
-//             {
-//                 path: "/login",
-//                 element:
-//                     (
-//                         <ProtectedAuthLayout authentication={false} >
-//                             <Login />
-//                         </ProtectedAuthLayout>
-//                     )
-//             },
-//             {
-//                 path: "/signup",
-//                 element:
-//                     (
-//                         <ProtectedAuthLayout authentication={false}>
-//                             <Signup />
-//                         </ProtectedAuthLayout>
-//                     )
-//             }
-//         ]
-//     },
-// ])
-// 👇👇 This code is working 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path='/' element={<App />}>
             <Route
                 path='/'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <Home />
                         </AppLayout>
@@ -53,7 +20,7 @@ const router = createBrowserRouter(
             <Route
                 path='/journeyjournals'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <JourneyJournals />
                         </AppLayout>
@@ -62,7 +29,7 @@ const router = createBrowserRouter(
             <Route
                 path='/journeyjournals/:username'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <JourneyJournals />
                         </AppLayout>
@@ -71,7 +38,7 @@ const router = createBrowserRouter(
             <Route
                 path='/journeyjournals/create'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <CreateJJ />
                         </AppLayout>
@@ -80,7 +47,7 @@ const router = createBrowserRouter(
             <Route
                 path='/feed'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <Feed />
                         </AppLayout>
@@ -89,7 +56,7 @@ const router = createBrowserRouter(
             <Route
                 path='/video-feed'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <VideoFeed />
                         </AppLayout>
@@ -98,7 +65,7 @@ const router = createBrowserRouter(
             <Route
                 path='/video-feed/:username'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <VideoFeed />
                         </AppLayout>
@@ -107,27 +74,25 @@ const router = createBrowserRouter(
             <Route
                 path='/dashboard'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <Dashboard />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
-
             <Route
                 path='/find-peoples'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <FindPeoples />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
-
             <Route
                 path='/create-post'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <CreatePost />
                         </AppLayout>
@@ -136,7 +101,7 @@ const router = createBrowserRouter(
             <Route
                 path='/post/:post_id'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <Post />
                         </AppLayout>
@@ -145,37 +110,34 @@ const router = createBrowserRouter(
             <Route
                 path='/profile/:username'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <Profile />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
-
             <Route
                 path='/update-profile'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <UpdateProfile />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
-            <Route path='/music-library'>
-                <Route
-                    path='/music-library'
-                    element={
-                        <ProtectedAuthLayout authentication={false}>
-                            <AppLayout>
-                                <Ringtones />
-                            </AppLayout>
-                        </ProtectedAuthLayout>
-                    } />
-            </Route>
+            <Route
+                path='/music-library'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AppLayout>
+                            <Ringtones />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
             <Route
                 path='/edit-post/:postId'
                 element={
-                    <ProtectedAuthLayout authentication={false}>
+                    <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <EditPost />
                         </AppLayout>
@@ -190,7 +152,6 @@ const router = createBrowserRouter(
                         </AuthLayout>
                     </ProtectedAuthLayout>
                 } />
-
             <Route
                 path='/signup'
                 element={
@@ -200,7 +161,6 @@ const router = createBrowserRouter(
                         </AuthLayout>
                     </ProtectedAuthLayout>
                 } />
-
             <Route
                 path='/OTP'
                 element={
@@ -210,110 +170,88 @@ const router = createBrowserRouter(
                         </AuthLayout>
                     </ProtectedAuthLayout>
                 } />
-            <Route path='/call'>
-                <Route
-                    path='/call/:type/:userId'
-                    element={
-                        <ProtectedAuthLayout authentication={false}>
-                            <AppLayout>
-                                <Call />
-                            </AppLayout>
-                        </ProtectedAuthLayout>
-                    } />
-            </Route>
-            <Route path='/messanger'>
-                <Route
-                    path='/messanger'
-                    element={
-                        <ProtectedAuthLayout authentication={false}>
-                            <AppLayout>
-                                <Messanger />
-                            </AppLayout>
-                        </ProtectedAuthLayout>
-                    } />
-                <Route
-                    path='/messanger/:type/:recieverId'
-                    element={
-                        <ProtectedAuthLayout authentication={false}>
-                            <AppLayout>
-                                <Chat />
-                            </AppLayout>
-                        </ProtectedAuthLayout>
-                    } />
-                <Route
-                    path='/messanger/:type/:recieverId/:createGroup'
-                    element={
-                        <ProtectedAuthLayout authentication={false}>
-                            <AppLayout>
-                                <GroupChat />
-                            </AppLayout>
-                        </ProtectedAuthLayout>
-                    } />
-                <Route
-                    path='/messanger/space/:recieverId'
-                    element={
-                        <ProtectedAuthLayout authentication={false}>
-                            <AppLayout>
-                                <Space />
-                            </AppLayout>
-                        </ProtectedAuthLayout>
-                    } />
-            </Route>
-            <Route path='/forgot-password'>
-                <Route
-                    path='/forgot-password'
-                    element={
-                        <ProtectedAuthLayout authentication={false}>
-                            <AuthLayout>
-                                <SendForgotPasswordMail />
-                            </AuthLayout>
-                        </ProtectedAuthLayout>
-                    } />
-                <Route
-                    path='/forgot-password/verify/:token'
-                    element={
-                        <ProtectedAuthLayout authentication={false}>
-                            <AuthLayout>
-                                <VerifyForgotPassword />
-                            </AuthLayout>
-                        </ProtectedAuthLayout>
-                    } />
-
-            </Route>
-
+            <Route
+                path='/call/:type/:userId'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AppLayout>
+                            <Call />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/messanger'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AppLayout>
+                            <Messanger />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/messanger/:type/:recieverId'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AppLayout>
+                            <Chat />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/messanger/:type/:recieverId/:createGroup'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AppLayout>
+                            <GroupChat />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/messanger/space/:recieverId'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AppLayout>
+                            <Space />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/forgot-password'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AuthLayout>
+                            <SendForgotPasswordMail />
+                        </AuthLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/forgot-password/verify/:token'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AuthLayout>
+                            <VerifyForgotPassword />
+                        </AuthLayout>
+                    </ProtectedAuthLayout>
+                } />
             <Route path='/@DriftSocial'>
                 <Route
                     path='/@DriftSocial/about'
-                    element={
-                        <About />
-                    } />
+                    element={<About />} />
                 <Route
                     path='/@DriftSocial/contact-us'
-                    element={
-                        <ContactUs />
-                    } />
+                    element={<ContactUs />} />
                 <Route
                     path='/@DriftSocial/terms-n-conditions'
-                    element={
-                        <TermsNConditions />
-                    } />
+                    element={<TermsNConditions />} />
                 <Route
                     path='/@DriftSocial/copyright'
-                    element={
-                        <Copyright />
-                    } />
+                    element={<Copyright />} />
                 <Route
                     path='/@DriftSocial/support'
-                    element={
-                        <Support />
-                    } />
-
+                    element={<Support />} />
             </Route>
-
             <Route path='*' element={<PageNotFound />} />
-
         </Route>
-
     )
 )
 

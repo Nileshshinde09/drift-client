@@ -15,7 +15,7 @@ import {
 const Comment = ({ commentator,content }) => {
     const [comment, setComment] = useState(false)
     const [like, setLike] = useState(false)
-    const [disLike, setDisLike] = useState(false)
+    const [disLike, setDisLike] = useState(false) 
     const [bookmark, setBookmark] = useState(false)
     
     return (
@@ -44,7 +44,6 @@ const Comment = ({ commentator,content }) => {
                             <MessageSquare onClick={() => setComment(!comment)} className={comment ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
                             <p className="text-sm text-center text-muted-foreground">{1}</p>
                             </div>
-
                         </div>
                     </div>
                 </HoverCardTrigger>

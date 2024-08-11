@@ -6,22 +6,24 @@ import { AvatarImage } from './ui/avatar';
 import { Separator } from './ui/separator';
 import { Link } from 'react-router-dom';
 import { useProfileImage } from '@/hooks';
-const followerFollowingCard = ({entity,imageId}) => {
-
+import { useSelector } from 'react-redux';
+const followerFollowingCard = ({type,entity,imageId}) => {
+    const userData = useSelector((state)=>state.auth.userData)
     const [profileImageUrl, setImageId, isLoadingProfileImage, profileImageError] = useProfileImage()
-    console.log(entity);
     useEffect(()=>{
         if(imageId){
             setImageId(imageId)
         }
     },[imageId])
+    if(userData._id===entity._id && type==='following') return<></>
+    if(userData._id===entity._id && type==='followers') return<></>
     return (
         <Link to={`/profile/@${entity?.username}`}>
             <div className={`mx-10`}>
                 <div className="w-fit flex space-x-4 flex-wrap">
                     <Avatar className="my-auto w-14 h-fit">
                         <AvatarImage src={profileImageUrl || PROFILE_DUMMY_IMAGE_URL} alt="@user" />
-                    </Avatar>
+                    </Avatar> 
                     <div>
                         <div className="text-lg flex"><p className="leading-7 [&:not(:first-child)]:mt-6">{entity?.username ? entity?.username : null}</p>
                         </div>

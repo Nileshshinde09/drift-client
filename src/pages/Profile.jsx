@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -42,7 +43,7 @@ const Profile = () => {
     const [isRequested, setIsRequested] = useState(false)
     const [isFriends, setIsFriends] = useState(false)
     const [FriendRequestList, setFriendRequestList] = useState([]);
-    let setFriendRequest_id=null;
+    let setFriendRequest_id = null;
     useEffect(() => {
         if (username && existingUser) {
             setIsOwnProfile(username.replace("@", "") === existingUser.username)
@@ -59,12 +60,12 @@ const Profile = () => {
         }
     }
     useEffect(() => {
-        if(!profileData || isOwnProfile) return;
+        if (!profileData || isOwnProfile) return;
         (async () => {
             try {
                 const friends = await Friends.checkIsFriends(profileData._id)
                 if (friends?.data) {
-                    if(friends?.data.data.status){
+                    if (friends?.data.data.status) {
                         setIsFriends(friends?.data.data)
                     }
                 }
@@ -72,7 +73,7 @@ const Profile = () => {
                 console.error("Failed to fetch friends:", error.message);
             }
         })();
-    }, [profileData,isOwnProfile]);
+    }, [profileData, isOwnProfile]);
     useEffect(() => {
         if (!username || !existingUser?.username) return;
         setUsernameForProfile(username.replace("@", ''))
@@ -97,7 +98,7 @@ const Profile = () => {
 
     const handleCreateGroupNavigation = () => {
         const createGroup = true;
-        navigate(`/messanger/group-chat/${existingUser?._id}/?${createGroup}`)
+        navigate(`/messanger/group-chat/${existingUser?._id}/${createGroup}`)
     }
     const handleFriendRequest = async () => {
         if (!profileData) return;
@@ -122,7 +123,7 @@ const Profile = () => {
             <CardHeader className="text-center">
                 {isVisible ? <Eye className='cursor-pointer' onClick={changeVisibility} /> : <EyeOff className='cursor-pointer' onClick={changeVisibility} />}
                 <div className='absolute right-6 cursor-pointer'>
-                    <Share url={VITE_HOST_URL + path.pathname} username={username}>
+                    <Share className="hover:cursor-pointer" url={VITE_HOST_URL + path.pathname} username={username}>
                         <Share2 />
                     </Share>
                 </div>
@@ -146,7 +147,7 @@ const Profile = () => {
                     <ProfileCardText value={profileData?.dob?.split('T')[0] || ""} altValue='DOB'><Cake /></ProfileCardText>
                     <ProfileCardText value={profileData?.status || "Active"} altValue='Status'><Smartphone /></ProfileCardText>
                     <ProfileCardText value={String(profileData?.bookmarkCount) || '0'} altValue='Book Marked'><BookMarked /></ProfileCardText>
-                </CardLayout>
+                </CardLayout> 
                 {profileData && profileData?.bio &&
                     <CardLayout>
                         <ProfileCardText value={profileData.bio || ""} altValue='Bio'></ProfileCardText>
@@ -168,19 +169,18 @@ const Profile = () => {
                     </FollowerFollowingSheetLayout>
                 </CardLayout>
                 {!isOwnProfile &&
-                <CardLayout>
-                    
-                    {!isFriends?
-                        <>
-                            {!isRequested ?
-                                <Button onClick={() => handleFriendRequest()}>Send Request</Button> :
-                                <Button onClick={() => handleFriendRequest()}>Retrieve Request</Button>
-                            }
-                    </>:
-                    <Button onClick={() => handleUnFriend()}>UnFriend</Button>
-                    }
-                </CardLayout>}
-                
+                    <CardLayout>
+                        {!isFriends ?
+                            <>
+                                {!isRequested ?
+                                    <Button onClick={() => handleFriendRequest()}>Send Request</Button> :
+                                    <Button onClick={() => handleFriendRequest()}>Retrieve Request</Button>
+                                }
+                            </>:
+                            <Button onClick={() => handleUnFriend()}>UnFriend</Button>
+                        }
+                    </CardLayout>}
+
                 {isOwnProfile &&
                     <>
                         <CardLayout>
@@ -196,12 +196,12 @@ const Profile = () => {
                         <CardLayout>
                             <ProfileCardText route={'/create-post'} cardType="link" value={"Create Post"} altValue='create post' className={"bg-slate-200"}><SquarePlus /></ProfileCardText>
                         </CardLayout>
-                        <CardLayout>
+                        {/* <CardLayout>
                             <ProfileCardText cardType="video-call-button" value={"Video Call"} altValue='video call' className={"bg-slate-200"}><Video /></ProfileCardText>
                         </CardLayout>
                         <CardLayout>
                             <ProfileCardText cardType="voice-call-button" value={"Voice Call"} altValue='voice call' className={"bg-slate-200"}><PhoneCall /></ProfileCardText>
-                        </CardLayout>
+                        </CardLayout> */}
                         <CardLayout>
                             <ProfileCardText onButtonClick={handleCreateGroupNavigation} cardType="create-public-group" value={"Create Groups"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
                         </CardLayout>
@@ -211,17 +211,17 @@ const Profile = () => {
                         <CardLayout>
                             <ProfileCardText cardType="friendList" value={"Friends"} altValue='Friends' className={"bg-slate-200"}><ContactRoundIcon /></ProfileCardText>
                         </CardLayout>
-                        <CardLayout>
+                        {/* <CardLayout>
                             <ProfileCardText cardType="chat-with-friend" value={"Chat"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
-                        </CardLayout>
-                        <CardLayout>
+                        </CardLayout> */}
+                        {/* <CardLayout>
                             <ProfileCardText cardType="group-chat-with-friends" value={"Group Chat With Friends"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
-                        </CardLayout>
-                        <CardLayout>
+                        </CardLayout> */}
+                        {/* <CardLayout>
                             <DrawerTrigger>
                                 <ProfileCardText cardType="button" value={"Make Friend Request"} altValue='friend' className={"bg-slate-200"}><Settings2 /></ProfileCardText>
                             </DrawerTrigger>
-                        </CardLayout>
+                        </CardLayout> */}
                     </>
                 }
             </CardContent>
