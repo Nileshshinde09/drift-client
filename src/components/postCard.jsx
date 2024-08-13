@@ -107,7 +107,7 @@ const PostCard = ({ post }) => {
       <div className="flex justify-between">
         <HoverCard creator={post.creator} />
         <div className="m-2">
-        <Share className="" url={VITE_HOST_URL + "/video-feed"} shareType={"Post"} username={post.creator.username}>
+        <Share className="" url={VITE_HOST_URL + "/video-feed"} shareType={"Post"} username={post.creator?.username}>
           <Share2 />
         </Share>
         </div>

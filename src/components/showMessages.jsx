@@ -27,7 +27,7 @@ const ShowMessages = () => {
     
     chatData?.data?.participants?.map((participant) => {
       if (participant._id === userId._id) return;
-      setParticipantName(participant.username)
+      setParticipantName(participant?.username)
       setId(participant.avatar)
     })
   }, [chatData])

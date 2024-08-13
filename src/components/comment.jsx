@@ -54,7 +54,7 @@ const Comment = ({ commentator,content }) => {
                             <AvatarFallback>VC</AvatarFallback>
                         </Avatar>
                         <div className="space-y-1">
-                            <h4 className="text-sm font-semibold">{`@${commentator.username || "username"}`}</h4>
+                            <h4 className="text-sm font-semibold">{`@${commentator?.username || "username"}`}</h4>
                             <div className="flex items-center pt-2">
                                 <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
                                 <span className="text-xs text-muted-foreground">

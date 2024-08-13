@@ -81,10 +81,51 @@ const Dashboard = ({ children }) => {
               </TooltipTrigger>
               <TooltipContent side="right">Messanger</TooltipContent>
             </Tooltip>
+
+            
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  to={`/profile/@${userData.username}`}
+                  to={"/journeyjournals/create"}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <  MessageSquareMoreIcon className="h-5 w-5" />
+                  <span className="sr-only">journeyjournals/create</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">journeyjournals/create</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger>
+                <Link
+                  to={"/journeyjournals"}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <  MessageSquareMoreIcon className="h-5 w-5" />
+                  <span className="sr-only">journeyjournals</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">journeyjournals</TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger>
+                <Link
+                  to={"/video-feed"}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
+                >
+                  <  MessageSquareMoreIcon className="h-5 w-5" />
+                  <span className="sr-only">video-feed</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent side="right">video-feed</TooltipContent>
+            </Tooltip>
+            {/* /video-feed */}
+            <Tooltip>
+              <TooltipTrigger>
+                <Link
+                  to={`/profile/@${userData?.username}`}
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
                   <  CircleUserRoundIcon className="h-5 w-5" />

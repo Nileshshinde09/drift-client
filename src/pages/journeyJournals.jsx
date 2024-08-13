@@ -43,7 +43,7 @@ const JourneyJournals = () => {
   useEffect(() => {
     if (!username || !jJList) return;
     setJJList(jJList.map((val) => {
-      if (val.username === username) return val
+      if (val?.username === username) return val
     }))
   }, [username])
   const spaceHandler = (Id) => {
@@ -53,7 +53,7 @@ const JourneyJournals = () => {
     if (userData?.username === username) {
 
     }
-    navigate(`/profile/@${val.username}`)
+    navigate(`/profile/@${val?.username}`)
   }
 
   const deleteJJHandler = async (Id) => {
@@ -69,15 +69,15 @@ const JourneyJournals = () => {
         {jJList.length > 0 ? jJList.map((val) => (
           <Card key={val._id} className="w-1/2 mx-auto my-2 bg-white hover:scale-105 transition-transform shadow-sm shadow-white text-black relative">
             <AudioLines onClick={() => spaceHandler(val._id)} className='absolute m-5 hover:scale-110 transition-transform cursor-pointer' />
-            {val.username === userData.username ?
+            {val?.username === userData?.username ?
               <>
                 <  DeleteJJdialog setToggle={setToggle} toggle={toggle} data={val}><Trash2 onClick={() => deleteJJHandler(val._id)} className='absolute right-14 m-1 stroke-red-400 hover:scale-110 transition-transform cursor-pointer' /></DeleteJJdialog>
                 <UpdateJJdialog setToggle={setToggle} toggle={toggle} data={val}>
-                  <Badge className='absolute right-0 m-1 bg-black text-white hover:bg-black hover:text-white hover:scale-110 transition-transform cursor-pointer'>{val.username === userData.username ? "edit" : val.username || "Not found"}</Badge>
+                  <Badge className='absolute right-0 m-1 bg-black text-white hover:bg-black hover:text-white hover:scale-110 transition-transform cursor-pointer'>{val?.username === userData?.username ? "edit" : val?.username || "Not found"}</Badge>
                 </UpdateJJdialog>
               </>
               :
-              <Badge onClick={() => postHandler(val?.username)} className='absolute right-0 m-1 bg-black text-white hover:bg-black hover:text-white hover:scale-110 transition-transform cursor-pointer'>{val.username === userData.username ? "your" : val.username || "Not found"}</Badge>}
+              <Badge onClick={() => postHandler(val?.username)} className='absolute right-0 m-1 bg-black text-white hover:bg-black hover:text-white hover:scale-110 transition-transform cursor-pointer'>{val?.username === userData?.username ? "your" : val?.username || "Not found"}</Badge>}
             <CardHeader>
               <CardTitle className="text-center">{val.topic || "Topic name"}</CardTitle>
             </CardHeader>

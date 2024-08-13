@@ -10,7 +10,7 @@ const useNotifications = () => {
   const isMute = useState("true"===useSelector(state=>state.theme.isNotificationsMuted))
 
   useEffect(() => {
-    // if(isMute) return;
+    // if(isMute) return;  
     if (socket) {
       socket.on('notification', (data) => {
         const audio = new Audio(sound);

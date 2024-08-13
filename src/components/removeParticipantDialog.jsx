@@ -20,7 +20,7 @@ const RemoveParticipantDialog = ({ children, participant, groupChatData }) => {
         if(participants.length <=2){
             return toast({
                 variant: "destructive",
-                title: `Uh oh! ${participant.username} is only one participant in this group.`,
+                title: `Uh oh! ${participant?.username} is only one participant in this group.`,
                 description: "You cannot remove last participant.",
                 action: <ToastAction altText="Try again">Try again</ToastAction>,
               })
@@ -40,7 +40,7 @@ const RemoveParticipantDialog = ({ children, participant, groupChatData }) => {
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle className="text-center">Remove {participant.username}</DialogTitle>
+                    <DialogTitle className="text-center">Remove {participant?.username}</DialogTitle>
                 </DialogHeader>
                 <div className="">
                     <h4 className="scroll-m-20 text-xl font-semibold tracking-tight text-center flex justify-center text-green-500">

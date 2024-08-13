@@ -90,7 +90,7 @@ const Messenger = () => {
                                                 <AvatarFallback>CN</AvatarFallback>
                                             </Avatar>
                                         </div>
-                                        <small className="text-sm font-medium leading-none">{chat.participants.find((ind) => ind?._id !== userData?._id).username}</small>
+                                        <small className="text-sm font-medium leading-none">{chat.participants.find((ind) => ind?._id !== userData?._id)?.username}</small>
                                     </CardLayout>
                                 </div>
                             ))

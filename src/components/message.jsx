@@ -3,14 +3,14 @@ import { MessangerContextMenue } from '.'
 import { timeSince } from '@/utils';
 import { useSelector } from 'react-redux';
 const Message = ({ payload, type = 'r', messageData }) => {
-    const username = useSelector((state) => state.auth.userData.username)
+    const username = useSelector((state) => state.auth.userData?.username)
     return (
         <>
             {type === 'y' ?
                 <>
                     <div className='w-full flex justify-end transition-transform'>
                         <div>
-                            <p className="text-sm text-black">{messageData.sender.username === username ? "you" : messageData.sender.username}</p>
+                            <p className="text-sm text-black">{messageData.sender?.username === username ? "you" : messageData.sender?.username}</p>
                             <p className="text-sm text-black">{timeSince(messageData.createdAt)}</p>
                         </div>
                         <MessangerContextMenue messageData={messageData}>
@@ -37,7 +37,7 @@ const Message = ({ payload, type = 'r', messageData }) => {
                             </div>
                         </MessangerContextMenue>
                         <div>
-                            <p className="text-sm text-black">{messageData.sender.username}</p>
+                            <p className="text-sm text-black">{messageData.sender?.username}</p>
                             <p className="text-sm text-black">{timeSince(messageData.createdAt)}</p>
                         </div>
                     </div>

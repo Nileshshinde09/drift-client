@@ -4,14 +4,14 @@ import { timeSince } from '@/utils';
 import { useSelector } from 'react-redux';
 
 const SpaceMessage = ({ payload, type = 'r', messageData, isAdmin }) => {
-    const username = useSelector((state)=>state.auth.userData.username)
+    const username = useSelector((state)=>state.auth.userData?.username)
     return (
         <>
             {type === 'y' ?
                 <>
                     <div className='w-full flex justify-end transition-transform'>
                         <div>
-                            <p className="text-sm">{messageData.sender.username===username?"you":messageData.sender.username}</p>
+                            <p className="text-sm">{messageData.sender?.username===username?"you":messageData.sender?.username}</p>
                             <p className="text-sm">{timeSince(messageData.createdAt)}</p>
                         </div>
                         <MessangerContextMenue messageData={messageData}>
@@ -45,7 +45,7 @@ const SpaceMessage = ({ payload, type = 'r', messageData, isAdmin }) => {
                             </div>
                         }
                         {isAdmin&&<div>
-                            <p className="text-sm text-black">{messageData.sender.username}</p>
+                            <p className="text-sm text-black">{messageData.sender?.username}</p>
                             <p className="text-sm text-black">{timeSince(messageData.createdAt)}</p>
                         </div>}
                     </div>

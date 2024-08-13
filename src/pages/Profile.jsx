@@ -46,7 +46,7 @@ const Profile = () => {
     let setFriendRequest_id = null;
     useEffect(() => {
         if (username && existingUser) {
-            setIsOwnProfile(username.replace("@", "") === existingUser.username)
+            setIsOwnProfile(username.replace("@", "") === existingUser?.username)
         }
     }, [username, existingUser])
 
@@ -77,7 +77,7 @@ const Profile = () => {
     useEffect(() => {
         if (!username || !existingUser?.username) return;
         setUsernameForProfile(username.replace("@", ''))
-        setIsExistingUserProfile(username.replace("@", '') === existingUser.username)
+        setIsExistingUserProfile(username.replace("@", '') === existingUser?.username)
 
         dispatch(setIds({
             callerId: existingUser._id,

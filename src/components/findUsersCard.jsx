@@ -75,7 +75,7 @@ const FindUsers = () => {
                                                 <AvatarFallback>{user?.username}</AvatarFallback>
                                             </Avatar>
                                             {/* <Button className="mx-2" onClick={() => navigate(`/profile/${user._id}`)}>Visit</Button> */}
-                                            <Button type="button" className="mx-2" onClick={() => navigate(`/profile/@${user.username}`)}>Visit</Button>
+                                            <Button type="button" className="mx-2" onClick={() => navigate(`/profile/@${user?.username}`)}>Visit</Button>
 
                                             <Accordion type="single" collapsible className="w-full">
                                                 <AccordionItem value="item-1">

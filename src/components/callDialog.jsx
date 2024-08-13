@@ -50,7 +50,7 @@ const CallDialog = ({ children, callType = 'av' }) => {
                                     }
                                     } className="cursor-pointer grid grid-cols-4 items-center justify-center gap-4">
                                         <AnoAvatarsCollectionCard
-                                            username={friend.username}
+                                            username={friend?.username}
                                             fullName={friend.fullName}
                                             className={"mx-auto"}
                                         />

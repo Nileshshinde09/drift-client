@@ -96,12 +96,12 @@ const CreateGroupForm = () => {
                       <ParticipantsContextMenue participantData={participant}>
                         <Avatar className="mx-2">
                           <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                          <AvatarFallback>{participant.username}</AvatarFallback>
+                          <AvatarFallback>{participant?.username}</AvatarFallback>
                         </Avatar>
                       </ParticipantsContextMenue>
                       <div className="">
                         {
-                          participant.username
+                          participant?.username
                         }
                       </div>
                     </div>
