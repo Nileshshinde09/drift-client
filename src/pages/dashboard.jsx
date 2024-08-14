@@ -25,7 +25,7 @@ const dashboard = () => {
   const user=useSelector(state=>state.auth.userData)
   useDocumentTitle(`${user?.username} Dashboard💎Drift`)
   return (
-    <div className='mx-20 overflow-y-scroll h-screen pb-[10rem] no-scrollbar'>
+    <div className='sm:mx-20 overflow-y-scroll h-screen pb-[10rem] no-scrollbar'>
       <Tabs defaultValue="all">
       <TabsContent value="all">
               <Card x-chunk="dashboard-06-chunk-0">

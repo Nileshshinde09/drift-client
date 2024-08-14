@@ -64,10 +64,10 @@ const JourneyJournals = () => {
       <h2 className="absolute scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
         {username && username ? `@${username && username === userData?.username ? "Your" : username} Journey Journals` : "Journey Journals Feed"}
       </h2>
-      <JjParticipantLayout JJData={jJList} />
-      <div className='h-[85%] overflow-y-scroll no-scrollbar mt-14 w-[60%] rounded-2xl border-spacing-2 border-double border-white border-2'>
+      {/* <JjParticipantLayout JJData={jJList} /> */}
+      <div className='h-[85%] overflow-y-scroll no-scrollbar mt-14 sm:w-[60%] w-full rounded-2xl border-spacing-2 border-double border-white border-2'>
         {jJList.length > 0 ? jJList.map((val) => (
-          <Card key={val._id} className="w-1/2 mx-auto my-2 bg-white hover:scale-105 transition-transform shadow-sm shadow-white text-black relative">
+          <Card key={val._id} className="sm:w-1/2 w-[95%] mx-auto my-2 bg-white hover:scale-105 transition-transform shadow-sm shadow-white text-black relative">
             <AudioLines onClick={() => spaceHandler(val._id)} className='absolute m-5 hover:scale-110 transition-transform cursor-pointer' />
             {val?.username === userData?.username ?
               <>

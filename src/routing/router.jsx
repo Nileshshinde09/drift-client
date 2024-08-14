@@ -1,8 +1,9 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
 import { About, Copyright, Messanger, ContactUs, Call, Chat, Ringtones, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile, Support, GroupChat, JourneyJournals, CreateJJ, Space, VideoFeed } from '@/pages'
 import App from '@/Initializer/App.jsx'
-import { ProtectedAuthLayout, Otp, Signup, Login } from '@/components'
+import { ProtectedAuthLayout, Otp, Signup, Login, CreatePostDialog } from '@/components'
 import { PageNotFound, SendForgotPasswordMail, VerifyForgotPassword } from '@/components'
+import { faces } from '@cloudinary/url-gen/qualifiers/region'
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -76,7 +77,7 @@ const router = createBrowserRouter(
                 element={
                     <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
-                            <Dashboard />
+                            <Dashboard/>
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -213,6 +214,24 @@ const router = createBrowserRouter(
                         <AppLayout>
                             <Space />
                         </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+                            <Route
+                path='/forgot-password'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AuthLayout>
+                            <SendForgotPasswordMail />
+                        </AuthLayout>
+                    </ProtectedAuthLayout>
+                } />
+            <Route
+                path='/forgot-password/verify/:token'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AuthLayout>
+                            <VerifyForgotPassword />
+                        </AuthLayout>
                     </ProtectedAuthLayout>
                 } />
             <Route

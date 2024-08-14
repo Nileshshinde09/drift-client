@@ -119,7 +119,7 @@ const Profile = () => {
         }
     }
     return (
-        <Card className={`-mt-16 w-[700px] mx-auto relative ${isVisible ? "bg-transparent" : ""}`}>
+        <Card className={`sm:-mt-16 -mt-10 sm:w-[700px] mx-auto relative ${isVisible ? "bg-transparent" : ""}`}>
             <CardHeader className="text-center">
                 {isVisible ? <Eye className='cursor-pointer' onClick={changeVisibility} /> : <EyeOff className='cursor-pointer' onClick={changeVisibility} />}
                 <div className='absolute right-6 cursor-pointer'>
@@ -129,7 +129,7 @@ const Profile = () => {
                 </div>
                 <CardTitle className="hover:scale-110 transition-transform">{`${username || "@Drift"}`}</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-wrap space-y-3">
+            <CardContent className="flex flex-wrap space-y-3 overflow-y-scroll max-sm:h-screen max-sm:pb-[20rem]">
                 <CardLayout>
                     <div className="flex-1 space-y-1">
                         <Avatar className="w-32 h-fit">
