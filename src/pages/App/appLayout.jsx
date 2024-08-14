@@ -1,32 +1,17 @@
-import { Link } from "react-router-dom"
-import DriftLogo from "../../assets/Applogo/driftLogo.png"
-import { SettingDrawer, UserProfileDropdown } from "@/components"
-import { Drawer, DrawerTrigger } from "@/components/ui/drawer"
+import { Link } from "react-router-dom";
+import DriftLogo from "../../assets/Applogo/driftLogo.png";
+import { CreatePostDialog, SettingDrawer, UserProfileDropdown, BackgroundAnimation } from "@/components";
+import { Drawer, DrawerTrigger } from "@/components/ui/drawer";
 import {
-  UserPlus2,
-  Home,
-  Package,
-  PanelLeft,
-  Settings,
-  ShoppingCart,
-  Users2,
-  SquarePlus,
-  LayoutList,
-  LayoutDashboard,
-  CircleUserRoundIcon,
-  MessageSquareMoreIcon
-} from "lucide-react"
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip"
-import { BackgroundAnimation } from '@/components'
-import { useSelector } from "react-redux"
+  UserPlus2, Home, Package, PanelLeft, Settings,
+  ShoppingCart, Users2, SquarePlus, LayoutList,
+  LayoutDashboard, CircleUserRoundIcon,
+  MessageSquareMoreIcon, VenetianMaskIcon, FilmIcon
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { useSelector } from "react-redux";
 const Dashboard = ({ children }) => {
   const userData = useSelector(state=>state.auth.userData)
   return (
@@ -36,33 +21,34 @@ const Dashboard = ({ children }) => {
         <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
           <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
             <Link
-              to={"/"}
+              to="/"
               className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
             >
-              <div alt="drift logo" className="bg-black transition-all group-hover:scale-110">
-                <img src={DriftLogo} className="scale-150" />
+              <div className="bg-black transition-all group-hover:scale-110">
+                <img src={DriftLogo} alt="drift logo" className="scale-150" />
               </div>
-
             </Link>
+
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  to={"/"}
+                  to="/"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <Home className="h-5 w-5" />
+                  <Home className="h-5 w-5 stroke-lime-500" />
                   <span className="sr-only">Home</span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Home</TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  to={"/dashboard"}
+                  to="/dashboard"
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <LayoutDashboard className="h-5 w-5" />
+                  <LayoutDashboard className="h-5 w-5 stroke-orange-500" />
                   <span className="sr-only">Dashboard</span>
                 </Link>
               </TooltipTrigger>
@@ -72,63 +58,49 @@ const Dashboard = ({ children }) => {
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  to={"/messanger"}
+                  to="/messanger"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <  MessageSquareMoreIcon className="h-5 w-5" />
+                  <MessageSquareMoreIcon className="h-5 w-5 stroke-violet-400" />
                   <span className="sr-only">Messanger</span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Messanger</TooltipContent>
             </Tooltip>
 
-            
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  to={"/journeyjournals/create"}
+                  to="/journeyjournals"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <  MessageSquareMoreIcon className="h-5 w-5" />
-                  <span className="sr-only">journeyjournals/create</span>
+                  <VenetianMaskIcon className="h-5 w-5 stroke-blue-500" />
+                  <span className="sr-only">Journey Journals</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">journeyjournals/create</TooltipContent>
+              <TooltipContent side="right">Journey Journals</TooltipContent>
             </Tooltip>
 
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  to={"/journeyjournals"}
+                  to="/video-feed"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <  MessageSquareMoreIcon className="h-5 w-5" />
-                  <span className="sr-only">journeyjournals</span>
+                  <FilmIcon className="h-5 w-5 stroke-red-400" />
+                  <span className="sr-only">Video Feed</span>
                 </Link>
               </TooltipTrigger>
-              <TooltipContent side="right">journeyjournals</TooltipContent>
+              <TooltipContent side="right">Video Feed</TooltipContent>
             </Tooltip>
 
-            <Tooltip>
-              <TooltipTrigger>
-                <Link
-                  to={"/video-feed"}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <  MessageSquareMoreIcon className="h-5 w-5" />
-                  <span className="sr-only">video-feed</span>
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent side="right">video-feed</TooltipContent>
-            </Tooltip>
-            {/* /video-feed */}
             <Tooltip>
               <TooltipTrigger>
                 <Link
                   to={`/profile/@${userData?.username}`}
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <  CircleUserRoundIcon className="h-5 w-5" />
+                  <CircleUserRoundIcon className="h-5 w-5 stroke-green-500" />
                   <span className="sr-only">Profile</span>
                 </Link>
               </TooltipTrigger>
@@ -137,35 +109,36 @@ const Dashboard = ({ children }) => {
 
             <Tooltip>
               <TooltipTrigger>
-                <Link
-                  to={"/create-post"}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-                >
-                  <  SquarePlus className="h-5 w-5" />
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
+                  <CreatePostDialog>
+                    <SquarePlus className="h-5 w-5 stroke-pink-400" />
+                  </CreatePostDialog>
                   <span className="sr-only">Create Post</span>
-                </Link>
+                </div>
               </TooltipTrigger>
               <TooltipContent side="right">Create Post</TooltipContent>
             </Tooltip>
+
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  to={"/find-peoples"}
+                  to="/find-peoples"
                   className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
                 >
-                  <UserPlus2 className="h-5 w-5" />
+                  <UserPlus2 className="h-5 w-5 stroke-yellow-400" />
                   <span className="sr-only">Find Peoples</span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent side="right">Find Peoples</TooltipContent>
             </Tooltip>
           </nav>
+
           <nav className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
             <Tooltip>
               <TooltipTrigger>
                 <DrawerTrigger className="bg-transparent flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
-                  <Button variant="ghost" className="rounded-full" >
-                    <Settings className="h-5 w-5" />
+                  <Button variant="ghost" className="rounded-full">
+                    <Settings className="h-5 w-5 stroke-sky-400" />
                   </Button>
                 </DrawerTrigger>
               </TooltipTrigger>
@@ -175,7 +148,7 @@ const Dashboard = ({ children }) => {
         </aside>
         <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
           <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
-            <Sheet>
+          <Sheet>
               <SheetTrigger>
                 <Button size="icon" variant="outline" className="sm:hidden">
                   <PanelLeft className="h-5 w-5" />
@@ -185,48 +158,69 @@ const Dashboard = ({ children }) => {
               <SheetContent side="left" className="sm:max-w-xs">
                 <nav className="grid gap-6 text-lg font-medium">
                   <Link
-                    to={"/"}
+                    to="/"
                     className="group flex h-9 w-9 shrink-0 items-center justify-center gap-2 rounded-full bg-primary text-lg font-semibold text-primary-foreground md:h-8 md:w-8 md:text-base"
                   >
-                    <div alt="drift logo" className="bg-black transition-all group-hover:scale-110">
-                      <img src={DriftLogo} className="scale-150" />
+                    <div className="bg-black transition-all group-hover:scale-110">
+                      <img src={DriftLogo} alt="drift logo" className="scale-150" />
                     </div>
-
                   </Link>
+
                   <Link
-                    to={"#"}
+                    to="/"
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
                     <Home className="h-5 w-5" />
                     Home
                   </Link>
+
                   <Link
-                    to={"#"}
+                    to="/dashboard"
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
-                    <ShoppingCart className="h-5 w-5" />
-                    Orders
+                    <LayoutDashboard className="h-5 w-5" />
+                    Dashboard
                   </Link>
+
                   <Link
-                    to={"#"}
+                    to="/messanger"
                     className="flex items-center gap-4 px-2.5 text-foreground"
                   >
-                    <Package className="h-5 w-5" />
-                    Products
+                    <MessageSquareMoreIcon className="h-5 w-5" />
+                    Messanger
                   </Link>
+
                   <Link
-                    to={"#"}
+                    to="/journeyjournals"
                     className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                   >
-                    <Users2 className="h-5 w-5" />
-                    Customers
+                    <VenetianMaskIcon className="h-5 w-5" />
+                    Journey Journals
                   </Link>
-                  <DrawerTrigger>
-                    <Button variant="ghost" className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
-                      <UserPlus2 className="h-5 w-5" />
-                      Settings
-                    </Button>
-                  </DrawerTrigger>
+
+                  <Link
+                    to="/video-feed"
+                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  >
+                    <FilmIcon className="h-5 w-5" />
+                    Video Feed
+                  </Link>
+
+                  <Link
+                    to={`/profile/@${userData?.username}`}
+                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  >
+                    <CircleUserRoundIcon className="h-5 w-5" />
+                    Profile
+                  </Link>
+
+                  <Link
+                    to="/find-peoples"
+                    className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                  >
+                    <UserPlus2 className="h-5 w-5" />
+                    Find Peoples
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>
