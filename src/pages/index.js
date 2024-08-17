@@ -24,7 +24,9 @@ import JourneyJournals from "./journeyJournals.jsx";
 import CreateJJ from "./createJJ.jsx";
 import Space from "./Messanger/Space/Space.jsx";
 import VideoFeed from "./videoFeed.jsx";
+import IndividualPost from "./individualPost.jsx";
 export {
+    IndividualPost,
     VideoFeed,
     Space,
     CreateJJ,

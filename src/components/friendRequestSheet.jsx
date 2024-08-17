@@ -106,18 +106,13 @@ const FriendRequestSheet = ({ children }) => {
                                             <AccordionTrigger className="text-center">
                                                 <p className="text-center leading-7 [&:not(:first-child)]:mt-6 ">
                                                     {
-                                                        frnd?.username
+                                                        frnd?.fullName
                                                     }
                                                 </p>
                                             </AccordionTrigger>
                                             <AccordionContent>
                                                 {
                                                     <>
-                                                        <p className="leading-7 [&:not(:first-child)]:mt-6 ">
-                                                            {
-                                                                frnd?.fullName
-                                                            }
-                                                        </p>
                                                         <p className="leading-7 [&:not(:first-child)]:mt-1 ">
                                                             {
                                                                 "request made " + timeSince(frnd?.createdAt.split("T")[0])

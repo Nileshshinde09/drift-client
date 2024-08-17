@@ -49,6 +49,7 @@ const Post = () => {
       setComment(false);
     }
   }, [commentsState]);
+
   const handleBookmarkUnbookmark = async () => {
     BookmarkUnbookmark()
   }
@@ -58,10 +59,10 @@ const Post = () => {
   }
   return (
     <div>
-      {!isFetching ? <Card className={`w-[500px] mx-auto relative`}>
+      {!isFetching ? <Card className={`w-fit h-auto mx-auto relative`}>
         <CardContent className="space-y-3">
           <div />
-          <CardLayout className={"hover:scale-105"}>
+          <CardLayout className={"hover:scale-100"}>
             <HoverCard />
             <div className="flex justify-center">
               <ImageCarousel className="" images={urlList} />
@@ -76,12 +77,12 @@ const Post = () => {
               setLike(!like)
               handlePostLikeUnLike()
             }} className={like ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
-            <p className="text-sm text-center text-muted-foreground">{postData?.likes}</p>
+            {/* <p className="text-sm text-center text-muted-foreground">{postData?.likes}</p> */}
           </div>
           <CommentSheet>
             <div>
               <MessageSquare onClick={() => setComment(!comment)} className={comment ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
-              <p className="text-sm text-center text-muted-foreground">{postData?.comments}</p>
+              {/* <p className="text-sm text-center text-muted-foreground">{postData?.comments}</p> */}
             </div>
           </CommentSheet>
           <Bookmark onClick={() => {
@@ -89,8 +90,8 @@ const Post = () => {
             handleBookmarkUnbookmark()
           }} className={bookmark ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
         </div>
-            <p className="leading-7 [&:not(:first-child)]:mt-6">
-              {"The king, seeing how much happier his subjects were, realized the error ofhis ways and repealed the joke tax."}
+            <p className="leading-7 [&:not(:first-child)]:mt-6 text-wrap">
+              {postData?.caption}
             </p>
           </CardLayout>
         </CardContent>

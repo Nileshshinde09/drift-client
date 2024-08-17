@@ -9,7 +9,7 @@ import {
 } from "@/components/ui/drawer"
 import React, { useEffect, useState } from 'react'
 import { Logout, ChangePassword, Share, UserProfileDropdown } from "@/components"
-import { CircleUser, Copyright, HandshakeIcon, Headset, Share2, UserSearch } from "lucide-react"
+import { CircleUser, Copyright,UserRoundCog, HandshakeIcon, Headset, Share2, UserSearch } from "lucide-react"
 import {
   Accordion,
   AccordionContent,
@@ -70,11 +70,16 @@ const SettingDrawer = () => {
               <Button onClick={() => navigate(`/profile/@${user?.username}`)} variant="outline" className="w-1/3 mx-3"><UserSearch /></Button>
             </h3>
             <h3 className="text-left border-b pb-2 flex mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-              Share
+              Share Profile
               <Share>
                 <Button variant="outline" className="w-1/3 mx-3"><Share2 /></Button>
               </Share>
             </h3>
+            <h3 className="text-left border-b pb-2 flex mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+              Update Profile
+                <Button onClick={()=>navigate("/update-profile")} variant="outline" className="w-1/3 mx-3"><UserRoundCog /></Button>
+            </h3>
+
             <h3 className="mt-8 text-left scroll-m-20 text-2xl font-semibold tracking-tight">
               Theme of App
             </h3>

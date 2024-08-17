@@ -1,5 +1,5 @@
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom'
-import { About, Copyright, Messanger, ContactUs, Call, Chat, Ringtones, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile, Support, GroupChat, JourneyJournals, CreateJJ, Space, VideoFeed } from '@/pages'
+import { About, Copyright, Messanger, ContactUs, Call, Chat, Ringtones, TermsNConditions, Home, AuthLayout, AppLayout, Feed, Post, Dashboard, FindPeoples, CreatePost, Profile, EditPost, UpdateProfile, Support, GroupChat, JourneyJournals, CreateJJ, Space, VideoFeed, IndividualPost } from '@/pages'
 import App from '@/Initializer/App.jsx'
 import { ProtectedAuthLayout, Otp, Signup, Login, CreatePostDialog } from '@/components'
 import { PageNotFound, SendForgotPasswordMail, VerifyForgotPassword } from '@/components'
@@ -51,6 +51,15 @@ const router = createBrowserRouter(
                     <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
                             <Feed />
+                        </AppLayout>
+                    </ProtectedAuthLayout>
+                } />
+                        <Route
+                path='/individual-post/:username'
+                element={
+                    <ProtectedAuthLayout authentication={true}>
+                        <AppLayout>
+                            <IndividualPost/>
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />

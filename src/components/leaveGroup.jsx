@@ -19,10 +19,10 @@ const LeaveGroup = ({ children }) => {
     const groupChatData = useSelector(state => state.messanger.currentChatRoomData)
     const handleLeaveGroup=async()=>{
         try {
-            const response = await GroupChat.leaveGroupChat({chatId:groupChatData._id})
-            if(response.data.success){
+            const response = await GroupChat.leaveGroupChat({chatId:groupChatData?._id})
+            if(response?.data?.success){
                 toast({
-                    title: `Group ${groupChatData.name} leaved successfully!`,
+                    title: `Group ${groupChatData?.name} leaved successfully!`,
                 })
                 navigate("/messanger")
 

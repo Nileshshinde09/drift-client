@@ -22,17 +22,17 @@ const Comment = ({ commentator,content }) => {
         <>
             <HoverCard>
                 <HoverCardTrigger>
-                    <div className="relative text-center rounded bg-muted px-[0.3rem] my-5 py-[0.2rem] font-mono text-sm font-semibold">
-                        {content || "hello my self nilesh shinde lorem hello my self😎😎😎 nilesh shinde lorem hello my self nilesh shinde 😁😁😁 lorem hello my self nilesh shinde lorem"}
+                    <div className="rounded-lg dark:text-white text-black relative text-center bg-muted px-[0.3rem] my-5 py-[0.2rem] font-mono text-lg font-semibold">
+                        {content || ""}
                         <div className="flex justify-center items-center space-x-7 my-2">
                             <div></div>
-                            <div>
+                            {/* <div>
                             <ThumbsUp onClick={() => {
                                 setLike(!like)
                                 setDisLike(false)
                             }} className={like ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
                             <p className="text-sm text-center text-muted-foreground">{1}</p>
-                            </div>
+                            </div> */}
                             {/* <div>
                             <ThumbsDown onClick={() => {
                                 setDisLike(!disLike)
@@ -40,10 +40,10 @@ const Comment = ({ commentator,content }) => {
                             }} className={disLike ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
                             <p className="text-sm text-center text-muted-foreground">{1}</p>
                             </div> */}
-                            <div>
+                            {/* <div>
                             <MessageSquare onClick={() => setComment(!comment)} className={comment ? `fill-white stroke-black cursor-pointer` : 'cursor-pointer'} />
                             <p className="text-sm text-center text-muted-foreground">{1}</p>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 </HoverCardTrigger>
@@ -56,10 +56,10 @@ const Comment = ({ commentator,content }) => {
                         <div className="space-y-1">
                             <h4 className="text-sm font-semibold">{`@${commentator?.username || "username"}`}</h4>
                             <div className="flex items-center pt-2">
-                                <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "}
-                                <span className="text-xs text-muted-foreground">
+                                {/* <CalendarDays className="mr-2 h-4 w-4 opacity-70" />{" "} */}
+                                {/* <span className="text-xs text-muted-foreground">
                                     Updated {"🤔🤔🤔"}
-                                </span>
+                                </span> */}
                             </div>
                         </div>
                     </div>

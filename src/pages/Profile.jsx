@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import { DrawerTrigger } from "@/components/ui/drawer"
 import { FriendRequestSheet, MakeFriendRequest, Share } from '@/components'
 import { VITE_HOST_URL } from '@/constants'
-import { User2, Video, GroupIcon, ContactRoundIcon, PhoneCall, Share2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff } from 'lucide-react'
+import { User2,Image,Video, GroupIcon, ContactRoundIcon, PhoneCall, Share2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff } from 'lucide-react'
 import {
     Avatar,
     AvatarFallback,
@@ -30,7 +30,7 @@ import { Friends } from '@/services'
 const Profile = () => {
     const path = useLocation()
     const { username } = useParams();
-    useDocumentTitle(`@${username} 💎Drift`)
+    useDocumentTitle(`@${username.replace("@","")} 💎Drift`)
     const [isOwnProfile, setIsOwnProfile] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -118,6 +118,7 @@ const Profile = () => {
             console.log(response);
         }
     }
+    
     return (
         <Card className={`sm:-mt-16 -mt-10 sm:w-[700px] mx-auto relative ${isVisible ? "bg-transparent" : ""}`}>
             <CardHeader className="text-center">
@@ -129,7 +130,7 @@ const Profile = () => {
                 </div>
                 <CardTitle className="hover:scale-110 transition-transform">{`${username || "@Drift"}`}</CardTitle>
             </CardHeader>
-            <CardContent className="flex flex-wrap space-y-3 overflow-y-scroll max-sm:h-screen max-sm:pb-[20rem]">
+            <CardContent className="flex flex-wrap space-y-3 max-sm:overflow-y-scroll max-sm:h-screen max-sm:pb-[20rem]">
                 <CardLayout>
                     <div className="flex-1 space-y-1">
                         <Avatar className="w-32 h-fit">
@@ -195,6 +196,9 @@ const Profile = () => {
                         </CardLayout>
                         <CardLayout>
                             <ProfileCardText route={'/create-post'} cardType="link" value={"Create Post"} altValue='create post' className={"bg-slate-200"}><SquarePlus /></ProfileCardText>
+                        </CardLayout>
+                        <CardLayout>
+                            <ProfileCardText route={`/individual-post/${existingUser?.username}`} cardType="link" value={"Posts"} altValue='Posts' className={"bg-slate-200"}><Image /></ProfileCardText>
                         </CardLayout>
                         {/* <CardLayout>
                             <ProfileCardText cardType="video-call-button" value={"Video Call"} altValue='video call' className={"bg-slate-200"}><Video /></ProfileCardText>

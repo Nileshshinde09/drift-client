@@ -49,6 +49,8 @@ const Login = () => {
       console.error('Error during login:', error);
       const axiosError = error
       let errorMessage = axiosError.response?.data.message;
+      console.log(errorMessage);
+      
       toast({
         title: 'Login Failed',
         description: errorMessage,
@@ -117,6 +119,7 @@ const Login = () => {
                   </FormItem>
                 )}
               />
+        
             </div>
             <Button type="submit" className='w-full' disabled={isSubmitting}>
               {isSubmitting ? (

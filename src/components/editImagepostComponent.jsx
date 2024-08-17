@@ -107,7 +107,7 @@ const editImagePost = () => {
 
     return (
 
-        <div className="relative h-screen">
+        <div className="h-screen">
             <Card className="sm:absolute inset-0 m-auto w-full max-w-3xl max-h-full overflow-y-auto no-scrollbar p-6">
                 <form onSubmit={handleFormSubmit}>
                     <CardHeader>

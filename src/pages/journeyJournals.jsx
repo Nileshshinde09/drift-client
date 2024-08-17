@@ -59,6 +59,8 @@ const JourneyJournals = () => {
   const deleteJJHandler = async (Id) => {
     const respose = await Space.deletePostAndSpace(Id)
   }
+  console.log(jJList);
+   
   return (
     <div className='bg-black flex justify-center space-x-4 mx-auto w-screen h-screen absolute'>
       <h2 className="absolute scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">

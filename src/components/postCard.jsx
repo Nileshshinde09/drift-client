@@ -27,7 +27,7 @@ import { useBookmarkUnbookmark } from "@/hooks";
 import { useLikeUnlike } from "@/hooks";
 import { Separator } from "./ui/separator";
 import { VITE_HOST_URL } from "@/constants";
-const PostCard = ({ post }) => {
+const PostCard = ({ post,showAnalytics=false }) => {
   const { toast } = useToast();
   const [comment, setComment] = useState(false);
   const [like, setLike] = useState(post.isliked || false);
@@ -107,7 +107,7 @@ const PostCard = ({ post }) => {
       <div className="flex justify-between">
         <HoverCard creator={post.creator} />
         <div className="m-2">
-        <Share className="" url={VITE_HOST_URL + "/video-feed"} shareType={"Post"} username={post.creator?.username}>
+        <Share className="" url={VITE_HOST_URL + `/post/${post._id}`} shareType={"Post"} username={post.creator?.username}>
           <Share2 />
         </Share>
         </div>
@@ -172,7 +172,7 @@ const PostCard = ({ post }) => {
               }}
               className={like ? "fill-white stroke-black cursor-pointer" : "cursor-pointer"}
             />
-            {/* <p className="text-sm text-center text-muted-foreground">{post.likes}</p> */}
+            {showAnalytics&&<p className="text-sm text-center text-muted-foreground">{post.likes}</p>}
           </div>
           <CommentSheet>
             <div>
@@ -180,7 +180,7 @@ const PostCard = ({ post }) => {
                 onClick={() => setComment(!comment)}
                 className={comment ? "fill-white stroke-black cursor-pointer" : "cursor-pointer"}
               />
-              {/* <p className="text-sm text-center text-muted-foreground">{post.comments}</p> */}
+              {showAnalytics&&<p className="text-sm text-center text-muted-foreground">{post.comments}</p>}
             </div>
           </CommentSheet>
           <Bookmark

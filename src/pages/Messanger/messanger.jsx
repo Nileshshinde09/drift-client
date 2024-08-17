@@ -21,7 +21,8 @@ const Messenger = () => {
     const [privateGroups, setPrivateGroups] = useState([]);
     const [personal, setPersonal] = useState([]);
     const [setRecieverId, Error] = useCreateChat();
-    const [setRecieverGroupId] = useInitializeGroupChat()
+    const [setRecieverGroupId] = useInitializeGroupChat();
+    
     useEffect(() => {
         const fetchChats = async () => {
             const response = await GroupChat.getAllChat();
@@ -49,27 +50,17 @@ const Messenger = () => {
         fetchChats();
     }, []);
 
-    useEffect(() => {
-        if (personal.length > 0) {
-            personal.forEach((chat) => {
-                const participant = chat.participants.find((ind) => ind?._id !== userData?._id);
-                if (participant) {
-                    setImageId(participant.avatar);
-                }
-            });
-        }
-    }, [personal, setImageId, userData?._id]);
-
     const handleOneOnOneChat = async (chat) => {
-        const participant = chat.participants.find((ind) => ind?._id !== userData?._id)
-        setRecieverId(participant._id)
-        navigate(`/messanger/chat/${participant._id}`)
+        const participant = chat.participants.find((ind) => ind?._id !== userData?._id);
+        setRecieverId(participant._id);
+        navigate(`/messanger/chat/${participant._id}`);
     }
 
     const handleGroupChat = async (chat) => {
-        setRecieverGroupId(chat._id)
-        navigate(`/messanger/group-chat/${chat._id}/false`)
+        setRecieverGroupId(chat?._id);
+        navigate(`/messanger/group-chat/${chat?._id}/false`);
     }
+
     return (
         <Tabs defaultValue="personal" className="w-1/2 mx-auto">
             <TabsList className="grid w-full grid-cols-3 space-x-2">
@@ -81,19 +72,23 @@ const Messenger = () => {
                 <div className='h-screen w-full px-2'>
                     <div className='flex flex-wrap space-x-3 p-4 mx-auto w-full h-1/2 bg-black rounded-2xl border-spacing-1 border-2 border-gray-400'>
                         {
-                            personal.map((chat) => (
-                                <div key={chat._id} onClick={() => handleOneOnOneChat(chat)}>
-                                    <CardLayout className={""}>
-                                        <div className="flex items-center">
-                                            <Avatar className="w-16 h-fit -ml-3">
-                                                <AvatarImage src={profileImageUrl || "https://github.com/shadcn.png"} alt="@shadcn" />
-                                                <AvatarFallback>CN</AvatarFallback>
-                                            </Avatar>
-                                        </div>
-                                        <small className="text-sm font-medium leading-none">{chat.participants.find((ind) => ind?._id !== userData?._id)?.username}</small>
-                                    </CardLayout>
-                                </div>
-                            ))
+                            personal.map((chat) => {
+                                if(chat.name !== "One on one chat") return null;
+                                
+                                return (
+                                    <div key={chat._id} onClick={() => handleOneOnOneChat(chat)}>
+                                        <CardLayout className={""}>
+                                            <div className="flex items-center">
+                                                <Avatar className="w-16 h-fit -ml-3">
+                                                    <AvatarImage src={profileImageUrl || "https://github.com/shadcn.png"} alt="@shadcn" />
+                                                    <AvatarFallback>CN</AvatarFallback>
+                                                </Avatar>
+                                            </div>
+                                            <small className="text-sm font-medium leading-none">{chat.participants.find((ind) => ind?._id !== userData?._id)?.username}</small>
+                                        </CardLayout>
+                                    </div>
+                                );
+                            })
                         }
                     </div>
                 </div>
@@ -136,6 +131,3 @@ const Messenger = () => {
 }
 
 export default Messenger;
-
-
-  

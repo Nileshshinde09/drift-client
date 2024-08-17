@@ -225,7 +225,6 @@ const Dashboard = ({ children }) => {
               </SheetContent>
             </Sheet>
             <h2 className="mx-auto text-center scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0">
-              {/* {"Feed"} */}
             </h2>
             <div className="text-center relative ml-auto flex-1 md:grow-0">
             </div>
