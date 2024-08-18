@@ -68,7 +68,7 @@ const anoAvatarsCollection = () => {
             <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                 Select Image
             </h3>
-            <div className="flex justify-center items-center w-[800px]">
+            <div className="flex justify-center items-center w-[100%]">
                 <div className="flex justify-center flex-wrap w-full">
                     {anoAvatars && anoAvatars.length > 0 ? (
                         anoAvatars.map((avt) => {

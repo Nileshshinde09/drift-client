@@ -54,12 +54,12 @@ const router = createBrowserRouter(
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
-                        <Route
+            <Route
                 path='/individual-post/:username'
                 element={
                     <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
-                            <IndividualPost/>
+                            <IndividualPost />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -86,7 +86,7 @@ const router = createBrowserRouter(
                 element={
                     <ProtectedAuthLayout authentication={true}>
                         <AppLayout>
-                            <Dashboard/>
+                            <Dashboard />
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
@@ -225,7 +225,7 @@ const router = createBrowserRouter(
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
-                            <Route
+            {/* <Route
                 path='/forgot-password'
                 element={
                     <ProtectedAuthLayout authentication={true}>
@@ -233,7 +233,7 @@ const router = createBrowserRouter(
                             <SendForgotPasswordMail />
                         </AuthLayout>
                     </ProtectedAuthLayout>
-                } />
+                } /> */}
             <Route
                 path='/forgot-password/verify/:token'
                 element={

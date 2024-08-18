@@ -282,7 +282,7 @@ const UpdateProfile = () => {
                             <SelectContent>
                               <SelectItem value="male" >Male</SelectItem>
                               <SelectItem value="female">Female</SelectItem>
-                              <SelectItem value="others">Others</SelectItem>
+                              <SelectItem value="others">Others</SelectItem> 
                             </SelectContent>
                           </Select>
                           <FormMessage />

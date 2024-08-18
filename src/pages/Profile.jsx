@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 import { DrawerTrigger } from "@/components/ui/drawer"
 import { FriendRequestSheet, MakeFriendRequest, Share } from '@/components'
 import { VITE_HOST_URL } from '@/constants'
-import { User2,Image,Video, GroupIcon, ContactRoundIcon, PhoneCall, Share2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff } from 'lucide-react'
+import { User2, Image, Video, GroupIcon, ContactRoundIcon, PhoneCall, Share2, Cake, SquarePlus, Smartphone, PersonStanding, BookMarked, UserCheck2, UserPlus2, Settings2, Eye, EyeOff, Flag } from 'lucide-react'
 import {
     Avatar,
     AvatarFallback,
@@ -26,11 +26,12 @@ import { Loading, CustomError } from '@/components'
 import { setIds } from '@/app/slices/callSlice'
 import { Button } from '@/components/ui/button'
 import { Friends } from '@/services'
-
+import { useToast } from '@/components/ui/use-toast'
 const Profile = () => {
     const path = useLocation()
+    const {toast} = useToast()
     const { username } = useParams();
-    useDocumentTitle(`@${username.replace("@","")} 💎Drift`)
+    useDocumentTitle(`@${username.replace("@", "")} 💎Drift`)
     const [isOwnProfile, setIsOwnProfile] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -42,8 +43,6 @@ const Profile = () => {
     const [followState, followUnfollowError, isLoading, followUnfollow] = useFollowUnfollow(username?.replace("@", ''))
     const [isRequested, setIsRequested] = useState(false)
     const [isFriends, setIsFriends] = useState(false)
-    const [FriendRequestList, setFriendRequestList] = useState([]);
-    let setFriendRequest_id = null;
     useEffect(() => {
         if (username && existingUser) {
             setIsOwnProfile(username.replace("@", "") === existingUser?.username)
@@ -115,10 +114,16 @@ const Profile = () => {
         if (!isFriends) return;
         const response = await Friends.removeFriend(isFriends?._id);
         if (response) {
-            console.log(response);
+            if(response?.data?.data?.isRemoved){
+                setIsRequested(false)
+                setIsFriends(false)
+                toast({
+                    title:"User Unfriend Successfully!"
+                })
+            }
         }
     }
-    
+
     return (
         <Card className={`sm:-mt-16 -mt-10 sm:w-[700px] mx-auto relative ${isVisible ? "bg-transparent" : ""}`}>
             <CardHeader className="text-center">
@@ -148,7 +153,7 @@ const Profile = () => {
                     <ProfileCardText value={profileData?.dob?.split('T')[0] || ""} altValue='DOB'><Cake /></ProfileCardText>
                     <ProfileCardText value={profileData?.status || "Active"} altValue='Status'><Smartphone /></ProfileCardText>
                     <ProfileCardText value={String(profileData?.bookmarkCount) || '0'} altValue='Book Marked'><BookMarked /></ProfileCardText>
-                </CardLayout> 
+                </CardLayout>
                 {profileData && profileData?.bio &&
                     <CardLayout>
                         <ProfileCardText value={profileData.bio || ""} altValue='Bio'></ProfileCardText>
@@ -177,7 +182,7 @@ const Profile = () => {
                                     <Button onClick={() => handleFriendRequest()}>Send Request</Button> :
                                     <Button onClick={() => handleFriendRequest()}>Retrieve Request</Button>
                                 }
-                            </>:
+                            </> :
                             <Button onClick={() => handleUnFriend()}>UnFriend</Button>
                         }
                     </CardLayout>}

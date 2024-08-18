@@ -8,7 +8,7 @@ import {
   DrawerTitle,
 } from "@/components/ui/drawer"
 import React, { useEffect, useState } from 'react'
-import { Logout, ChangePassword, Share, UserProfileDropdown } from "@/components"
+import { Logout, ChangePassword, Share, UserProfileDropdown, ChangePasswordLogoutDialog } from "@/components"
 import { CircleUser, Copyright,UserRoundCog, HandshakeIcon, Headset, Share2, UserSearch } from "lucide-react"
 import {
   Accordion,
@@ -217,7 +217,7 @@ const SettingDrawer = () => {
             </Accordion>
           </div>
           <DrawerFooter>
-            <DrawerClose >
+            <DrawerClose>
               <Button variant="outline">Cancel</Button>
             </DrawerClose>
           </DrawerFooter>

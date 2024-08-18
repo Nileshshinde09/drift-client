@@ -17,7 +17,7 @@ import { changePasswordSchema } from '@/schema'
 import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { Input } from './ui/input'
-
+import { ChangePasswordLogoutDialog } from '.'
 const ChangePasswordForm = () => {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [createpassword, setCreatepassword] = useState("")
@@ -35,14 +35,14 @@ const ChangePasswordForm = () => {
 
 
     const onSubmit = async (data) => {
-        const { confirmPassword,oldPassword } = data;
-        console.log(confirmPassword,oldPassword);
+        const { confirmPassword, oldPassword } = data;
+        console.log(confirmPassword, oldPassword);
         setIsSubmitting(true);
         try {
             if (!confirmPassword || !oldPassword) {
                 return
             }
-            const response = await Auth.changeCurrentPassword({oldPassword,newPassword:confirmPassword});
+            const response = await Auth.changeCurrentPassword({ oldPassword, newPassword: confirmPassword });
             if (response.data.success) {
                 toast({
                     title: 'Success',
@@ -166,9 +166,11 @@ const ChangePasswordForm = () => {
                                 'Submit'
                             )}
                         </Button>
-                        <Link to={"/forgot-password"} className="underline">
-                            Forgot Password ?
-                        </Link>
+                        <ChangePasswordLogoutDialog>
+                            <Link className="underline">
+                                Forgot Password ?
+                            </Link>
+                        </ChangePasswordLogoutDialog>
                     </div>
                 </form>
             </Form>

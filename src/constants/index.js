@@ -2,7 +2,7 @@
 const VITE_HOST_URL = String(import.meta.env.VITE_HOST_URL)
 const VITE_SERVER_SOCKET_HOST_URL = String(import.meta.env.VITE_SERVER_SOCKET_HOST_URL)
 
-const STRICKTMODE = true
+const STRICKTMODE = false;
 const IMAGE_POST_MAX_FILES = 3;
 const IMAGE_ALLOWED_TYPES = ['image/jpeg', 'image/png'];
 const VIDEO_POST_MAX_FILES = 1;

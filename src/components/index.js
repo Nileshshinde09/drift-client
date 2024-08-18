@@ -76,7 +76,9 @@ import SpaceMessage from "./SpaceMessage.jsx"
 import UpdateJJdialog from "./updateJJ.jsx"
 import DeleteJJdialog from "./deleteJJ.jsx"
 import CreatePostDialog from "./createPostDialog.jsx"
+import ChangePasswordLogoutDialog from "./changePasswordLogoutDialog.jsx"
 export {
+    ChangePasswordLogoutDialog,
     CreatePostDialog,
     DeleteJJdialog,
     UpdateJJdialog,

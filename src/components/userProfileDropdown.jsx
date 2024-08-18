@@ -36,16 +36,16 @@ const userProfileDropdown = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator/>
                 <DropdownMenuItem onClick={() => navigate(`/profile/@${user?.username}`)}>Profile</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate(`/messanger`)}>Messanger</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate(`/music-library`)}>Music Library</DropdownMenuItem>
-                <DropdownMenuItem onClick={()=>navigate("/update-profile")} >Update Profile</DropdownMenuItem>
+                <DropdownMenuItem onClick={() =>navigate("/update-profile")} >Update Profile</DropdownMenuItem>
                 <DrawerTrigger><DropdownMenuItem>Settings</DropdownMenuItem></DrawerTrigger>
                 <DropdownMenuItem onClick={() => navigate(`/@DriftSocial/support`)}>Support</DropdownMenuItem>
                 <DropdownMenuItem onClick={() => navigate(`/@DriftSocial/about`)}>About</DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem><FriendRequestSheet>Friend Requests</FriendRequestSheet></DropdownMenuItem>
+                {/* <DropdownMenuItem><FriendRequestSheet>Friend Requests</FriendRequestSheet></DropdownMenuItem> */}
                 <DropdownMenuItem><Logout variant={"ghost"} /></DropdownMenuItem>
             </DropdownMenuContent>
         </DropdownMenu>
