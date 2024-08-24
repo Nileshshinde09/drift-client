@@ -37,23 +37,29 @@ const Login = () => {
     setIsSubmitting(true);
     try {
       const response = await Auth.loginToAccount(data);
+      console.log(response.data.message);
+      
       toast({
         title: 'Success',
         description: response.data.message,
-
       });
-      if (response) dispatch(login(response?.data?.data?.user))
-      if (response?.data?.data?.user?.emailVerified) dispatch(emailAuthenticated(response.data.data.user.emailVerified))
+    
+      if (response?.statusText==="OK"){
+         dispatch(login(response?.data?.data?.user))
+         if (response?.data?.data?.user?.emailVerified) dispatch(emailAuthenticated(response.data.data.user.emailVerified))
+        
+        }
       setIsSubmitting(false);
     } catch (error) {
       console.error('Error during login:', error);
       const axiosError = error
       let errorMessage = axiosError.response?.data.message;
-      console.log(errorMessage);
+      console.log(axiosError);
+      console.log();
       
       toast({
         title: 'Login Failed',
-        description: errorMessage,
+        description: response?.data.message,
         variant: 'destructive',
       });
 

@@ -23,12 +23,12 @@ const Chat = () => {
     return (
         <div className='flex flex-col h-screen'>
             <div className='flex-1 overflow-auto'>
-                <ShowMessages />
+                <ShowMessages/>
             </div>
             
             <div className='fixed bottom-4 flex justify-center items-center'>
                 <div className='w-full max-w-lg px-4'>
-                    <SendChat />
+                    <SendChat/>
                 </div>
             </div>
         </div>

@@ -40,7 +40,7 @@ const PostCard = ({ post,showAnalytics=false }) => {
   const [bookmarkState, bookmarkError, isLoadingBookmark, BookmarkUnbookmark] = useBookmarkUnbookmark({ PostId: post._id });
   const [likeState, likeError, isLoadingLike, LikeUnLike] = useLikeUnlike({ PostId: post._id });
   const videoRef = useRef(null);
-  console.log(post);
+  
   
   useEffect(() => {
     if (comment && post._id) {

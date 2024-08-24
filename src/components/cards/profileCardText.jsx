@@ -4,7 +4,7 @@ import { Separator } from '../ui/separator'
 import { Link } from 'react-router-dom'
 import { CallDialog, ChatDialog, FriendListDrawer } from '..'
 import { useDispatch, useSelector } from 'react-redux';
-const profileCardText = ({ onButtonClick, route, className, props, value = "", altValue = "", children, cardType = "text", _id }) => {
+const profileCardText = ({ onButtonClick, route, className,profileData, props, value = "", altValue = "", children, cardType = "text", _id }) => {
 
     if (cardType === "button")
         return (
@@ -78,7 +78,7 @@ const profileCardText = ({ onButtonClick, route, className, props, value = "", a
 
         return (
             <div onClick={onButtonClick} className={`flex-1 space-y-3`} {...props}>
-                <ChatDialog >
+                <ChatDialog friend={profileData}>
                     <Button className={`w-full flex space-x-2 ${className}`}>
                         <h4 className="scroll-m-20 space-x-2 text-xl flex font-semibold tracking-tight text-wrap">
                             <span>{children}</span>

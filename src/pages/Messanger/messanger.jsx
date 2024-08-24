@@ -7,12 +7,11 @@ import {
 } from "@/components/ui/tabs";
 import { VenetianMask, Users2, SquareUserIcon } from 'lucide-react';
 import { GroupChat } from '@/services';
-import { CardLayout } from '@/components';
+import { CardLayout, MessangerUserProfileId } from '@/components';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 import { useCreateChat, useInitializeGroupChat, useProfileImage } from '@/hooks';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 const Messenger = () => {
     const navigate = useNavigate();
     const userData = useSelector(state => state.auth.userData);
@@ -22,7 +21,7 @@ const Messenger = () => {
     const [personal, setPersonal] = useState([]);
     const [setRecieverId, Error] = useCreateChat();
     const [setRecieverGroupId] = useInitializeGroupChat();
-    
+
     useEffect(() => {
         const fetchChats = async () => {
             const response = await GroupChat.getAllChat();
@@ -60,7 +59,11 @@ const Messenger = () => {
         setRecieverGroupId(chat?._id);
         navigate(`/messanger/group-chat/${chat?._id}/false`);
     }
-
+    const allowedEmoji = [
+        '🙆', '💎', '🤔', '😎', '🤖', '🚶', '🕵️', '👷‍♂️', '🧑‍🎓', '👨‍🏫', '👩‍🍳',
+        '👩‍🚀', '👩‍🚒', '🤵', '👨‍🍼', '🙍‍♂️', '🙅‍♂️', '🙆', '🧏‍♂️', '🙋‍♀️', 
+        '💁‍♂️', '💁', '🙇', '🤷', '🤹'
+      ];
     return (
         <Tabs defaultValue="personal" className="w-1/2 mx-auto">
             <TabsList className="grid w-full grid-cols-3 space-x-2">
@@ -73,16 +76,12 @@ const Messenger = () => {
                     <div className='flex flex-wrap space-x-3 p-4 mx-auto w-full h-1/2 bg-black rounded-2xl border-spacing-1 border-2 border-gray-400'>
                         {
                             personal.map((chat) => {
-                                if(chat.name !== "One on one chat") return null;
-                                
+                                if (chat.name !== "One on one chat") return null;
                                 return (
                                     <div key={chat._id} onClick={() => handleOneOnOneChat(chat)}>
                                         <CardLayout className={""}>
                                             <div className="flex items-center">
-                                                <Avatar className="w-16 h-fit -ml-3">
-                                                    <AvatarImage src={profileImageUrl || "https://github.com/shadcn.png"} alt="@shadcn" />
-                                                    <AvatarFallback>CN</AvatarFallback>
-                                                </Avatar>
+                                                <MessangerUserProfileId chat={chat} className={"w-16 h-fit -ml-3"} />
                                             </div>
                                             <small className="text-sm font-medium leading-none">{chat.participants.find((ind) => ind?._id !== userData?._id)?.username}</small>
                                         </CardLayout>
@@ -96,15 +95,20 @@ const Messenger = () => {
             <TabsContent value="publicGroup">
                 <div className='h-screen w-full px-2'>
                     <div className='flex flex-wrap overflow-y-scroll no-scrollbar space-x-5 space-y-5 p-4 mx-auto w-full h-1/2 bg-black rounded-2xl border-spacing-1 border-2 border-gray-400'>
-                        <div/>
+                        <div />
                         {
                             publicGroups.map((chat) => (
                                 <div key={chat._id}>
                                     <CardLayout className={"cursor-pointer"}>
                                         <div className="flex items-center w-full" onClick={() => handleGroupChat(chat)}>
                                             <Avatar className="w-16 h-fit -ml-3">
-                                                <AvatarImage src={"https://github.com/shadcn.png"} alt="@shadcn" />
-                                                <AvatarFallback>CN</AvatarFallback>
+                                                {/* <AvatarImage src={""} alt="@shadcn" /> */}
+                                                <AvatarFallback className="p-2">{
+                                                     Array.from({ length: 1 }).map((_, index) => (
+                                                        <h1 key={index} className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">{allowedEmoji[Math.floor(Math.random() * allowedEmoji.length)]}</h1>
+                                                    ))
+                                                }</AvatarFallback>
+                                                {/* <AvatarFallback>{allowedEmoji[Math.floor(Math.random() * allowedEmoji.length)]}</AvatarFallback> */}
                                             </Avatar>
                                         </div>
                                         <small className="text-sm font-medium leading-none">{chat.name}</small>

@@ -77,7 +77,11 @@ import UpdateJJdialog from "./updateJJ.jsx"
 import DeleteJJdialog from "./deleteJJ.jsx"
 import CreatePostDialog from "./createPostDialog.jsx"
 import ChangePasswordLogoutDialog from "./changePasswordLogoutDialog.jsx"
+import FindeUserAvatar from "./findeUserAvatar.jsx"
+import MessangerUserProfileId from "./messangerUserProfileId.jsx"
 export {
+    MessangerUserProfileId,
+    FindeUserAvatar,
     ChangePasswordLogoutDialog,
     CreatePostDialog,
     DeleteJJdialog,

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { Separator } from "@/components/ui/separator"
-import { Find } from "@/services";
+import { Find, Profile } from "@/services";
 import { Input } from "./ui/input";
 import { Form } from "./ui/form";
 import { Label } from "@radix-ui/react-label";
@@ -21,6 +21,7 @@ import {
 import { Button } from "./ui/button";
 import { useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { FindeUserAvatar } from ".";
 const FindUsers = () => {
     const [userList, setUserList] = useState([])
     const [userInput, setUserInput] = useState(null)
@@ -62,18 +63,11 @@ const FindUsers = () => {
                     <ScrollArea className={`${userList.length <= 0 ? "hidden" : null} h-fit w-full rounded-md border overflow-y-scroll no-scrollbar`}>
                         {
                             userList && userList?.map((user, index) => {
-
+                                
                                 return (
                                     <>
-                                        {/* <div>
-                                            <Avatar url={user.Avatar} username={user?.username} fullName={user.fullName} />
-                                            <Separator className="my-2" />
-                                        </div> */}
                                         <div key={index} className="flex justify-start items-center m-2 w-full mx-auto">
-                                            <Avatar className="mx-2">
-                                                <AvatarImage src={user?.Avatar || "https://github.com/shadcn.png"} alt="@shadcn" />
-                                                <AvatarFallback>{user?.username}</AvatarFallback>
-                                            </Avatar>
+                                            <FindeUserAvatar username={user?.username} avatar={user.avatar}/>
                                             {/* <Button className="mx-2" onClick={() => navigate(`/profile/${user._id}`)}>Visit</Button> */}
                                             <Button type="button" className="mx-2" onClick={() => navigate(`/profile/@${user?.username}`)}>Visit</Button>
 

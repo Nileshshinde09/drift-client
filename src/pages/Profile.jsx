@@ -174,7 +174,7 @@ const Profile = () => {
                         <ProfileCardText cardType="button" value={String(profileData?.followeesCount) || '0'} altValue='' className={"bg-green-200"}>Following</ProfileCardText>
                     </FollowerFollowingSheetLayout>
                 </CardLayout>
-                {!isOwnProfile &&
+                {!isOwnProfile &&<>
                     <CardLayout>
                         {!isFriends ?
                             <>
@@ -185,7 +185,12 @@ const Profile = () => {
                             </> :
                             <Button onClick={() => handleUnFriend()}>UnFriend</Button>
                         }
-                    </CardLayout>}
+                    </CardLayout>
+                         <CardLayout>
+                            <ProfileCardText cardType="chat-with-friend" profileData={profileData} value={"Chat"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
+                        </CardLayout> 
+                        </>
+                    }
 
                 {isOwnProfile &&
                     <>
@@ -220,9 +225,7 @@ const Profile = () => {
                         <CardLayout>
                             <ProfileCardText cardType="friendList" value={"Friends"} altValue='Friends' className={"bg-slate-200"}><ContactRoundIcon /></ProfileCardText>
                         </CardLayout>
-                        {/* <CardLayout>
-                            <ProfileCardText cardType="chat-with-friend" value={"Chat"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
-                        </CardLayout> */}
+
                         {/* <CardLayout>
                             <ProfileCardText cardType="group-chat-with-friends" value={"Group Chat With Friends"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
                         </CardLayout> */}
