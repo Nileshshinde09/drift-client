@@ -225,6 +225,15 @@ const router = createBrowserRouter(
                         </AppLayout>
                     </ProtectedAuthLayout>
                 } />
+            <Route
+                path='/forgot-password'
+                element={
+                    <ProtectedAuthLayout authentication={false}>
+                        <AuthLayout>
+                            <SendForgotPasswordMail />
+                        </AuthLayout>
+                    </ProtectedAuthLayout>
+                } />
             {/* <Route
                 path='/forgot-password'
                 element={
@@ -237,20 +246,11 @@ const router = createBrowserRouter(
             <Route
                 path='/forgot-password/verify/:token'
                 element={
-                    <ProtectedAuthLayout authentication={true}>
+                    // <ProtectedAuthLayout authentication={false}>
                         <AuthLayout>
                             <VerifyForgotPassword />
                         </AuthLayout>
-                    </ProtectedAuthLayout>
-                } />
-            <Route
-                path='/forgot-password'
-                element={
-                    <ProtectedAuthLayout authentication={false}>
-                        <AuthLayout>
-                            <SendForgotPasswordMail />
-                        </AuthLayout>
-                    </ProtectedAuthLayout>
+                    // </ProtectedAuthLayout>
                 } />
             <Route
                 path='/forgot-password/verify/:token'

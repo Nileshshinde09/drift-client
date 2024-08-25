@@ -10,7 +10,7 @@ const ShowSpaceMessages = () => {
     const [isAno, setIsAno] = useState(false)
     const [online, setOnline] = useState(false);
     const [groupName, setGroupName] = useState(null)
-    const [isAdmin,setIsAdmin]=useState(false)
+    const [isAdmin, setIsAdmin] = useState(false)
     useDocumentTitle(`${groupName || "Group"}#Messanger💎Drift`)
     const isTyping = useSelector((state) => state.messanger.isTyping);
     const messages = useSelector((state) => state.messanger.messageList);
@@ -24,8 +24,8 @@ const ShowSpaceMessages = () => {
     useEffect(() => {
         if (!chatData || !userId) return;
         setGroupName(chatData.name)
-        setIsAdmin(chatData.admin===userId._id)
-    }, [chatData,userId])
+        setIsAdmin(chatData.admin === userId._id)
+    }, [chatData, userId])
     return (
         <div className='absolute top-0 text-center bg-black w-full h-full'>
             <div className={`bg-white space-x-3 flex items-center relative mt-20 h-14 sm:w-1/2 w-full sm:mt-2 rounded-md mx-auto`}>

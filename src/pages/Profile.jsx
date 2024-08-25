@@ -29,7 +29,7 @@ import { Friends } from '@/services'
 import { useToast } from '@/components/ui/use-toast'
 const Profile = () => {
     const path = useLocation()
-    const {toast} = useToast()
+    const { toast } = useToast()
     const { username } = useParams();
     useDocumentTitle(`@${username.replace("@", "")} 💎Drift`)
     const [isOwnProfile, setIsOwnProfile] = useState(false);
@@ -114,11 +114,11 @@ const Profile = () => {
         if (!isFriends) return;
         const response = await Friends.removeFriend(isFriends?._id);
         if (response) {
-            if(response?.data?.data?.isRemoved){
+            if (response?.data?.data?.isRemoved) {
                 setIsRequested(false)
                 setIsFriends(false)
                 toast({
-                    title:"User Unfriend Successfully!"
+                    title: "User Unfriend Successfully!"
                 })
             }
         }
@@ -174,7 +174,7 @@ const Profile = () => {
                         <ProfileCardText cardType="button" value={String(profileData?.followeesCount) || '0'} altValue='' className={"bg-green-200"}>Following</ProfileCardText>
                     </FollowerFollowingSheetLayout>
                 </CardLayout>
-                {!isOwnProfile &&<>
+                {!isOwnProfile && <>
                     <CardLayout>
                         {!isFriends ?
                             <>
@@ -186,11 +186,14 @@ const Profile = () => {
                             <Button onClick={() => handleUnFriend()}>UnFriend</Button>
                         }
                     </CardLayout>
-                         <CardLayout>
+                    {
+                        isFriends &&
+                        <CardLayout>
                             <ProfileCardText cardType="chat-with-friend" profileData={profileData} value={"Chat"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
-                        </CardLayout> 
-                        </>
+                        </CardLayout>
                     }
+                </>
+                }
 
                 {isOwnProfile &&
                     <>

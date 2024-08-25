@@ -9,7 +9,7 @@ import {
     DrawerTrigger
 } from "@/components/ui/drawer";
 import React, { useEffect, useState } from 'react';
-import { Friends, GroupChat } from "@/services";
+import { Friends, Space } from "@/services";
 import {
     Avatar,
     AvatarFallback,
@@ -54,7 +54,7 @@ const AddFriendListDrawer = ({ children }) => {
 
     const HandleAddNewGroupParticipants=async(member)=>{
         try {
-            await GroupChat.addNewParticipantInGroupChat(chatData._id,member._id)
+            await Space.addNewParticipantInSpace(chatData._id,member._id)
         } catch (error) {
             console.log(error.message || "Something went wrong while adding new participant.");
         }
@@ -79,12 +79,12 @@ const AddFriendListDrawer = ({ children }) => {
                                 FriendList.map((frnd, index) => {
                                     if(participants.some((prt) => prt._id===frnd?.friend[0]?._id)) return;
                                     return (
-                                        <div onClick={() =>HandleAddNewGroupParticipants(frnd?.friend[0])} key={index} className="flex justify-start items-center m-2 w-full mx-auto">
+                                        <div key={index} className="flex justify-start items-center m-2 w-full mx-auto">
                                             <Avatar className="mx-2">
                                                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                                                 <AvatarFallback>{frnd?.friend[0]?.username}</AvatarFallback>
                                             </Avatar>
-
+                                            <Button className="mx-3" onClick={() =>HandleAddNewGroupParticipants(frnd?.friend[0])}>Add Participant</Button>
                                             <Accordion type="single" collapsible className="w-full">
                                                 <AccordionItem value="item-1">
                                                     <AccordionTrigger className="text-center">

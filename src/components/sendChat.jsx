@@ -58,7 +58,7 @@ const SendChat = ({type}) => {
               className={cn(" min-h-12 resize-none border-0 p-3 shadow-none focus-visible:ring-0",type==="space"&&"bg-black")}
             />
             <div className="flex items-center p-3 pt-0 ">
-              <Tooltip>
+              {/* <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" size="icon">
                     <Paperclip className="size-4" />
@@ -66,7 +66,7 @@ const SendChat = ({type}) => {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="top">Attach File</TooltipContent>
-              </Tooltip>
+              </Tooltip> */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <EmojiDialog setEmojis={handleEmojiClick}>
@@ -78,7 +78,7 @@ const SendChat = ({type}) => {
                 </TooltipTrigger>
                 <TooltipContent side="top">Emojis</TooltipContent>
               </Tooltip>
-              <Tooltip>
+              {/* <Tooltip>
                 <TooltipTrigger asChild>
                   <Button variant="ghost" size="icon">
                     <Mic className="size-4" />
@@ -86,7 +86,7 @@ const SendChat = ({type}) => {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent side="top">Use Microphone</TooltipContent>
-              </Tooltip>
+              </Tooltip> */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <MessangerThemeDrawer>

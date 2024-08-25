@@ -41,6 +41,9 @@ const FriendRequestSheet = ({ children }) => {
                 toast({
                     title:"Friend request accepted succefully!"
                 })
+                // code
+                
+                
             } 
         } catch (error) {
             console.error("Failed to responsed the friend request :", error.message);

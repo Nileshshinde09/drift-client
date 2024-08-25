@@ -12,9 +12,9 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router-dom"
 
-const MessangerContextMenue = ({ children, messageData }) => {
+const MessangerContextMenueYourself = ({ children, messageData }) => {
   const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const dispatch = useDispatch()   
   const userData = useSelector(state => state.auth.userData)
   const [setRecieverId, Error] = useCreateChat();
   const handlePersonalChat = () => {
@@ -41,10 +41,10 @@ const MessangerContextMenue = ({ children, messageData }) => {
         }
       </ContextMenuTrigger>
       <ContextMenuContent className="w-64">
-       {/* <ContextMenuItem inset onClick={deleteMessageHandler}>
+        <ContextMenuItem inset onClick={deleteMessageHandler}>
           Delete
           <ContextMenuShortcut></ContextMenuShortcut>
-        </ContextMenuItem> */}
+        </ContextMenuItem>
         {/* <ContextMenuItem inset>
           Edit
           <ContextMenuShortcut></ContextMenuShortcut>
@@ -86,4 +86,4 @@ const ParticipantsContextMenue = ({ children, participantData }) => {
     </ContextMenu>
   )
 }
-export { MessangerContextMenue, ParticipantsContextMenue };
+export { MessangerContextMenueYourself, ParticipantsContextMenue };

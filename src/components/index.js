@@ -79,7 +79,9 @@ import CreatePostDialog from "./createPostDialog.jsx"
 import ChangePasswordLogoutDialog from "./changePasswordLogoutDialog.jsx"
 import FindeUserAvatar from "./findeUserAvatar.jsx"
 import MessangerUserProfileId from "./messangerUserProfileId.jsx"
+import { MessangerContextMenueYourself } from "./contextMenueYourself.jsx"
 export {
+    MessangerContextMenueYourself,
     MessangerUserProfileId,
     FindeUserAvatar,
     ChangePasswordLogoutDialog,

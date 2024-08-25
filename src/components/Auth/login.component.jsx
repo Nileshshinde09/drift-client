@@ -37,19 +37,25 @@ const Login = () => {
     setIsSubmitting(true);
     try {
       const response = await Auth.loginToAccount(data);
-      console.log(response.data.message);
-      
-      toast({
+      console.log(response.status);
+      if(response.status===201){
+        toast({
+          title: 'Failed',
+          description: response.data.message,
+        });
+      }
+      if(response.status===200){
+        toast({
         title: 'Success',
         description: response.data.message,
       });
-    
+      }
       if (response?.statusText==="OK"){
          dispatch(login(response?.data?.data?.user))
          if (response?.data?.data?.user?.emailVerified) dispatch(emailAuthenticated(response.data.data.user.emailVerified))
-        
         }
       setIsSubmitting(false);
+
     } catch (error) {
       console.error('Error during login:', error);
       const axiosError = error

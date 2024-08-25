@@ -30,11 +30,11 @@ const GroupDialog = ({ children }) => {
         <div className="flex flex-wrap space-y-4">
           <div />
           <div className="flex space-x-3">
-            <GroupParticipantSheet />
+            <GroupParticipantSheet/>
             {groupChatData?.admin===userData?._id&&<GroupParticipantSheet showParticipants={false} />}{/* group admin only access this feature */}
           </div>
           <div className="flex space-x-3">
-            {groupChatData?.admin===userData?._id&&<AddFriendListDrawer ><Button>Add participants</Button></AddFriendListDrawer>}{/* group admin only access this feature */}
+            {groupChatData?.admin===userData?._id&&<AddFriendListDrawer><Button>Add participants</Button></AddFriendListDrawer>}{/* group admin only access this feature */}
             {groupChatData?.admin===userData?._id&&<RenameGroup><Button>Rename group</Button></RenameGroup>}{/* group admin only access this feature */}
           </div>
           <div className="flex space-x-3">
