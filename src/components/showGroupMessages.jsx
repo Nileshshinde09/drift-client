@@ -43,10 +43,10 @@ const ShowGroupMessages = () => {
                 />
                 <p className="leading-9 text-black font-semibold my-5">{groupName || ""}</p>
                 <div className={`transition w-3 h-3 rounded-full ${online ? 'bg-green-500' : 'bg-red-500'}`}></div>
-                {isTyping && (
+               {isTyping && (
                     <>
                         <h1 className="leading-9 text-black font-semibold my-5 transition flex">
-                            {typingEntityName}
+                            {typingEntityName.split(" ")[1]}
                         </h1>
                     </>
                 )}

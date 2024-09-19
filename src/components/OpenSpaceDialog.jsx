@@ -28,7 +28,7 @@ const OpenSpaceDialog = ({children,isLoading,spaceData}) => {
         navigate(`/messanger/space/${spaceData._id}`)
     }
     const postHandler=()=>{
-        navigate('/')
+        navigate('/journeyjournals')
     }
     return (
         <Dialog>

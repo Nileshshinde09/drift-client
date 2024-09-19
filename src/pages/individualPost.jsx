@@ -10,7 +10,7 @@ const IndividualPost = () => {
   const fetchData = async (page) => {
     const response = await Post.getAllRemoteUserPost({ username });
     if (response && response.data && response.data.data) {
-      return response.data.data.fetchedPost.filter(post => !post.video);
+      return response.data.data.fetchedPost.filter(post => !post.video||post.video);
     }
     return [];
   };
@@ -22,10 +22,9 @@ const IndividualPost = () => {
         <div className='overflow-y-scroll absolute py-12 no-scrollba h-full w-full' ref={containerRef}>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-2 px-2'>
             {data.map((post) => {
-              console.log(post);
               return (
               <div key={uuidv4()} className="flex justify-center">
-                <PostCard post={post} showAnalytics={true} />
+                <PostCard post={post} showAnalytics={true} isOwnedPost={true} />
               </div>
               )
             }

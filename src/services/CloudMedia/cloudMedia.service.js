@@ -35,6 +35,24 @@ class cloudMedia {
         }
     }
 
+    getVideoById = async (videoId) => {
+        if (!videoId)
+            throw error
+        const params = { videoId }
+        try {
+            return await axios.get("/api/v1/fileloader/load-video-by-id", { params },
+                {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                    }
+                }
+            )
+        } catch (error) {
+            console.log(error.message || "Something went wrong while loading video by Id.");
+        }
+    }
+
     uploadImage = async (file) => {
         if (!file)
             throw error

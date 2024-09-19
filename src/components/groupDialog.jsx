@@ -12,7 +12,6 @@ import { useSelector } from "react-redux"
 const GroupDialog = ({ children }) => {
   const groupChatData = useSelector(state => state.messanger.currentChatRoomData)
   const userData = useSelector(state => state.auth.userData);
-
   return (
     <Dialog>
       <DialogTrigger asChild>

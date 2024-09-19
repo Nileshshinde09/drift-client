@@ -80,10 +80,10 @@ const CreateGroupForm = () => {
               <Label htmlFor="name">Name</Label>
               <Input id="name" onChange={(e) => setGroupName(e.target.value)} placeholder="Name of your Group" />
             </div>
-            <div className="flex items-center space-x-2">
+            {/* <div className="flex items-center space-x-2">
               <Label htmlFor="isAno">Is Ano Group</Label>
               <Switch id="isAno" onClick={(e) => setIsAno(e.target.ariaChecked)} value={isAno} />
-            </div>
+            </div> */}
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="framework">Topic</Label>
               <SelectGroupTopic setTopic={setTopicName} selectedTopic={topicName} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { GroupDialog, SpaceMessage } from '.'
+import { AnoGroupDialog, SpaceMessage } from '.'
 import { setMessangerTheme } from '@/app/slices/themeSlice';
 import anoGroupLogo from "@/assets/Applogo/driftLogo.png"
 import { Menu } from 'lucide-react';
@@ -45,11 +45,11 @@ const ShowSpaceMessages = () => {
                         </h1>
                     </>
                 )}
-                <GroupDialog>
+                <AnoGroupDialog>
                     <Button variant="ghost">
                         <Menu className='z-50 cursor-pointer absolute right-5 hover:scale-110 transition-transform' stroke='black' />
                     </Button>
-                </GroupDialog>
+                </AnoGroupDialog>
             </div>
 
             <div className={`relative h-[33rem] bg-black shadow-2xl border-2 border-orange-100 rounded-3xl sm:w-1/2 w-full mx-auto mt-5 no-scrollbar px-3 py-10 space-y-2 overflow-y-scroll`}>

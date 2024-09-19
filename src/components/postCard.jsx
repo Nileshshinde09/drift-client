@@ -27,7 +27,7 @@ import { useBookmarkUnbookmark } from "@/hooks";
 import { useLikeUnlike } from "@/hooks";
 import { Separator } from "./ui/separator";
 import { VITE_HOST_URL } from "@/constants";
-const PostCard = ({ post,showAnalytics=false }) => {
+const PostCard = ({ post,showAnalytics=false,isOwnedPost=false }) => {
   const { toast } = useToast();
   const [comment, setComment] = useState(false);
   const [like, setLike] = useState(post.isliked || false);
@@ -41,6 +41,7 @@ const PostCard = ({ post,showAnalytics=false }) => {
   const [likeState, likeError, isLoadingLike, LikeUnLike] = useLikeUnlike({ PostId: post._id });
   const videoRef = useRef(null);
   
+  console.log(post);
   
   useEffect(() => {
     if (comment && post._id) {
@@ -101,7 +102,7 @@ const PostCard = ({ post,showAnalytics=false }) => {
       setVideoProgress(progress);
     }
   };
-
+if(!isOwnedPost)
   return (
     <Card className="md:w-[400px] w-[350px]">
       <div className="flex justify-between">
@@ -202,6 +203,58 @@ const PostCard = ({ post,showAnalytics=false }) => {
       </CardFooter>
     </Card>
   );
+else if(isOwnedPost){
+  return (
+    <Card className="md:w-[400px] w-[350px]">
+      <div className="flex justify-between">
+        <HoverCard creator={post.creator} />
+        <div className="m-2">
+        <Share className="" url={VITE_HOST_URL + `/post/${post._id}`} shareType={"Post"} username={post.creator?.username}>
+          <Share2 />
+        </Share>
+        </div>
+      </div>
+      <CardTitle>
+        <div className="flex space-x-7 justify-center">
+          <div>
+            <ThumbsUp
+              onClick={() => {
+                setLike(!like);
+                handlePostLikeUnLike();
+              }}
+              className={like ? "fill-white stroke-black cursor-pointer" : "cursor-pointer"}
+            />
+            {showAnalytics&&<p className="text-sm text-center text-muted-foreground">{post.likes}</p>}
+          </div>
+          <CommentSheet>
+            <div>
+              <MessageSquare
+                onClick={() => setComment(!comment)}
+                className={comment ? "fill-white stroke-black cursor-pointer" : "cursor-pointer"}
+              />
+              {showAnalytics&&<p className="text-sm text-center text-muted-foreground">{post.comments}</p>}
+            </div>
+          </CommentSheet>
+          <Bookmark
+            onClick={() => {
+              setBookmark(!bookmark);
+              handleBookmarkUnbookmark();
+            }}
+            className={bookmark ? "fill-white stroke-black cursor-pointer" : "cursor-pointer"}
+          />
+        </div>
+      </CardTitle>
+      <Separator className="w-[90%] mx-auto my-2" />
+      <CardFooter>
+        <CardDescription className="mt-10 mx-auto">
+          <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+            {post.caption || "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, "}
+          </h4>
+        </CardDescription>
+      </CardFooter>
+    </Card>
+  );
+}
 };
 
 export default PostCard;

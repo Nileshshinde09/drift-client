@@ -10,10 +10,10 @@ import {
 } from "@/components/ui/dialog"
 import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
-import { GroupChat } from "@/services"
+import { Space } from "@/services"
 import { useSelector } from "react-redux"
 
-const RemoveParticipantDialog = ({ children, participant, groupName }) => {
+const AnoGroupRemoveParticipantDialog = ({ children, participant, groupName }) => {
     const participants = useSelector(state => state.messanger.currentChatRoomData.participants);
     const { toast } = useToast()
     const removeParticipantHandler=async()=>{
@@ -26,12 +26,11 @@ const RemoveParticipantDialog = ({ children, participant, groupName }) => {
               })
         }
         try {
-            const response = await GroupChat.removeParticipantsFromGroupChat(groupName?._id,participant._id)
-            
-            if(response?.data){
+            const response = await Space.removeParticipantsFromSpace(groupName?._id,participant?._id)
+            if(response.status){
                 toast({
-                    title: `Participant removed successfully!`
-                  })  
+                    title: `Participant removed Successfully!`,
+                  })
             }
         } catch (error) {
            console.log(error.message || "Something went wrong while removing participant.")
@@ -64,4 +63,4 @@ const RemoveParticipantDialog = ({ children, participant, groupName }) => {
     )
 }
 
-export default RemoveParticipantDialog;
+export default AnoGroupRemoveParticipantDialog;

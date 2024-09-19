@@ -130,7 +130,7 @@ const OTP = () => {
               name="pin"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>One-Time Password</FormLabel>
+                  <FormLabel className="text-black dark:text-white">One-Time Password</FormLabel>
                   <FormControl>
                     <InputOTP maxLength={6} {...field}>
                       <InputOTPGroup>

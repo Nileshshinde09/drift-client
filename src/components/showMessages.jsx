@@ -50,7 +50,9 @@ const ShowMessages = () => {
         {isTyping && (
           <>
             <h1 className="leading-9 text-black font-semibold my-5 transition flex">
-              {typingEntityName}
+              {
+               typingEntityName.split(" ")[1]
+              }
             </h1>
           </>
         )}

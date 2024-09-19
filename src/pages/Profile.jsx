@@ -188,13 +188,17 @@ const Profile = () => {
                     </CardLayout>
                     {
                         isFriends &&
+                        <>
                         <CardLayout>
                             <ProfileCardText cardType="chat-with-friend" profileData={profileData} value={"Chat"} altValue='public groups' className={"bg-slate-200"}><GroupIcon /></ProfileCardText>
                         </CardLayout>
+                        <CardLayout>
+                            <ProfileCardText route={`/individual-post/${profileData?.username}`} cardType="link" value={"Posts"} altValue='Posts' className={"bg-slate-200"}><Image /></ProfileCardText>
+                        </CardLayout>
+                        </>
                     }
                 </>
                 }
-
                 {isOwnProfile &&
                     <>
                         <CardLayout>
@@ -209,9 +213,6 @@ const Profile = () => {
                         </CardLayout>
                         <CardLayout>
                             <ProfileCardText route={'/create-post'} cardType="link" value={"Create Post"} altValue='create post' className={"bg-slate-200"}><SquarePlus /></ProfileCardText>
-                        </CardLayout>
-                        <CardLayout>
-                            <ProfileCardText route={`/individual-post/${existingUser?.username}`} cardType="link" value={"Posts"} altValue='Posts' className={"bg-slate-200"}><Image /></ProfileCardText>
                         </CardLayout>
                         {/* <CardLayout>
                             <ProfileCardText cardType="video-call-button" value={"Video Call"} altValue='video call' className={"bg-slate-200"}><Video /></ProfileCardText>

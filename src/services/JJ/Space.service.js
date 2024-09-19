@@ -134,7 +134,7 @@ class space {
         try {
             if (!postId||!participantId) throw new Error("fields data not available.")
             const response = await axios.delete(
-                `/api/v1/journey-journal/${postId}/${participantId}`,
+                `/api/v1/journey-journal/join/${postId}/${participantId}`,
                 {
                     headers: {
                         'Access-Control-Allow-Origin': '*',

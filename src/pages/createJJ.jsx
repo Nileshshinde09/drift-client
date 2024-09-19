@@ -36,8 +36,9 @@ const CreateJJ = () => {
             const response = await Space.createJJNSpace({
                 content, topic
             })
+            
             if (response.data.success) {
-                setSpaceData(response.data.data.space);
+                setSpaceData(response.data.data.JJ);
                 setIsExploding(false)
                 setIsExploding(true)
                 toast({

@@ -9,7 +9,7 @@ import {
     DrawerTrigger
 } from "@/components/ui/drawer";
 import React, { useEffect, useState } from 'react';
-import { Friends, GroupChat } from "@/services";
+import { Friends, Space } from "@/services";
 import {
     Avatar,
     AvatarFallback,
@@ -31,10 +31,11 @@ import {
     ContextMenuTrigger,
 } from "@/components/ui/context-menu";
 import { useDispatch, useSelector } from "react-redux";
-
-const AddFriendListDrawer = ({ children }) => {
+import { useToast } from "./ui/use-toast";
+const AddFriendToSpace = ({ children }) => {
     const dispatch = useDispatch()
     const chatData = useSelector(state => state.messanger.currentChatRoomData)
+    const {toast}=useToast()
     const participants = useSelector(state => state.messanger.currentChatRoomData.participants);
     const [FriendList, setFriendList] = useState([]);
     useEffect(() => {
@@ -54,11 +55,15 @@ const AddFriendListDrawer = ({ children }) => {
 
     const HandleAddNewGroupParticipants=async(member)=>{
         try {
-            await GroupChat.addNewParticipantInGroupChat(chatData._id,member._id)
+            const response = await Space.addNewParticipantInSpace(chatData._id,member._id)
+            if(response.status){
+                toast({title:"Participant added sucessfully!"});
+            }
         } catch (error) {
             console.log(error.message || "Something went wrong while adding new participant.");
         }
     }
+
     return (
         <Drawer>
             <DrawerTrigger>
@@ -79,12 +84,12 @@ const AddFriendListDrawer = ({ children }) => {
                                 FriendList.map((frnd, index) => {
                                     if(participants.some((prt) => prt._id===frnd?.friend[0]?._id)) return;
                                     return (
-                                        <div onClick={() =>HandleAddNewGroupParticipants(frnd?.friend[0])} key={index} className="flex justify-start items-center m-2 w-full mx-auto">
+                                        <div key={index} className="flex justify-start items-center m-2 w-full mx-auto">
                                             <Avatar className="mx-2">
                                                 <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                                                 <AvatarFallback>{frnd?.friend[0]?.username}</AvatarFallback>
                                             </Avatar>
-
+                                            <Button className="mx-3" onClick={() =>HandleAddNewGroupParticipants(frnd?.friend[0])}>Add Participant</Button>
                                             <Accordion type="single" collapsible className="w-full">
                                                 <AccordionItem value="item-1">
                                                     <AccordionTrigger className="text-center">
@@ -131,7 +136,7 @@ const AddFriendListDrawer = ({ children }) => {
                         <ContextMenuRadioGroup value="pedro">
                             <ContextMenuLabel inset>Remove from friend list</ContextMenuLabel>
                             <ContextMenuSeparator />
-                            <Button onClick={() => { console.log("hello") }} className="">Remove</Button>
+                            <Button className="">Remove</Button>
                         </ContextMenuRadioGroup>
                     </ContextMenuContent>
                 </ContextMenu>
@@ -140,4 +145,4 @@ const AddFriendListDrawer = ({ children }) => {
     );
 }
 
-export default AddFriendListDrawer;
+export default AddFriendToSpace;

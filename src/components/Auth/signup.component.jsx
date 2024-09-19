@@ -126,18 +126,18 @@ const SignUp = () => {
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-2 text-center ">
             <h1 className="text-3xl font-bold">Sign Up</h1>
-            <p className="text-balance text-muted dark:text-muted-foreground">
+            <p className="text-balance text-black dark:text-white">
               Enter your details below to Sign up
             </p>
           </div>
-          <div className="grid gap-4 dark:text-white text-muted">
+          <div className="grid gap-4 text-black dark:text-white">
             <div className="grid gap-2">
               <FormField
                 name="fullName"
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel className="text-black dark:text-white">Full Name</FormLabel>
                     <Input
                       id="fullName"
                       name="fullName"
@@ -156,7 +156,7 @@ const SignUp = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-black dark:text-white">Email</FormLabel>
                     <Input
                       id="email"
                       type="email"
@@ -175,7 +175,7 @@ const SignUp = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Username</FormLabel>
+                    <FormLabel className="text-black dark:text-white">Username</FormLabel>
                     <Input
                       id="username"
                       type="text"
@@ -209,7 +209,7 @@ const SignUp = () => {
                 name="gender"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Gender</FormLabel>
+                    <FormLabel className="text-black dark:text-white">Gender</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value} >
                       <FormControl>
                         <SelectTrigger>
@@ -217,9 +217,9 @@ const SignUp = () => {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="male" >Male</SelectItem>
-                        <SelectItem value="female">Female</SelectItem>
-                        <SelectItem value="others">Others</SelectItem>
+                        <SelectItem className="text-black dark:text-white" value="male" >Male</SelectItem>
+                        <SelectItem className="text-black dark:text-white" value="female">Female</SelectItem>
+                        <SelectItem className="text-black dark:text-white" value="others">Others</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage />
@@ -229,7 +229,7 @@ const SignUp = () => {
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
-                <Label htmlFor="createPassword">Create Password</Label>
+                <Label className="text-black dark:text-white" htmlFor="createPassword">Create Password</Label>
               </div>
               <FormField
                 name="createPassword"
@@ -254,7 +254,7 @@ const SignUp = () => {
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
-                <Label htmlFor="confirmPassword">Confirm Password</Label>
+                <Label className="text-black dark:text-white" htmlFor="confirmPassword">Confirm Password</Label>
               </div>
               <FormField
                 name="confirmPassword"

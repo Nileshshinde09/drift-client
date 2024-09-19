@@ -9,7 +9,6 @@ const useDashboardPosts = (refresh) => {
     const dispatch = useDispatch()
     useEffect(() => {
         ; (async () => {
-
             try {
                 setIsFetching(true)
                 const response = await Post.getAllUserOwnedPosts()

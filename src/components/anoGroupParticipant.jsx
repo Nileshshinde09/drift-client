@@ -15,8 +15,8 @@ import {
     AccordionTrigger,
 } from "@/components/ui/accordion"
 import { timeSince } from "@/utils";
-import { RemoveParticipantDialog } from ".";
-const GroupParticipantSheet = ({showParticipants=true}) => {
+import AnoGroupRemoveParticipantDialog from "./AnoGroupRemoveParticipant";
+const AnoGroupParticipantSheet = ({showParticipants=true}) => {
     const [removeParticipants, setRemoveParticipants] = useState(!showParticipants)
     const [participants, setParticipants] = useState([]);
     const participant = useSelector(state => state.messanger.currentChatRoomData.participants);
@@ -26,7 +26,6 @@ const GroupParticipantSheet = ({showParticipants=true}) => {
             setParticipants(participant);
         }
     }, [participant]);
-
     return (
         <div className="grid grid-cols-2 gap-2">
             <Sheet key={"top"}>
@@ -50,7 +49,7 @@ const GroupParticipantSheet = ({showParticipants=true}) => {
     );
 };
 
-export default GroupParticipantSheet;
+export default AnoGroupParticipantSheet;
 
 
 const participantShowList=(participants,chatData)=>{
@@ -100,19 +99,18 @@ const participantRemoveList=(participants,chatData)=>{
         participants.map((frnd, index) =>{
             if(chatData.admin===frnd._id) return
             return(
-            <RemoveParticipantDialog participant={frnd} groupName={chatData}>
+            <AnoGroupRemoveParticipantDialog participant={frnd} groupName={chatData}>
             <div key={index} className="w-fit flex">
                     <Avatar className="mx-2">
                         <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                         <AvatarFallback>{frnd?.username}</AvatarFallback>
                     </Avatar>
-
                     <Accordion type="single" collapsible className="w-full">
                         <AccordionItem value="item-1">
                             <AccordionTrigger className="text-center">
                                 <p className="text-center leading-7 [&:not(:first-child)]:mt-6">
                                     {
-                                            chatData.admin===frnd._id?`${frnd?.username} @Admin`:frnd?.username
+                                        chatData.admin===frnd._id?`${frnd?.username} @Admin`:frnd?.username
                                     } 
                                 </p>
                             </AccordionTrigger>
@@ -135,7 +133,7 @@ const participantRemoveList=(participants,chatData)=>{
                         </AccordionItem>
                     </Accordion>
                 </div>
-                </RemoveParticipantDialog>)
+                </AnoGroupRemoveParticipantDialog>)
         })
     )
 }

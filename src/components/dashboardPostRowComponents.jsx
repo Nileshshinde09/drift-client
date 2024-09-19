@@ -81,9 +81,13 @@ const dashboardPostRowComponents = () => {
                             <TableCell className="hidden md:table-cell">
                                 {humanReadableDate(post?.updatedAt) || "Not Available"}
                             </TableCell>
+                           {post?.video? <TableCell>
+                               <Link className='hidden' to={`/edit-post/${post?._id}`}><Edit2 className='cursor-pointer hover:scale-125 hover:transition-transform' variant="outline" onClick={()=>dispatch(updatePost({updatePostData:post}))} ></Edit2></Link>
+                            </TableCell>:
                             <TableCell>
-                               <Link to={`/edit-post/${post?._id}`}><Edit2 className='cursor-pointer hover:scale-125 hover:transition-transform' variant="outline" onClick={()=>dispatch(updatePost({updatePostData:post}))} ></Edit2></Link>
-                            </TableCell>
+                            <Link to={`/edit-post/${post?._id}`}><Edit2 className='cursor-pointer hover:scale-125 hover:transition-transform' variant="outline" onClick={()=>dispatch(updatePost({updatePostData:post}))} ></Edit2></Link>
+                         </TableCell>
+                            }
                             <TableCell>
                                 <Trash2 className='cursor-pointer hover:scale-125 hover:transition-transform' onClick={() => deletePostHandler(post?._id)} variant="outline"></Trash2>
                             </TableCell>

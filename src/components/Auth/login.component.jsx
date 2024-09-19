@@ -77,8 +77,8 @@ const Login = () => {
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
           <div className="grid gap-2 text-center ">
-            <h1 className="text-3xl font-bold">Login</h1>
-            <p className="text-balance dark:text-muted-foreground text-muted">
+            <h1 className="text-3xl font-bold text-black dark:text-white">Login</h1>
+            <p className="text-balance text-black dark:text-white">
               Enter your email below to login to your account
             </p>
           </div>
@@ -89,7 +89,7 @@ const Login = () => {
                 control={form.control}
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel className="text-black dark:text-white">Email</FormLabel>
                     <Input
                       id="email"
                       type="email"
@@ -104,10 +104,10 @@ const Login = () => {
             </div>
             <div className="grid gap-2">
               <div className="flex items-center">
-                <Label htmlFor="password">Password</Label>
+                <Label htmlFor="password" className='text-black dark:text-white'>Password</Label>
                 <Link
                   to={"/forgot-password"}
-                  className="ml-auto inline-block text-sm underline"
+                  className="text-black dark:text-white ml-auto inline-block text-sm underline"
                 >
                   Forgot your password?
                 </Link>
@@ -144,7 +144,7 @@ const Login = () => {
               )}
             </Button>
           </div>
-          <div className="mt-4 text-center text-sm text-white">
+          <div className="mt-4 text-center text-sm text-black dark:text-white">
             Don&apos;t have an account?{" "}
             <Link to={"/signup"} className="underline">
               Sign up

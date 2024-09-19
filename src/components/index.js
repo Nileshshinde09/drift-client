@@ -80,7 +80,13 @@ import ChangePasswordLogoutDialog from "./changePasswordLogoutDialog.jsx"
 import FindeUserAvatar from "./findeUserAvatar.jsx"
 import MessangerUserProfileId from "./messangerUserProfileId.jsx"
 import { MessangerContextMenueYourself } from "./contextMenueYourself.jsx"
+import AnoGroupDialog from "./anogroupDialog.jsx"
+import AddFriendToSpace from "./addFriendToSpace.jsx"
+import AnoGroupParticipantSheet from "./anoGroupParticipant.jsx"
 export {
+    AnoGroupParticipantSheet,
+    AddFriendToSpace,
+    AnoGroupDialog,
     MessangerContextMenueYourself,
     MessangerUserProfileId,
     FindeUserAvatar,

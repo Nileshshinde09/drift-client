@@ -25,6 +25,7 @@ const DeleteJJdialog = ({ children, data, setToggle, toggle }) => {
     const deleteHandler = async () => {
         setIsLoading(true)
         const response = await Space.deletePostAndSpace(data._id);
+        setToggle(!toggle)
         if (response.data.success) {
             setToggle(!toggle)
             toast({
