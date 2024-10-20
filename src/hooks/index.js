@@ -22,7 +22,7 @@ import { useInitializeSpace } from "./Messanger/useInitializeSpace";
 import { usePagination } from "./pagination/usePagination";
 import useExistingUser from "./User/useExistinguser";
 import useLikeUnlike from "./Likes/useLikeUnlike";
-import useBookmarkUnbookmark from "./Bookmarks/useBookmarkUnbookmark";
+import useBookmarkUnbookmark from "./bookmarks/useBookmarkUnbookmark";
 export {
     useInitializeSpace,
     useDocumentTitle,
