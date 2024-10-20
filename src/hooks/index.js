@@ -20,8 +20,8 @@ import { useInitializeGroupChat } from "./Messanger/useInitializeGroup";
 import { useDocumentTitle } from "usehooks-ts";
 import { useInitializeSpace } from "./Messanger/useInitializeSpace";
 import { usePagination } from "./pagination/usePagination";
-import useExistingUser from "./User/useExistinguser";
-import useLikeUnlike from "./Likes/useLikeUnlike";
+import useExistingUser from "./user/useExistinguser";
+import useLikeUnlike from "./likes/useLikeUnlike";
 import useBookmarkUnbookmark from "./bookmarks/useBookmarkUnbookmark";
 export {
     useInitializeSpace,
