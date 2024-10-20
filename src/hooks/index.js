@@ -19,7 +19,7 @@ import { useLoadGroupChat } from "./Messanger/useLoadGroupChat";
 import { useInitializeGroupChat } from "./Messanger/useInitializeGroup";
 import { useDocumentTitle } from "usehooks-ts";
 import { useInitializeSpace } from "./Messanger/useInitializeSpace";
-import { usePagination } from "./Pagination/usePagination";
+import { usePagination } from "./pagination/usePagination";
 import useExistingUser from "./User/useExistinguser";
 import useLikeUnlike from "./Likes/useLikeUnlike";
 import useBookmarkUnbookmark from "./Bookmarks/useBookmarkUnbookmark";
